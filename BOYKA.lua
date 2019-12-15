@@ -795,7 +795,7 @@ send(msg.chat_id_, msg.id_,'🔖|تم حذف كليشه ستارت')
 end
 if text == 'تحديث السورس ™' and SudoBot(msg) then 
 os.execute('rm -rf BOYKA.lua')
-os.execute('wget https://raw.githubusercontent.com/BOYKABOT/BOYKA/master/BOYKA.lua')
+os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/BOYKA.lua')
 send(msg.chat_id_, msg.id_,'🔘|تم تحديث سورس')
 dofile('BOYKA.lua')  
 end
