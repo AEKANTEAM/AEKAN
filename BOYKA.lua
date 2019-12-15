@@ -1916,7 +1916,7 @@ end
 return false
 end
 os.execute('rm -rf BOYKA.lua')
-os.execute('wget https://raw.githubusercontent.com/BOYKABOT/BOYKA/master/BOYKA.lua')
+os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/BOYKA.lua')
 send(msg.chat_id_, msg.id_,'♻¦ تم تحديث السورس') 
 dofile('BOYKA.lua')  
 end
@@ -1966,19 +1966,17 @@ end
 
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
-🔘┇اهلا بك في سورس بويكا 
+📝|اهلا بك في سورس ايكان
 
-🔰┇BOYKA TEAM
+🔖|AEKAN TEAM
 
-📮┇[قناه السورس](t.me/BOBBW) 
+🗳️|[قناه السورس](t.me/A7KAN) 
 
-👮‍♂️┇[مطور السورس الاول](t.me/sajad14p)
+👤|[مطور السورس الاول](t.me/A3kon)
 
-👮‍♂️┇[مطور السورس الثاني](t.me/tofy_6)
+📂|[كليشه التنصيب](https://t.me/A7KAN/23) 
 
-📂┇[كليشه التنصيب](https://t.me/BOBBW/23) 
-
-📌┇[لــ تواصل](t.me/rrrrybot)
+📌|[لــ تواصل](t.me/A3kon)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -6200,8 +6198,8 @@ end
 return false
 end
 
-if text == ""..(database:get(bot_id..'Name:Bot') or 'بويكا').."" then  
-Namebot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ايكان').."" then  
+Namebot = (database:get(bot_id..'Name:Bot') or 'ايكان')
 local BOYKA_Msg = {
 'اسمي مينو كول💘؟',
 'دا اشرب جاي مفارغلك',
@@ -6793,7 +6791,7 @@ end
 return false  
 end
 if text == 'بوت' then
-Namebot = (database:get(bot_id..'Name:Bot') or 'بويكا')
+Namebot = (database:get(bot_id..'Name:Bot') or 'ايكان')
 send(msg.chat_id_, msg.id_,'اسمي ['..Namebot..'] 💘🌚') 
 end
 if text == 'الاحصائيات' or text == 'المجموعات' or text == 'المشتركين' then
@@ -7985,7 +7983,7 @@ Text_Games = [[
 ء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 الميزيد م̷ـــِْن المعلومات √
 راسل المطور البوت °
-📌┇Ch @BOBBW
+📌┇Ch @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,Text_Games) 
 end
@@ -8012,7 +8010,7 @@ Text = [[
 🔘|م4 » اوامر المنشئين
 🔘| م5 » اوامر المطورين 
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,Text) 
 return false
@@ -8066,7 +8064,7 @@ Text = [[
 🔒| التكرار
 🔒| الفارسيه
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,Text) 
 return false
@@ -8118,7 +8116,7 @@ Text = [[
 🔘| رابط ، ترحيب ، قوانين
 🔘|صوره ، وصف
 ~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,Text) 
 return false
@@ -8164,7 +8162,7 @@ Text = [[
 🔘| تعطيل/تفعيل صيح
 🔘| تعطيل/تفعيل ضافني
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,Text) 
 return false
@@ -8205,7 +8203,7 @@ Text = [[
 📬| تفعيل/تعطيل الحظر
 📭| تفعيل/تعطيل الرفع
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,Text) 
 return false
@@ -8274,7 +8272,7 @@ Text = [[
 🗑️¦ تنظيف المشتركين
 🗑️¦ تنظيف الكروبات
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,Text) 
 return false
