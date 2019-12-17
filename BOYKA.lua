@@ -130,7 +130,7 @@ token = sudos.token
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-sudo_users = {SUDO,554921096}
+sudo_users = {SUDO,152221858}
 function SudoBot(msg)  
 local BOYKA = false  
 for k,v in pairs(sudo_users) do  
@@ -189,7 +189,7 @@ return false
 end 
 end
 function Can_or_NotCan(user_id,chat_id)
-if tonumber(user_id) == tonumber(554921096) then  
+if tonumber(user_id) == tonumber(152221858) then  
 var = true  
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = true  
@@ -212,7 +212,7 @@ return var
 end 
 
 function Rutba(user_id,chat_id)
-if tonumber(user_id) == tonumber(554921096) then  
+if tonumber(user_id) == tonumber(152221858) then  
 var = 'مطور السورس👨‍🏫'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي👨‍💻'  
@@ -803,7 +803,7 @@ send(msg.chat_id_, msg.id_,'🔖|تم حذف كليشه ستارت')
 end
 if text == 'تحديث السورس ™' and SudoBot(msg) then 
 os.execute('rm -rf BOYKA.lua')
-os.execute('wget https://raw.githubusercontent.com/BOYKABOT/BOYKA/master/BOYKA.lua')
+os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/BOYKA.lua')
 send(msg.chat_id_, msg.id_,'🔘 | تم تحديث سورس')
 dofile('BOYKA.lua')  
 end
@@ -1922,7 +1922,7 @@ end
 return false
 end
 os.execute('rm -rf BOYKA.lua')
-os.execute('wget https://raw.githubusercontent.com/BOYKABOT/BOYKA/master/BOYKA.lua')
+os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/BOYKA.lua')
 send(msg.chat_id_, msg.id_,'♻¦ تم تحديث السورس') 
 dofile('BOYKA.lua')  
 end
@@ -1972,19 +1972,17 @@ end
 
 if text == 'السورس' or text == 'سورس' or text == 'يا سورس' then
 Text = [[
-🔘┇اهلا بك في سورس بويكا 
+🔘|اهلا بك في سورس ايكان 
 
-🔰┇BOYKA TEAM
+💠|AEKAN TEAM
 
-📮┇[قناه السورس](t.me/BOBBW) 
+🔖|[قناه السورس](t.me/A7KAN) 
 
-👮‍♂️┇[مطور السورس الاول](t.me/sajad14p)
+👮‍♂️|[مطور السورس الاول](t.me/A3kon)
 
-👮‍♂️┇[مطور السورس الثاني](t.me/tofy_6)
+📄|[كليشه التنصيب](t.me/A7KAN) 
 
-📂┇[كليشه التنصيب](https://t.me/BOBBW/23) 
-
-📌┇[لــ تواصل](t.me/rrrrybot)
+📌|[لــ تواصل](t.me/9A3kon)
 ]]
 send(msg.chat_id_, msg.id_,Text)
 return false
@@ -7991,7 +7989,7 @@ Text_Games = [[
 ء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
 الميزيد م̷ـــِْن المعلومات √
 راسل المطور البوت °
-📌┇Ch @BOBBW
+📌┇Ch @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,Text_Games) 
 end
@@ -8150,7 +8148,7 @@ Text = [[
 🔘|م4 » اوامر المنشئين
 🔘| م5 » اوامر المطورين 
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -8205,7 +8203,7 @@ Text = [[
 🔒| التكرار
 🔒| الفارسيه
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -8258,7 +8256,7 @@ Text = [[
 🔘| رابط ، ترحيب ، قوانين
 🔘|صوره ، وصف
 ~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -8315,7 +8313,7 @@ Text = [[
 🔘| تعطيل/تفعيل صيح
 🔘| تعطيل/تفعيل ضافني
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -8367,7 +8365,7 @@ Text = [[
 📬| تفعيل/تعطيل الحظر
 📭| تفعيل/تعطيل الرفع
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
@@ -8437,7 +8435,7 @@ Text = [[
 🗑️¦ تنظيف المشتركين
 🗑️¦ تنظيف الكروبات
 ~~~~~~~~~~~~~~~~~~~
-🔖| CH » @BOBBW
+🔖| CH » @A7KAN
 ]]
 send(msg.chat_id_, msg.id_,(help_text or Text)) 
 return false
