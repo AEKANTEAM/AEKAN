@@ -5900,7 +5900,7 @@ database:set(bot_id.."KLISH:ID"..msg.chat_id_,CHENGER_ID)
 send(msg.chat_id_, msg.id_,'📌¦ تم تعين الايدي')    
 end
 
-if text == 'مسح البوتات' or text == 'طرد البوتات' and Mod(msg) then 
+if text == 'مسح البوتات' and Mod(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -5926,7 +5926,7 @@ end
 if (c - x) == 0 then
 send(msg.chat_id_, msg.id_, "📌¦ لا توجد بوتات في المجموعه")
 else
-local t = '🤖¦ عدد البوتات هنا >> {'..c..'}\n📬¦ عدد البوتات التي هي ادمن >> {'..x..'}\n📛¦ تم طرد >> {'..(c - x)..'} من البوتات'
+local t = '📮¦ عدد البوتات هنا >> {'..c..'}\n📬¦ عدد البوتات التي هي ادمن >> {'..x..'}\n🔖¦ تم طرد >> {'..(c - x)..'} من البوتات'
 send(msg.chat_id_, msg.id_,t) 
 end 
 end,nil)  
