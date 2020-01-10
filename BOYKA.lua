@@ -214,8 +214,6 @@ end
 function Rutba(user_id,chat_id)
 if tonumber(user_id) == tonumber(152221858) then  
 var = 'مطور السورس👨‍🏫'
-if tonumber(user_id) == tonumber(655965898) then  
-var = 'مطورة السورس👩‍💻'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي👨‍💻'  
 elseif tonumber(user_id) == tonumber(bot_id) then  
@@ -5536,7 +5534,7 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,'👥¦ لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n ??¦ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,'👥¦ لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌¦ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
@@ -5902,7 +5900,7 @@ database:set(bot_id.."KLISH:ID"..msg.chat_id_,CHENGER_ID)
 send(msg.chat_id_, msg.id_,'📌¦ تم تعين الايدي')    
 end
 
-if text == 'مسح البوتات' or text == 'طرد البوتات' and Mod(msg) then 
+if text == 'مسح البوتات' and Mod(msg) then 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -5928,7 +5926,7 @@ end
 if (c - x) == 0 then
 send(msg.chat_id_, msg.id_, "📌¦ لا توجد بوتات في المجموعه")
 else
-local t = '🤖¦ عدد البوتات هنا >> {'..c..'}\n📬¦ عدد البوتات التي هي ادمن >> {'..x..'}\n📛¦ تم طرد >> {'..(c - x)..'} من البوتات'
+local t = '📮¦ عدد البوتات هنا >> {'..c..'}\n📬¦ عدد البوتات التي هي ادمن >> {'..x..'}\n🔖¦ تم طرد >> {'..(c - x)..'} من البوتات'
 send(msg.chat_id_, msg.id_,t) 
 end 
 end,nil)  
@@ -7292,7 +7290,7 @@ send(msg.chat_id_, msg.id_,Text)
 end
 if text == 'تفعيل اطردني' and Manager(msg) then   
 if database:get(bot_id..'Cick:Me'..msg.chat_id_) then
-Text = '??¦ تم تفعيل امر اطردني'
+Text = '📫¦ تم تفعيل امر اطردني'
 database:del(bot_id..'Cick:Me'..msg.chat_id_)  
 else
 Text = '📫¦ تم تفعيل امر اطردني'
