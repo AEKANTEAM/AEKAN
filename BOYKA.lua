@@ -9789,6 +9789,36 @@ local texting = {"وعليكم السلام والرحمه⇣😻","يمه هل�
 send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
 end
 end
+if text == "ما تفيديني" or text == "ما افيدج" or text == "ما ترهميلي" or text == "ما ارهملج" then
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"عاشق","اليسمعمك ميته عليك ","هههه لزكه جونسن","لا فدوه حبني" }
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
+if text == "احبج" or text == "اموت عليج" or text == "حبك" or text == "حبج" then
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"اعشششششقك جد","انا اموت فيك حبيبي اغار عليك ما اقدر اعيش  بدونك ","اي حبك","اكرهك" }
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
+if text == "فدوه حبيني" or text == "فدوه احبك" or text == "فدوه حبك" or text == "فدوه حبج" then
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"اروحلك اناااا","حبيكي ","فدوه لگلبک","فدوه اكرهك" }
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
+if text == "تكسحي" or text == "تكسح" or text == "روح" or text == "ولي" then
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"راحت روحك","ولت روحك ","ولي من وجهي"," انت/ي تكسح/ي" }
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
+if text == "ليش تحبيه" or text == "ليش تحبينه" or text == "ليش تعشقيه" or text == "ليش تموتين بيه" then
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"والله عاد كيفي","هيج احبه ","اموت عليه ودي اشبكه"," شعليك كيفي" }
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
 if text == 'تفعيل الردود' and Manager(msg) then   
 database:del(bot_id..'lock:reply'..msg.chat_id_)  
 Text = '🔰| تم تفعيل الردود'
