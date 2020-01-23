@@ -9819,66 +9819,6 @@ local texting = {"والله عاد كيفي","هيج احبه ","اموت عل�
 send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
 end
 end
-if text == "منو حبيبج" or text == "حبيبج" or text == "تحبين منو" or text == "منو قلبك" or text == "منو حبك" or text == "منو عشقك" or text == "منو حياتك" or text == "منو نبضك" or text == "نبضك" or text == "عشقك" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"ايكان تاج 👑 راسك","ايكون حبيبي فديته 💋❤️ ","ايكان گلبي ودگاته","ايكان حبي الابدي","ايكان فديته ناني","ايكان فدوه لعمره ناني","ايكان نبضي ❤️ بس"}
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "منو حبيبتج" or text == "حبيبتج" or text == "عشقج" or text == "منو حبج" or text == "نبضج" or text == "منو عشقج" or text == "منو نبضج" or text == "منو قلبج" or text == "منو حياتج" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"رهوفتي العشق","رهف نبضي وكل هلي ","رهف گلبي ودگاته","رهف حبي الابدي","رهف فديتها ناني","رهف فدوه لعمرها ناني","رهف نبضي ❤️ وحياتي"}
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "المهم" or text == "الاهم" or text == "شوف المهم" or text == "مهم" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"اكو اهم","ركزلي ع الاهم "لا شيء","مين حفلتي اليوم هخخخخخخخخخخخ","قصدي شآطرهه ههههههههههههههههههههههههههههه" }
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "المهم شتردين" or text == "شتردين" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"ما اريد شي سلامتك","أحبك وموت عليك ليش تكسر كلبي" }
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "المهم شتريد" or text == "شتريد" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"اريد اكولج احبج ادري بيج سهرانه","سلامتك خبي"," عود أحبك" }
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "تسلمين غلاي" or text == "تسلمين يالاخت" or text == "تسلم يالاخو" or text == "تسلمين" or text == "تسلم" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"يسلمك ربي","الله يسلمك ","ولو عمري","يتللوووو عنوناتي"," ولو كلبي" }
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "رئتاي" or text == "رئتيني" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"طلعة محروكة الصفحه مدفيه على تاير امشعوط وخنكتني ابريحتها.","نفسها"," هواها" }
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "حبي" or text == "حياتي" or text == "كبدي" or text == "تسلمين" or text == "قلبي" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"طحالي","سلامتك يعورك من الحب صح ","اموت ﻋﻠﻴﻚ"," عنوناتي"," وتيني" }
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "بعد روحي" or text == "بعد عمري" or text == "عيوني" or text == "عيناي" or text == "بعد عيوني" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"عيوني وقلبي وحياتي انااا","بعد روحي 🌹 ","ماشوف بعيوني"," اي عمري"," اوكسجيني" }
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "كلبي انتي" or text == "كلبي انته" or text == "كلبي" or text == "قلبوشي" or text == "قلبي" then
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"فدوه الكلبك","حبي انته","اموت ع كلبك"," اي تلبه"," يا روحي" }
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
 if text == 'تفعيل الردود' and Manager(msg) then   
 database:del(bot_id..'lock:reply'..msg.chat_id_)  
 Text = '🔰| تم تفعيل الردود'
