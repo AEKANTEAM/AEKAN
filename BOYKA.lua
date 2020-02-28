@@ -3113,7 +3113,7 @@ send(msg.chat_id_, msg.id_,t)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
 if SudoBot(msg) then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/BOYKATEAM/Files_Boyka/master/getfile.json")
+local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_Boyka/master/File_Bot/"..file)
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
