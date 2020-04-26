@@ -3745,6 +3745,25 @@ end
 end
 end,nil)   
 end
+if text ==("رفع المنشئ") and Sudo(msg) then 
+tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
+local admins = data.members_
+for i=0 , #admins do
+if data.members_[i].status_.ID == "ChatMemberStatusCreator" then
+owner_id = admins[i].user_id_
+end
+end
+tdcli_function ({ID = "GetUser",user_id_ = owner_id},function(arg,b) 
+if b.first_name_ == false then
+send(msg.chat_id_, msg.id_,"🗑¦ حساب المنشئ محذوف")
+return false  
+end
+local UserName = (b.username_ or "SoalfLove")
+send(msg.chat_id_, msg.id_,"🏅¦ تم ترقية منشئ المجموعه : ["..b.first_name_.."](T.me/"..UserName..")")  
+database:sadd(bot_id.."Basic:Constructor"..msg.chat_id_,b.id_)
+end,nil)   
+end,nil)   
+end
 if text == "رفع منشئ" and msg.reply_to_message_id_ and BasicConstructor(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -9193,7 +9212,7 @@ Text = [[
 🔖| م4 » اوامر مسح ~ حذف
 🔖| م5 » اوامر تنزيل + رفع ~ التغير
 🔖| م6 » اوامر المجموعه
-🔖| م6 » اوامر التحشيش
+🔖| م7 » اوامر التحشيش
 🔖| م8 » اوامر مطور البوت
 🔖| م9 » اوامر مطور الاساسي
 🔖| م10 » اوامر الاعضاء
