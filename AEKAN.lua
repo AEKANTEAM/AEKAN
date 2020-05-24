@@ -2465,16 +2465,61 @@ database:del(bot_id..'lock:edit'..msg.chat_id_)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم فـتح تعديل\n⛔| الحاله ← المسح ')  
 end,nil)   
+elseif text == 'قفل الفشار بالتقييد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Fshar"..msg.chat_id_,'ked')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الفشار بالتقييد\n⛔| الحاله ←التقييد ')  
+end,nil)   
+elseif text == 'قفل الفشار بالكتم' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Fshar"..msg.chat_id_,'ktm')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الفشار بالكتم\n⛔| الحاله ←الكتم ')  
+end,nil)   
+elseif text == 'قفل الفشار بالطرد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Fshar"..msg.chat_id_,'kick')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الفشار بالطرد\n⛔| الحاله ←الطرد ')  
+end,nil)
 elseif text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
 database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم فـتح الفشار\n⛔| الحاله ← المسح  ')  
 end,nil)   
+elseif text == 'قفل الفارسيه بالتقييد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Iran"..msg.chat_id_,'ked')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الفارسيه بالتقييد\n⛔| الحاله ←التقييد ')  
+end,nil)   
+elseif text == 'قفل الفارسيه بالكتم' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Iran"..msg.chat_id_,'ktm')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الفارسيه بالكتم\n⛔| الحاله ←الكتم ')  
+end,nil)   
+elseif text == 'قفل الفارسيه بالطرد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Iran"..msg.chat_id_,'kick')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الفارسيه بالطرد\n⛔| الحاله ←الطرد ')  
+end,nil)
 elseif text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
 database:del(bot_id..'lock:Iran'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم فـتح الفارسيه\n⛔| الحاله ← المسح  ')  
 end,nil)   
+elseif text == 'قفل الانكليزيه بالتقييد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Eng"..msg.chat_id_,'ked')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الانكليزيه بالتقييد\n⛔| الحاله ←التقييد ')  
+end,nil)   
+elseif text == 'قفل الانكليزيه بالكتم' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Eng"..msg.chat_id_,'ktm')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الانكليزيه بالكتم\n⛔| الحاله ←الكتم ')  
+end,nil)   
+elseif text == 'قفل الانكليزيه بالطرد' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Eng"..msg.chat_id_,'kick')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤| بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘| تـم قفـل الانكليزيه بالطرد\n⛔| الحاله ←الطرد ')  
+end,nil)
 elseif text == 'فتح الانكليزيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
 database:del(bot_id..'lock:Eng'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -6550,6 +6595,39 @@ lock_mark = 'بالطرد 🚷'
 else
 lock_mark = '✘'    
 end
+if database:get(bot_id.."lock:Iran"..msg.chat_id_) == "del" then
+lock_Iran = '✓'
+elseif database:get(bot_id.."lock:Iran"..msg.chat_id_) == "ked" then
+lock_Iran = 'بالتقيد 🔏'    
+elseif database:get(bot_id.."lock:Iran"..msg.chat_id_) == "ktm" then
+lock_Iran = 'بالكتم 🔇'    
+elseif database:get(bot_id.."lock:Iran"..msg.chat_id_) == "kick" then
+lock_Iran = 'بالطرد 🚷'    
+else
+lock_Iran = '✘'    
+end
+if database:get(bot_id.."lock:Eng"..msg.chat_id_) == "del" then
+lock_Eng = '✓'
+elseif database:get(bot_id.."lock:Eng"..msg.chat_id_) == "ked" then
+lock_Eng = 'بالتقيد 🔏'    
+elseif database:get(bot_id.."lock:Eng"..msg.chat_id_) == "ktm" then
+lock_Eng = 'بالكتم 🔇'    
+elseif database:get(bot_id.."lock:Eng"..msg.chat_id_) == "kick" then
+lock_Eng = 'بالطرد 🚷'    
+else
+lock_Eng = '✘'    
+end
+if database:get(bot_id.."lock:Fshar"..msg.chat_id_) == "del" then
+lock_Fshar = '✓'
+elseif database:get(bot_id.."lock:Fshar"..msg.chat_id_) == "ked" then
+lock_Fshar = 'بالتقيد 🔏'    
+elseif database:get(bot_id.."lock:Fshar"..msg.chat_id_) == "ktm" then
+lock_Fshar = 'بالكتم 🔇'    
+elseif database:get(bot_id.."lock:Fshar"..msg.chat_id_) == "kick" then
+lock_Fshar = 'بالطرد 🚷'    
+else
+lock_Fshar = '✘'    
+end
 if database:get(bot_id.."lock:Spam"..msg.chat_id_) == "del" then    
 lock_spam = '✓'
 elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "ked" then 
@@ -6643,6 +6721,9 @@ local text =
 ' }\n'..'🔖| التكرار ← { '..flood..
 ' }\n'..'🔖| الترحيب ← { '..welcome..
 ' }\n'..'🔖| عدد التكرار ← { '..NUM_MSG_MAX..
+' }\n'..'🔖| الفارسيه ← { '..lock_Iran..
+' }\n'..'🔖| الانكليزيه ← { '..lock_Eng..
+' }\n'..'🔖| الفشار ← { '..lock_Fshar..
 ' }\nء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉'..
 '\n🔰| علامة ال {✓} تعني مفعل'..
 '\n🔰| علامة ال {✘} تعني معطل'..
