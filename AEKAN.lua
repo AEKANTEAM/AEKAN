@@ -7303,6 +7303,26 @@ else
 send(msg.chat_id_, msg.id_,"💠| لا توجد قوانين هنا")   
 end    
 end
+if text == 'قفل التفليش' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:set(bot_id..'lock:tagrvrbot'..msg.chat_id_,true)   
+list ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Sticker","lock:Animation","lock:Video","lock:Fshar","lock:Iran","lock:Eng","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam"}
+for i,lock in pairs(list) do 
+database:set(bot_id..lock..msg.chat_id_,'del')    
+end
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤┇ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘┇ تـم قفـل التفليش\n⛔┇ الحاله ← المسح ')  
+end,nil)   
+end
+if text == 'فتح التفليش' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:del(bot_id..'lock:tagrvrbot'..msg.chat_id_)   
+list ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Sticker","lock:Animation","lock:Video","lock:Fshar","lock:Iran","lock:Eng","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam"}
+for i,lock in pairs(list) do 
+database:del(bot_id..lock..msg.chat_id_)    
+end
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,'👤┇ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n🔘┇ تـم فـتح التفليش\n⛔┇ الحاله ← المسح ')  
+end,nil)   
+end
 if text == 'طرد المحذوفين' or text == 'مسح المحذوفين' then  
 if Mod(msg) then    
 tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),offset_ = 0,limit_ = 1000}, function(arg,del)
