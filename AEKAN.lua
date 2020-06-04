@@ -3605,6 +3605,23 @@ send(msg.chat_id_, msg.id_, t)
 return false
 end
 
+if text == ("تاك للمنشئين الاساسين") or text == ("صيح المنشئين الاساسين") then
+local list = database:smembers(bot_id..'Basic:Constructor'..msg.chat_id_)
+t = "\n🗣️| وينكم تعالوا يريدوكم بالكروب \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
+for k,v in pairs(list) do
+local username = database:get(bot_id.."user:Name" .. v)
+if username then
+t = t..""..k.."- {[@"..username.."]}\n"
+else
+t = t..""..k.."- {"..v.."}\n"
+end
+end
+if #list == 0 then
+t = "✖| لا يوجد منشئين اساسين"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+
 if text == ("رفع منشئ اساسي") and msg.reply_to_message_id_ and Sudo(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -3765,6 +3782,22 @@ if username then
 t = t..""..k.."- ([@"..username.."])\n"
 else
 t = t..""..k.."- (`"..v.."`)\n"
+end
+end
+if #list == 0 then
+t = "✖| لا يوجد منشئين"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+if text == ("تاك للمنشئين") or text == ("صيح المنشئين") then
+local list = database:smembers(bot_id..'Constructor'..msg.chat_id_)
+t = "\n🗣️| وينكم تعالوا يريدوكم بالكروب \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
+for k,v in pairs(list) do
+local username = database:get(bot_id.."user:Name" .. v)
+if username then
+t = t..""..k.."- {[@"..username.."]}\n"
+else
+t = t..""..k.."- {"..v.."}\n"
 end
 end
 if #list == 0 then
@@ -3965,6 +3998,22 @@ if username then
 t = t..""..k.."- ([@"..username.."])\n"
 else
 t = t..""..k.."- (`"..v.."`)\n"
+end
+end
+if #list == 0 then
+t = "✖| لا يوجد مدراء"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+if text == ("تاك للمدراء") or text == ("صيح المدراء") then
+local list = database:smembers(bot_id..'Manager'..msg.chat_id_)
+t = "\n🗣️| وينكم تعالوا يريدوكم بالكروب \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
+for k,v in pairs(list) do
+local username = database:get(bot_id.."user:Name" .. v)
+if username then
+t = t..""..k.."- {[@"..username.."]}\n"
+else
+t = t..""..k.."- {"..v.."}\n"
 end
 end
 if #list == 0 then
@@ -6760,7 +6809,7 @@ database:set(bot_id..'Pin:Id:Msg'..msg.chat_id_,msg.reply_to_message_id_)
 elseif data.code_ == 6 then
 send(msg.chat_id_,msg.id_,"⚠| انا لست ادمن هنا يرجى ترقيتي ادمن ثم اعد المحاوله")  
 elseif data.message_ == "CHAT_NOT_MODIFIED" then
-send(msg.chat_id_,msg.id_,"🔖| لا توجد رساله مثبته")  
+send(msg.chat_id_,msg.id_,"📌| تم تثبيت رسالتك الآن")  
 elseif data.message_ == "CHAT_ADMIN_REQUIRED" then
 send(msg.chat_id_,msg.id_,"📌| ليست لدي صلاحية التثبيت يرجى التحقق من الصلاحيات")  
 end
@@ -6787,7 +6836,7 @@ database:del(bot_id..'Pin:Id:Msg'..msg.chat_id_)
 elseif data.code_ == 6 then
 send(msg.chat_id_,msg.id_,"⚠| انا لست ادمن هنا يرجى ترقيتي ادمن ثم اعد المحاوله")  
 elseif data.message_ == "CHAT_NOT_MODIFIED" then
-send(msg.chat_id_,msg.id_,"🔖| لا توجد رساله مثبته")  
+send(msg.chat_id_,msg.id_,"📌| تم تثبيت رسالتك الآن")  
 elseif data.message_ == "CHAT_ADMIN_REQUIRED" then
 send(msg.chat_id_,msg.id_,"💠| ليست لدي صلاحية التثبيت يرجى التحقق من الصلاحيات")  
 end
@@ -8653,6 +8702,13 @@ else
 Text = '💠| بالتاكيد تم تفعيل امر صيح'
 end
 send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تنزيل جميع الرتب' or text == 'تنزيل الرتب' and BasicConstructor(msg) then
+database:del(bot_id..'Constructor'..msg.chat_id_)
+database:del(bot_id..'Manager'..msg.chat_id_)
+database:del(bot_id..'Mod:User'..msg.chat_id_)
+database:del(bot_id..'Special:User'..msg.chat_id_)
+send(msg.chat_id_, msg.id_, '\n🔖| تم تنزيل الكل من الرتب الاتيه \n💠| المميزين ، الادمنيه ، المدراء ، المنشئين \n')
 end
 if text == 'تعطيل صيح' and Manager(msg) then  
 if not database:get(bot_id..'Seh:User'..msg.chat_id_) then
