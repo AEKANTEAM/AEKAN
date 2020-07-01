@@ -902,26 +902,33 @@ if text == 'حذف كليشه ستارت ♻️' and SudoBot(msg) then
 database:del(bot_id..'Start:Bot') 
 send(msg.chat_id_, msg.id_,'🔖|تم حذف كليشه ستارت') 
 end
+
 if text == 'معلومات السيرفر 📊' and SudoBot(msg) then 
- local text2 = 'Info Server : \n'
-  local AEKAN1 = database:info()
-  text2 = text2..'1 - *Uptime Days* : `'..AEKAN1.server.uptime_in_days..'('..AEKAN1.server.uptime_in_seconds..' seconds)`\n'
-  text2 = text2..'2 - *Commands Processed* : `'..AEKAN1.stats.total_commands_processed..'`\n'
-  text2 = text2..'3 - *Expired Keys* : `'..AEKAN1.stats.expired_keys..'`\n'
-  text2 = text2..'4 - *Ops/sec* : `'..AEKAN1.stats.instantaneous_ops_per_sec..'`\n'
-send(msg.chat_id_, msg.id_, text2)  
+send(msg.chat_id_, msg.id_, io.popen([[
+linux_version=`lsb_release -ds`
+memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
+HardDisk=`df -lh | awk '{if ($6 == "/") { print $3"/"$2" ~ {"$5"}" }}'`
+CPUPer=`top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}'`
+uptime=`uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes."}'`
+echo '܁༯┆مدة تشغيل السيرفر ▾ .\n*▸  '"$linux_version"'*' 
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆الذاكره العشوائية ▾ .\n*▸ '"$memUsedPrc"'*'
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆وحدة التخزين ▾ .\n*▸ '"$HardDisk"'*'
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆المعالج ▾ .\n*▸ '"`grep -c processor /proc/cpuinfo`""Core ▸ $CPUPer% "'*'
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆الدخول ▾ . \n*▸ '`whoami`'*'
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆مدة تشغيل السيرفر ▾ .\n*▸ '"$uptime"'*'
+]]):read('*all'))  
 end
 
 
 if text == 'تحديث السورس ™' and SudoBot(msg) then 
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'🔭| تم تحديث البوت \n📮| لديك اخر اصدار سورس ايكان\n📡| الاصدار ← { 1.2v}')
+send(msg.chat_id_, msg.id_,'🔭| تم تحديث البوت \n📮| لديك اخر اصدار سورس ايكان\n📡| الاصدار ← { 1.7v}')
 dofile('AEKAN.lua')  
 end
 if text == 'الاصدار 📟' and SudoBot(msg) then 
 database:del(bot_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,'📡| اصدار سورس ايكان \n📟| الاصدار ←{ 1.2v}') 
+send(msg.chat_id_, msg.id_,'📡| اصدار سورس ايكان \n📟| الاصدار ←{ 1.7v}') 
 end
 if text == "ضع اسم للبوت ®" and SudoBot(msg) then  
 database:setex(bot_id..'Set:Name:Bot'..msg.sender_user_id_,300,true) 
@@ -2161,7 +2168,7 @@ return false
 end
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'??| تم تحديث البوت \n📮| لديك اخر اصدار سورس ايكان\n📡| الاصدار ← { 1.2v}')
+send(msg.chat_id_, msg.id_,'??| تم تحديث البوت \n📮| لديك اخر اصدار سورس ايكان\n📡| الاصدار ← { 1.7v}')
 dofile('AEKAN.lua')  
 end
 
@@ -4710,6 +4717,75 @@ end;end,nil)
 return false
 end  
 ------------------------------------------------------------------------
+if text == 'تنزيل البنات' and Mod(msg) then
+database:del(bot_id..'Bant:User'..msg.chat_id_)
+send(msg.chat_id_, msg.id_, '👰| تم مسح اميرات التفاعل في المجموعه  ')
+end
+if text == ("تاك للبنات") and Mod(msg) then
+local list = database:smembers(bot_id..'Bant:User'..msg.chat_id_)
+t = "\n👰| يا أمورات تعالوا يردوكم \nء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
+for k,v in pairs(list) do
+local username = database:get(bot_id.."user:Name" .. v)
+if username then
+t = t..""..k.."← أميرة التفاعل [@"..username.."]\n"
+else
+t = t..""..k.."← أميرة التفاعل `"..v.."`\n"
+end
+end
+if #list == 0 then
+t = "👰| لا يوجد أمورات تفاعل في المجموعه"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+---------
+if text == ("رفع بنت الكروب") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if database:get(bot_id..'Lock:Add:Bot'..msg.chat_id_) and not Constructor(msg) then
+send(msg.chat_id_, msg.id_,'⚠️| تم تعطيل الرفع من قبل المنشئين') 
+return false
+end
+function start_function(extra, result, success)
+database:sadd(bot_id..'Bant:User'..msg.chat_id_, result.sender_user_id_)
+tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
+usertext = '\n🙎‍♀️| البنت » ['..data.first_name_..'](t.me/'..(data.username_ or 'DEVBESSO')..')'
+local  statuss  = '\n📮| الايدي » `'..result.sender_user_id_..'`\n👰| تم رفع البنت في المجموعه'
+send(msg.chat_id_, msg.id_, usertext..statuss)
+end,nil)
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
+return false
+end
+
+if (text == ("تنزيل بنت الكروب")) and msg.reply_to_message_id_ and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+function start_function(extra, result, success)
+database:srem(bot_id..'Bant:User'..msg.chat_id_, result.sender_user_id_)
+tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
+usertext = '\n🙎‍♀️| البنت » ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
+status  = '\n📮| الايدي » `'..result.sender_user_id_..'`\n👰| تم تنزيل البنت في المجموعه'
+send(msg.chat_id_, msg.id_, usertext..status)
+end,nil)
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
+return false
+end
+-----------------------------------------------------
 if text == 'تنزيل المطايه' and Mod(msg) then
 database:del(bot_id..'Mote:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '🗑| تم مسح جميع المطايه في المجموعه  ')
@@ -8439,6 +8515,23 @@ Text = '\n💠| بالتاكيد تم تعطيل الايدي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
+
+if text == 'السيرفر' and SudoBot(msg) then 
+send(msg.chat_id_, msg.id_, io.popen([[
+linux_version=`lsb_release -ds`
+memUsedPrc=`free -m | awk 'NR==2{printf "%sMB/%sMB {%.2f%}\n", $3,$2,$3*100/$2 }'`
+HardDisk=`df -lh | awk '{if ($6 == "/") { print $3"/"$2" ~ {"$5"}" }}'`
+CPUPer=`top -b -n1 | grep "Cpu(s)" | awk '{print $2 + $4}'`
+uptime=`uptime | awk -F'( |,|:)+' '{if ($7=="min") m=$6; else {if ($7~/^day/) {d=$6;h=$8;m=$9} else {h=$6;m=$7}}} {print d+0,"days,",h+0,"hours,",m+0,"minutes."}'`
+echo '܁༯┆مدة تشغيل السيرفر ▾ .\n*▸  '"$linux_version"'*' 
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆الذاكره العشوائية ▾ .\n*▸ '"$memUsedPrc"'*'
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆وحدة التخزين ▾ .\n*▸ '"$HardDisk"'*'
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆المعالج ▾ .\n*▸ '"`grep -c processor /proc/cpuinfo`""Core ▸ $CPUPer% "'*'
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆الدخول ▾ . \n*▸ '`whoami`'*'
+echo '*܀⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤⠤܀*\n܁༯┆مدة تشغيل السيرفر ▾ .\n*▸ '"$uptime"'*'
+]]):read('*all'))  
+end
+
 if text == 'تفعيل الايدي بالصوره' and Manager(msg) then   
 if database:get(bot_id..'Bot:Id:Photo'..msg.chat_id_)  then
 database:del(bot_id..'Bot:Id:Photo'..msg.chat_id_) 
