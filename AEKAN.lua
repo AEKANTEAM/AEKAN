@@ -2052,7 +2052,7 @@ end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)
 tdcli_function({ID ="GetChat",chat_id_=msg.chat_id_},function(arg,chat)  
 if not database:sismember(bot_id..'Chek:Groups',msg.chat_id_) then
-send(msg.chat_id_, msg.id_,'🔖| المجموعه تم تطيلها من قبل')
+send(msg.chat_id_, msg.id_,'🔖| المجموعه تم تعطيلها من قبل')
 else
 sendText(msg.chat_id_,'\n👤| بواسطه ← ['..string.sub(result.first_name_,0, 70)..'](tg://user?id='..result.id_..')\n📌| تم تعطيل المجموعه {'..chat.title_..'}',msg.id_/2097152/0.5,'md')
 database:srem(bot_id..'Chek:Groups',msg.chat_id_)  
@@ -8402,7 +8402,7 @@ end
 end
 end
 -------------------------------
-if text == ""..(database:get(bot_id..'Name:Bot') or 'ايكان').." غادر" or text == 'غادر' then  
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ايكان').." غادر" or text == 'غادري' then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'🔰| تم مغادرة المجموعه') 
@@ -8412,7 +8412,7 @@ return false
 end
 if text == 'بوت' then
 Namebot = (database:get(bot_id..'Name:Bot') or 'ايكان')
-send(msg.chat_id_, msg.id_,'اسمي ['..Namebot..'] 💘🌚') 
+send(msg.chat_id_, msg.id_,'اسمي ['..Namebot..'] 🤞😌') 
 end
 if text == 'الاحصائيات' then
 if Sudo(msg) then 
@@ -8846,7 +8846,16 @@ send(msg.chat_id_, msg.id_,'لا تمتلك صوره في حسابك', 1, 'md')
   end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil)
 end
-if text == ("ايدي") and msg.reply_to_message_id_ == 0 and not database:get(bot_id..'Bot:Id'..msg.chat_id_) then      
+if text == ("ايدي") and msg.reply_to_message_id_ == 0 and not database:get(bot_id..'Bot:Id'..msg.chat_id_) then     
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت \n  📌| يرجى الاشتراك بالقناه اولا \n  📣| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
 if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
 database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text) 
 tdcli_function ({ID = "GetChatMember",chat_id_ = msg.chat_id_,user_id_ = msg.sender_user_id_},function(arg,da)  tdcli_function ({ ID = "SendChatAction",  chat_id_ = msg.sender_user_id_, action_ = {  ID = "SendMessageTypingAction", progress_ = 100}  },function(arg,ta)  tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(extra,result,success)  tdcli_function ({ID = "GetUserProfilePhotos",user_id_ = msg.sender_user_id_,offset_ = 0,limit_ = 1},function(extra,taha,success) 
@@ -9722,59 +9731,6 @@ end
 --------------------------------------------------------------------------------------------------------------
 if tonumber(data.id_) == tonumber(bot_id) then
 return false
-end
-local Get_Re_Name = database:get(bot_id.."Chen:Name"..msg.sender_user_id_) 
-if Get_Re_Name then 
-if Get_Re_Name ~= data.first_name_ then 
-tahan = '['..(Get_Re_Name or '')..']'
-taham = '['..data.first_name_..']'
-local taha ={ 
-'\n شكو غيرت اسمك  يا حلو 😹🌚',
-'\n شهل اسم الفيطي '..taham.. ' \n رجعه ؏ قديم \n '..tahan..'',
-'\n  ها ها شو غيرت اسمك 🤔😹',
-'\n شكو غيرت اسمك شنو قطيت وحده جديده 😹😹🌚',
-'\n شو غيرت اسمك شنو تعاركت ويه الحب ؟😹🌞',
-'\n ها ولك مو جان  اسمك   '..tahan..'  شكو غيرته ',
-'\n شكو غيرت اسمك شسالفه ؟؟ 🤔🌞'
-}
-send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
-database:set(bot_id.."Chen:Name"..msg.sender_user_id_, data.first_name_) 
-return false
-end  
-end
---------------------------------------------------------------------------------------------------------------
-local Getredis = database:get(bot_id.."Chen:User:Name"..msg.sender_user_id_)
-if data.username_ then  
-if Getredis and Getredis ~= data.username_ then 
-tahan = '['..(database:get(bot_id.."Chen:User:Name"..msg.sender_user_id_) or '')..']'
-local taha ={ 
-'\n شكو غيرت معرفك  يا حلو 😹🌚',
-'\n  ها ها شو غيرت معرفك 🤔😹',
-'\n شكو غيرت معرفك شنو قطيت وحده جديده 😹😹🌚',
-'\n شو غيرت معرفك شنو تعاركت ويه الحب ؟😹🌞',
-'\n ها ولك مو جان  معرفك   '..tahan..'  شكو غيرته ',
-'\n شكو غيرت معرفك شسالفه ؟؟ 🤔🌞'
-}
-send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
-database:set(bot_id.."Chen:User:Name"..msg.sender_user_id_, data.username_) 
-return false
-end
-end
---------------------------------------------------------------------------------------------------------------
-local Getredis = database:get(bot_id.."Chen:Photo"..msg.sender_user_id_)
-if data.profile_photo_ then  
-if Getredis and Getredis ~= data.profile_photo_.id_ then 
-local taha ={ 
-'\n شكو غيرت صورتك  يا حلو 😹🌚',
-'\n  ها ها شو غيرت صورتك 🤔😹',
-'\n شكو غيرت صورتك شنو قطيت وحده جديده 😹😹🌚',
-'\n شو غيرت صورتك شنو تعاركت ويه الحب ؟😹🌞',
-'\n شكو غيرت صورتك شسالفه ؟؟ 🤔🌞'
-}
-send(msg.chat_id_,msg.id_,taha[math.random(#taha)])
-database:set(bot_id.."Chen:Photo"..msg.sender_user_id_, data.profile_photo_.id_) 
-return false
-end
 end
 end,nil)   
 end
