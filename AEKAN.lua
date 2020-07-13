@@ -270,7 +270,9 @@ var = database:get(bot_id.."Manager:Rd"..msg.chat_id_) or 'المدير👮‍�
 elseif database:sismember(bot_id..'Mod:User'..chat_id, user_id) then
 var = database:get(bot_id.."Mod:Rd"..msg.chat_id_) or 'الادمن👷‍♂️'  
 elseif database:sismember(bot_id..'Special:User'..chat_id, user_id) then  
-var = database:get(bot_id.."Special:Rd"..msg.chat_id_) or 'المميز👨‍🎓'  
+var = database:get(bot_id.."Special:Rd"..msg.chat_id_) or 'المميز👨‍🎓' 
+elseif database:sismember(bot_id..'Mempaam:User'..chat_id, user_id) then  
+var = database:get(bot_id.."Mempaam:Rd"..msg.chat_id_) or 'عضو عام👲🏻'
 else  
 var = database:get(bot_id.."Memp:Rd"..msg.chat_id_) or 'العضو👶'
 end  
@@ -1516,7 +1518,7 @@ TIME_CHECK = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodtime
 end 
 end 
 --------------------------------------------------------------------------------------------------------------
-if text and database:get(bot_id..'lock:Fshar'..msg.chat_id_) and not Special(msg) then 
+if text and database:get(bot_id..'lock:Fshar'..msg.chat_id_) and not Mempaam(msg) then 
 list = {"كس","كسمك","كسختك","عير","كسخالتك","خرا بالله","عير بالله","خرب الله","كسخواتكم","كحاب","نيجه","نيجج","كحوبه","عيري","مشتهيه","نيج","انيجك","انيجج","كواده","طيزج","كسج","مناويج","منيجه","كحبه","ابن الكحبه","فرخ","فروخ","طيزك","طيزختك","كساسه","سكسي","كوسي","xxnx","XXNX","xxxn","XXXN","بلاع","بلاع العير","سالب","موجب","ابن الكس","مصاص الخصوه","العار","ابن العاهره","عاهره","كواد","بعصتهم","بعصته","نجتهم","ناجني","كسك","fuck","FUCK","sexy","SEXY","ناجونه","نجناهم","بعصناهم","خصاوي","ناجوك","تنيج","عار"}
 for k,v in pairs(list) do
 print(string.find(text,v))
@@ -1526,7 +1528,7 @@ return false
 end
 end
 end
-if text and database:get(bot_id..'lock:Iran'..msg.chat_id_) and not Special(msg) then 
+if text and database:get(bot_id..'lock:Iran'..msg.chat_id_) and not Mempaam(msg) then 
 list = {"ڄ","گ","که","پی","خسته","برم","راحتی","بیام","دوستان","شادی","بپوشم","گرمه","چه","اخ کیر","زیباترین","میخام","خوبم","تو فق","زیباتون","دوستان","خوشکلم","ای","ازش","جانمونی","ریتم","نیاری","ملایم","داداش","بیا","باشم","میخوای","تندتر","ریتمو","زیرت","بکشی","کنی","اومدم","شه","خوب","هست","کسی","دستم","صبجتون","کیر","چ","ڬ","ٺ","چ","ڇ","ڿ","ڀ","ڎ","ݫ","ژ","ڟ","ݜ","ڸ","پ","۴","زدن","دخترا","دیوث","مک","زدن","تخماتو","بمالونم","بزنم","بهش","اقا","جذابیتت","خیلی","بالااااس","بهداشتی","مخوام","میخوام","اهلیم","حوصلم","بی","یه","کی","بریم","دوست","شمارتو","خوبی","شبتون","صکصی","رفقا","یکی","بیاد","پ","یوی","یکم","بچیتیم","غوغای","قهرمان‌","هاشون‌","هَوَلای‌مآن","وی","جدیدامو","نشونش","بچها","برفی","اینجا","خوب","سراغ","کجایین","گفتم","نیومد","پیویم","دیشب","پیام","دادین","نزاشتن","بخوابیم","پسر","خوشتیپ","هرگز","چيز","زندگيت","فراموش","نکن","نمیخوام","دیلدو","برانداز","میکنم","نشونت","باهم","بشیم","بیاد","خنده","اخه","فیترشکن","برام","بفرستین","داشتم","شماره","رو","شمارت","ذخیرس","دارمت","داری","بدی","استیکر","شدی","ادد","ادی","هیع","کردم","شمارتو","کصم","میخاره","خوجله","عشقو","بده","کجایی","چطوری","چخبر","اشنا","بشیم","زیبای","درونمی","جنگلتم"}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
@@ -1535,7 +1537,7 @@ return false
 end
 end
 end
-if text and database:get(bot_id..'lock:Eng'..msg.chat_id_) and not Special(msg) then 
+if text and database:get(bot_id..'lock:Eng'..msg.chat_id_) and not Mempaam(msg) then 
 list = {'a','u','y','l','t','b','A','Q','U','J','K','L','B','D','L','V','Z','k','n','c','r','q','o','z','I','j','m','M','w','d','h','e'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
@@ -4717,6 +4719,165 @@ end;end,nil)
 return false
 end  
 ------------------------------------------------------------------------
+if text == ("رفع عضو عام") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if database:get(bot_id..'Lock:Add:Bot'..msg.chat_id_) and not Constructor(msg) then
+send(msg.chat_id_, msg.id_,'📃| تم تعطيل الرفع من قبل المنشئين') 
+return false
+end
+function start_function(extra, result, success)
+database:sadd(bot_id..'Mempaam:User'..msg.chat_id_, result.sender_user_id_)
+tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
+usertext = '\n👤| العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
+local  statuss  = '\n📮| الايدي » `'..result.sender_user_id_..'`\n🔘| تم ترقيته عضو عام هنا '
+send(msg.chat_id_, msg.id_, usertext..statuss)
+end,nil)
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
+return false
+end
+if text and text:match("^رفع عضو عام @(.*)$") and Mod(msg) then
+local username = text:match("^رفع عضو عام @(.*)$") 
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if database:get(bot_id..'Lock:Add:Bot'..msg.chat_id_) and not Constructor(msg) then
+send(msg.chat_id_, msg.id_,'📃| تم تعطيل الرفع من قبل المنشئين') 
+return false
+end
+function start_function(extra, result, success)
+if result.id_ then
+if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
+send(msg.chat_id_,msg.id_,"⚠| عذرا عزيزي المستخدم هاذا معرف قناة يرجى استخدام الامر بصوره صحيحه !")   
+return false 
+end      
+database:sadd(bot_id..'Mempaam:User'..msg.chat_id_, result.id_)
+usertext = '\n👤| العضو » ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
+local  statuss  = '\n🔘| تم ترقيته عضو عام هنا'
+texts = usertext..statuss
+else
+texts = '⚠️|لا يوجد حساب بهاذا المعرف'
+end
+send(msg.chat_id_, msg.id_, texts)
+end
+tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
+return false
+end
+
+if text and text:match("^رفع عضو عام (%d+)$") and Mod(msg) then
+local userid = text:match("^رفع عضو عام (%d+)$")
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if database:get(bot_id..'Lock:Add:Bot'..msg.chat_id_) and not Constructor(msg) then
+send(msg.chat_id_, msg.id_,'📃| تم تعطيل الرفع من قبل المنشئين') 
+return false
+end
+database:sadd(bot_id..'Mempaam:User'..msg.chat_id_, userid)
+tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
+if data.first_name_ then
+usertext = '\n👤|العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
+local  statuss  = '\n🔘| تم ترقيته عضو عام هنا'
+send(msg.chat_id_, msg.id_, usertext..statuss)
+else
+usertext = '\n👤| العضو » '..userid..''
+local  statuss  = '\n🔘| تم ترقيته عضو عام هنا '
+send(msg.chat_id_, msg.id_, usertext..statuss)
+end;end,nil)
+return false
+end
+
+if (text == ("تنزيل عضو عام")) and msg.reply_to_message_id_ and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+function start_function(extra, result, success)
+database:srem(bot_id..'Mempaam:User'..msg.chat_id_, result.sender_user_id_)
+tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
+usertext = '\n👤| العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
+status  = '\n📮| الايدي » `'..result.sender_user_id_..'`\n🔘| تم تنزيله من الاعضاء العامين'
+send(msg.chat_id_, msg.id_, usertext..status)
+end,nil)
+end
+tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
+return false
+end
+if text and text:match("^تنزيل عضو عام @(.*)$") and Mod(msg) then
+local username = text:match("^تنزيل عضو عام @(.*)$") 
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+function start_function(extra, result, success)
+if result.id_ then
+database:srem(bot_id..'Mempaam:User'..msg.chat_id_, result.id_)
+usertext = '\n👤| العضو » ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
+status  = '\n🔘| تم تنزيله من الاعضاء العامين'
+texts = usertext..status
+else
+texts = '⚠| لا يوجد حساب بهاذا المعرف'
+end
+send(msg.chat_id_, msg.id_, texts)
+end
+tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
+return false
+end
+if text and text:match("^تنزيل عضو عام (%d+)$") and Mod(msg) then
+local userid = text:match("^تنزيل عضو عام (%d+)$") 
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔖| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n 📌| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+database:srem(bot_id..'Mempaam:User'..msg.chat_id_, userid)
+tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
+if data.first_name_ then
+usertext = '\n👤| العضو » ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
+status  = '\n🔘| تم تنزيله من الاعضاء العامين'
+send(msg.chat_id_, msg.id_, usertext..status)
+else
+usertext = '\n👤| العضو » '..userid..''
+status  = '\n🔘| تم تنزيله من الاعضاء العامين'
+send(msg.chat_id_, msg.id_, usertext..status)
+end;end,nil)
+return false
+end
+------------------------------------------------------------------------
 if text == 'تنزيل البنات' and Mod(msg) then
 database:del(bot_id..'Bant:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '👰| تم مسح اميرات التفاعل في المجموعه  ')
@@ -7259,7 +7420,7 @@ return false
 end
 database:set(bot_id..'Text:Dev:Bot',text)
 database:del(bot_id..'Set:Text:Dev:Bot'..msg.chat_id_)
-send(msg.chat_id_, msg.id_,'🚸| تم حفظ كليسه المطور')
+send(msg.chat_id_, msg.id_,'🤴🏻| تم حفظ كليشه المطور')
 return false
 end
 if text == 'تعين الايدي' and Manager(msg) then
@@ -9272,6 +9433,11 @@ if text and text:match("^تغير رد المميز (.*)$") and Manager(msg) the
 local Teext = text:match("^تغير رد المميز (.*)$") 
 database:set(bot_id.."Special:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"👥| تم تغير رد المميز الى » "..Teext)
+end
+if text and text:match("^تغير رد العضو العام (.*)$") and Manager(msg) then
+local Teext = text:match("^تغير رد العضو العام (.*)$") 
+database:set(bot_id.."Mempaam:Rd"..msg.chat_id_,Teext)
+send(msg.chat_id_, msg.id_,"👥| تم تغير رد العضو العام العام الى » "..Teext)
 end
 if text and text:match("^تغير رد العضو (.*)$") and Manager(msg) then
 local Teext = text:match("^تغير رد العضو (.*)$") 
