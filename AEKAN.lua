@@ -3856,11 +3856,11 @@ end
 end
 tdcli_function ({ID = "GetUser",user_id_ = owner_id},function(arg,b) 
 if b.first_name_ == false then
-send(msg.chat_id_, msg.id_,"🗑¦ حساب المنشئ محذوف")
+send(msg.chat_id_, msg.id_,"❦ ⁞ حساب المنشئ محذوف")
 return false  
 end
 local UserName = (b.username_ or "SoalfLove")
-send(msg.chat_id_, msg.id_,"🏅¦ تم ترقية منشئ المجموعه : ["..b.first_name_.."](T.me/"..UserName..")")  
+send(msg.chat_id_, msg.id_,"❦ ⁞ تم ترقية منشئ المجموعه : ["..b.first_name_.."](T.me/"..UserName..")")  
 database:sadd(bot_id.."Basic:Constructor"..msg.chat_id_,b.id_)
 end,nil)   
 end,nil)   
@@ -8769,7 +8769,7 @@ local edit = tonumber(database:get(bot_id..'edits'..msg.chat_id_..result.sender_
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,'❦ ⁞ ايديه ⏦(`'..iduser..'`)\n❦ ⁞ معرفه ⏦('..username..')\n❦ ⁞ رتبته ⏦('..rtp..')\n✏| تعديلاته ⏦('..edit..')\n❦ ⁞ النقود ⏦('..NUMPGAME..')\n❦ ⁞ جهاته ⏦('..Contact..')\n❦ ⁞ رسائله ⏦('..Msguser..')')
+send(msg.chat_id_, msg.id_,'❦ ⁞ ايديه ⏦(`'..iduser..'`)\n❦ ⁞ معرفه ⏦('..username..')\n❦ ⁞ رتبته ⏦('..rtp..')\n❦ ⁞ تعديلاته ⏦('..edit..')\n❦ ⁞ النقود ⏦('..NUMPGAME..')\n❦ ⁞ جهاته ⏦('..Contact..')\n❦ ⁞ رسائله ⏦('..Msguser..')')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -8786,7 +8786,7 @@ local edit = tonumber(database:get(bot_id..'edits'..msg.chat_id_..result.id_) or
 local rtp = Rutba(result.id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.id_
-send(msg.chat_id_, msg.id_,'❦ ⁞ ايديه ⏦(`'..iduser..'`)\n❦ ⁞ معرفه ⏦('..username..')\n❦ ⁞ رتبته ⏦('..rtp..')\n✏| تعديلاته ⏦('..edit..')\n❦ ⁞ النقود ⏦('..NUMPGAME..')\n❦ ⁞ جهاته ⏦('..Contact..')\n❦ ⁞ رسائله ⏦('..Msguser..')')
+send(msg.chat_id_, msg.id_,'❦ ⁞ ايديه ⏦(`'..iduser..'`)\n❦ ⁞ معرفه ⏦('..username..')\n❦ ⁞ رتبته ⏦('..rtp..')\n❦ ⁞ تعديلاته ⏦('..edit..')\n❦ ⁞ النقود ⏦('..NUMPGAME..')\n❦ ⁞ جهاته ⏦('..Contact..')\n❦ ⁞ رسائله ⏦('..Msguser..')')
 end,nil)
 else
 send(msg.chat_id_, msg.id_,'❦ ⁞ المعرف غير صحيح ')
