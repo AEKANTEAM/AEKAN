@@ -280,7 +280,7 @@ var = database:get(bot_id.."Mod:Rd"..msg.chat_id_) or 'الادمن👷‍♂️
 elseif database:sismember(bot_id..'Special:User'..chat_id, user_id) then  
 var = database:get(bot_id.."Special:Rd"..msg.chat_id_) or 'المميز👨‍🎓' 
 elseif database:sismember(bot_id..'Mempaam:User'..chat_id, user_id) then  
-var = database:get(bot_id.."Mempaam:Rd"..msg.chat_id_) or 'عضو عام👲🏻'
+var = database:get(bot_id.."Mempaam:Rd"..msg.chat_id_) or 'العضو العام👲🏻'
 else  
 var = database:get(bot_id.."Memp:Rd"..msg.chat_id_) or 'العضو👶'
 end  
@@ -9442,10 +9442,10 @@ local Teext = text:match("^تغير رد المميز (.*)$")
 database:set(bot_id.."Special:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"👥| تم تغير رد المميز الى » "..Teext)
 end
-if text and text:match("^تغير رد العضو العام (.*)$") and Manager(msg) then
-local Teext = text:match("^تغير رد العضو العام (.*)$") 
+if text and text:match("^تغير رد عضو عام (.*)$") and Manager(msg) then
+local Teext = text:match("^تغير رد عضو عام (.*)$") 
 database:set(bot_id.."Mempaam:Rd"..msg.chat_id_,Teext)
-send(msg.chat_id_, msg.id_,"👥| تم تغير رد العضو العام العام الى » "..Teext)
+send(msg.chat_id_, msg.id_,"👥| تم تغير رد العضو العام الى » "..Teext)
 end
 if text and text:match("^تغير رد العضو (.*)$") and Manager(msg) then
 local Teext = text:match("^تغير رد العضو (.*)$") 
