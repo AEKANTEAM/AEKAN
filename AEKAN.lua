@@ -935,12 +935,12 @@ end
 if text == 'تحديث السورس 𖤂' and SudoBot(msg) then 
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'🔭| تم تحديث البوت \n❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
+send(msg.chat_id_, msg.id_,'❦ ⁞ تم تحديث البوت \n❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
 dofile('AEKAN.lua')  
 end
 if text == 'الاصدار ☫' and SudoBot(msg) then 
 database:del(bot_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,'❦ ⁞ اصدار سورس ايكان \n📟| الاصدار ←{ 1.7v}') 
+send(msg.chat_id_, msg.id_,'❦ ⁞ اصدار سورس ايكان \n❦ ⁞ الاصدار ←{ 1.7v}') 
 end
 if text == "ضع اسم للبوت ®" and SudoBot(msg) then  
 database:setex(bot_id..'Set:Name:Bot'..msg.sender_user_id_,300,true) 
