@@ -3856,11 +3856,11 @@ end
 end
 tdcli_function ({ID = "GetUser",user_id_ = owner_id},function(arg,b) 
 if b.first_name_ == false then
-send(msg.chat_id_, msg.id_,"❦ ⁞ حساب المنشئ محذوف")
+send(msg.chat_id_, msg.id_,"🗑¦ حساب المنشئ محذوف")
 return false  
 end
 local UserName = (b.username_ or "SoalfLove")
-send(msg.chat_id_, msg.id_,"❦ ⁞ تم ترقية منشئ المجموعه : ["..b.first_name_.."](T.me/"..UserName..")")  
+send(msg.chat_id_, msg.id_,"🏅¦ تم ترقية منشئ المجموعه : ["..b.first_name_.."](T.me/"..UserName..")")  
 database:sadd(bot_id.."Basic:Constructor"..msg.chat_id_,b.id_)
 end,nil)   
 end,nil)   
