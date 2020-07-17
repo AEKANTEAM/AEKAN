@@ -935,12 +935,12 @@ end
 if text == 'تحديث السورس 𖤂' and SudoBot(msg) then 
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'❦ ⁞ تم تحديث البوت \n❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
+send(msg.chat_id_, msg.id_,'🔭| تم تحديث البوت \n❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
 dofile('AEKAN.lua')  
 end
 if text == 'الاصدار ☫' and SudoBot(msg) then 
 database:del(bot_id..'Srt:Bot') 
-send(msg.chat_id_, msg.id_,'❦ ⁞ اصدار سورس ايكان \n❦ ⁞ الاصدار ←{ 1.7v}') 
+send(msg.chat_id_, msg.id_,'❦ ⁞ اصدار سورس ايكان \n📟| الاصدار ←{ 1.7v}') 
 end
 if text == "ضع اسم للبوت ®" and SudoBot(msg) then  
 database:setex(bot_id..'Set:Name:Bot'..msg.sender_user_id_,300,true) 
@@ -8575,7 +8575,7 @@ end
 end
 end
 -------------------------------
-if text == ""..(database:get(bot_id..'Name:Bot') or 'ايكان').." غادر" or text == 'غادري' or text == 'غادر' then  
+if text == ""..(database:get(bot_id..'Name:Bot') or 'ايكان').." غادر" or text == 'غادري' then  
 if Sudo(msg) and not database:get(bot_id..'Left:Bot'..msg.chat_id_)  then 
 tdcli_function ({ID = "ChangeChatMemberStatus",chat_id_=msg.chat_id_,user_id_=bot_id,status_={ID = "ChatMemberStatusLeft"},},function(e,g) end, nil) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ تم مغادرة المجموعه') 
