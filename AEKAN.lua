@@ -280,7 +280,7 @@ var = database:get(bot_id.."Mod:Rd"..msg.chat_id_) or 'الادمن'
 elseif database:sismember(bot_id..'Special:User'..chat_id, user_id) then  
 var = database:get(bot_id.."Special:Rd"..msg.chat_id_) or 'المميز' 
 elseif database:sismember(bot_id..'Mempaam:User'..chat_id, user_id) then  
-var = database:get(bot_id.."Mempaam:Rd"..msg.chat_id_) or 'عضو عام'
+var = database:get(bot_id.."Mempaam:Rd"..msg.chat_id_) or 'العضو العام'
 else  
 var = database:get(bot_id.."Memp:Rd"..msg.chat_id_) or 'العضو'
 end  
