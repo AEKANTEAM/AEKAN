@@ -1230,7 +1230,7 @@ end
 database:srem(bot_id..'Sudo:User', userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
-usertext = '\n??| العضو ⏦ ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
+usertext = '\n❦ ⁞ العضو ⏦ ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
 status  = '\n❦ ⁞ تم تنزيله من المطورين'
 send(msg.chat_id_, msg.id_, usertext..status)
 else
@@ -2180,7 +2180,7 @@ return false
 end
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'??| تم تحديث البوت \n❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
+send(msg.chat_id_, msg.id_,'❦ ⁞ تم تحديث البوت \n❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
 dofile('AEKAN.lua')  
 end
 
@@ -2373,7 +2373,7 @@ end,nil)
 elseif text == 'قفل الاضافه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id.."lock:AddMempar"..msg.chat_id_,'kick')  
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n??| تـم قفـل اضافة الاعضاء\n❦ ⁞ الحاله ← المسح ')  
+send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم قفـل اضافة الاعضاء\n❦ ⁞ الحاله ← المسح ')  
 end,nil)   
 elseif text == 'قفل الدخول' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id.."lock:Join"..msg.chat_id_,'kick')  
@@ -5867,7 +5867,7 @@ end
 database:sadd(bot_id..'Muted:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n❦ ⁞العضو ⏦ ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
-status  = '\n??| الايدي ⏦ `'..result.sender_user_id_..'`\n❦ ⁞ تم كتمه من هنا'
+status  = '\n❦ ⁞ الايدي ⏦ `'..result.sender_user_id_..'`\n❦ ⁞ تم كتمه من هنا'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
 end
@@ -5882,7 +5882,7 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,'??| لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,'❦ ⁞ لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
@@ -7852,7 +7852,7 @@ send(msg.chat_id_, msg.id_,'\n❦ ⁞ العضو ⏦ ['..result.title_..'](t.me/
 database:srem(bot_id..'Manager'..msg.chat_id_,result.id_)  
 database:del(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.id_)
 elseif blakrt == 'عضو' and Mod(msg) then
-send(msg.chat_id_, msg.id_,'\n??| العضو ⏦ ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n❦ ⁞ تم تنريله من '..text1[2]..' هنا')   
+send(msg.chat_id_, msg.id_,'\n❦ ⁞ العضو ⏦ ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n❦ ⁞ تم تنريله من '..text1[2]..' هنا')   
 end
 else
 info = '❦ ⁞ المعرف غلط'
@@ -9297,7 +9297,7 @@ database:del(bot_id.."gemadd:user" .. msg.chat_id_ .. "" .. msg.sender_user_id_)
 local numadded = string.match(text, "(%d+)") 
 local iduserr = database:get(bot_id..'idgem:user'..msg.chat_id_)  
 database:incrby(bot_id..'NUM:GAMES'..msg.chat_id_..iduserr,numadded)  
-send(msg.chat_id_, msg.id_,  1, "??| تم اضافة له {"..numadded..'} من النقود', 1 , 'md')  
+send(msg.chat_id_, msg.id_,  1, "❦ ⁞ تم اضافة له {"..numadded..'} من النقود', 1 , 'md')  
 end
 ------------------------------------------------------------
 if text and text:match("^اضف رسائل (%d+)$") and msg.reply_to_message_id_ == 0 and Constructor(msg) then    
@@ -9361,7 +9361,7 @@ local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
 send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-send(msg.chat_id_, msg.id_,'❦ ⁞ لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n ??| اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+send(msg.chat_id_, msg.id_,'❦ ⁞ لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
 end
@@ -9446,10 +9446,10 @@ local Teext = text:match("^تغير رد المميز (.*)$")
 database:set(bot_id.."Special:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"❦ ⁞ تم تغير رد المميز الى ⏦ "..Teext)
 end
-if text and text:match("^تغير رد العضو العام (.*)$") and Manager(msg) then
-local Teext = text:match("^تغير رد العضو العام (.*)$") 
+if text and text:match("^تغير رد عضو عام (.*)$") and Manager(msg) then
+local Teext = text:match("^تغير رد عضو عام (.*)$") 
 database:set(bot_id.."Mempaam:Rd"..msg.chat_id_,Teext)
-send(msg.chat_id_, msg.id_,"❦ ⁞ تم تغير رد العضو العام العام الى ⏦ "..Teext)
+send(msg.chat_id_, msg.id_,"❦ ⁞ تم تغير رد العضو العام الى ⏦ "..Teext)
 end
 if text and text:match("^تغير رد العضو (.*)$") and Manager(msg) then
 local Teext = text:match("^تغير رد العضو (.*)$") 
