@@ -263,6 +263,8 @@ if tonumber(user_id) == tonumber(152221858) then
 var = 'مطور السورس'
 elseif tonumber(user_id) == tonumber(655965898) then
 var = 'ملكــة السورس'
+elseif tonumber(user_id) == tonumber(911105354) then
+var = 'مجنونة ايكو'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
 elseif tonumber(user_id) == tonumber(bot_id) then  
