@@ -4733,6 +4733,26 @@ end;end,nil)
 return false
 end  
 ------------------------------------------------------------------------
+if text == 'مسح الاعضاء العامين' and Mod(msg) then
+database:del(bot_id..'Mempaam:User'..msg.chat_id_)
+send(msg.chat_id_, msg.id_, '❦ ⁞  تم مسح  قائمة الاعضاء العامين  ')
+end
+if text == ("الاعضاء العامين") and Mod(msg) then
+local list = database:smembers(bot_id..'Mempaam:User'..msg.chat_id_)
+t = "\n❦ ⁞ قائمة الاعضاء العامين في المجموعه \n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n"
+for k,v in pairs(list) do
+local username = database:get(bot_id.."user:Name" .. v)
+if username then
+t = t..""..k.."- ([@"..username.."])\n"
+else
+t = t..""..k.."- (`"..v.."`)\n"
+end
+end
+if #list == 0 then
+t = "❦ ⁞ لا يوجد اعضاء عامين"
+end
+send(msg.chat_id_, msg.id_, t)
+end
 if text == ("رفع عضو عام") and tonumber(msg.reply_to_message_id_) ~= 0 and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
