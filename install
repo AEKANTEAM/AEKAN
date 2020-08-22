@@ -21,8 +21,8 @@ sudo apt-get install libnotify-dev -y
 sudo chmod +x tg
 lua AEKAN.lua
 sudo chmod +x AEKAN
-sudo chmod +x ./BK
-./BK
+sudo chmod +x ./AK
+./AK
 }
 if [ "$1" = "install" ]; then
 install
@@ -34,6 +34,6 @@ fi
 sudo chmod +x tg
 lua AEKAN.lua
 sudo chmod +x AEKAN
-sudo chmod +x ./BK
-./BK
+sudo chmod +x ./AK
+./AK
 fi

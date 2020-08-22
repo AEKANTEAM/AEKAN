@@ -99,7 +99,7 @@ echo -e "\e[36m"
 done
 ]])  
 file:close()  
-file = io.open("BK", "w")  
+file = io.open("AK", "w")  
 file:write([[
 #!/usr/bin/env bash
 cd $HOME/AEKAN
@@ -665,12 +665,12 @@ return false
 end
 end,nil)   
 end  
-function plugin_Poyka(msg)
+function plugin_mjnonh(msg)
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
 plugin = dofile("File_Bot/"..v)
-if plugin.Poyka and msg then
-pre_msg = plugin.Poyka(msg)
+if plugin.mjnonh and msg then
+pre_msg = plugin.mjnonh(msg)
 end
 end
 end
@@ -9945,7 +9945,7 @@ end
 end   
 --------------------------------------------------------------------------------------------------------------
 SourceAEKAN(data.message_,data)
-plugin_Poyka(data.message_)
+plugin_mjnonh(data.message_)
 --------------------------------------------------------------------------------------------------------------
 if Chat_Type == 'GroupBot' and ChekAdd(msg.chat_id_) == true then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
