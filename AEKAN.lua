@@ -1584,6 +1584,13 @@ list = {"كس","كسمك","كسختك","عير","كسخالتك","خرا بال�
 for k,v in pairs(list) do
 print(string.find(text,v))
 if string.find(text,v) ~= nil then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع التكلم بالفشار هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع التكلم بالفشار هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 return false
 end
@@ -1593,6 +1600,13 @@ if text and database:get(bot_id..'lock:Iran'..msg.chat_id_) and not Mempaam(msg)
 list = {"ڄ","گ","که","پی","خسته","برم","راحتی","بیام","دوستان","شادی","بپوشم","گرمه","چه","اخ کیر","زیباترین","میخام","خوبم","تو فق","زیباتون","دوستان","خوشکلم","ای","ازش","جانمونی","ریتم","نیاری","ملایم","داداش","بیا","باشم","میخوای","تندتر","ریتمو","زیرت","بکشی","کنی","اومدم","شه","خوب","هست","کسی","دستم","صبجتون","کیر","چ","ڬ","ٺ","چ","ڇ","ڿ","ڀ","ڎ","ݫ","ژ","ڟ","ݜ","ڸ","پ","۴","زدن","دخترا","دیوث","مک","زدن","تخماتو","بمالونم","بزنم","بهش","اقا","جذابیتت","خیلی","بالااااس","بهداشتی","مخوام","میخوام","اهلیم","حوصلم","بی","یه","کی","بریم","دوست","شمارتو","خوبی","شبتون","صکصی","رفقا","یکی","بیاد","پ","یوی","یکم","بچیتیم","غوغای","قهرمان‌","هاشون‌","هَوَلای‌مآن","وی","جدیدامو","نشونش","بچها","برفی","اینجا","خوب","سراغ","کجایین","گفتم","نیومد","پیویم","دیشب","پیام","دادین","نزاشتن","بخوابیم","پسر","خوشتیپ","هرگز","چيز","زندگيت","فراموش","نکن","نمیخوام","دیلدو","برانداز","میکنم","نشونت","باهم","بشیم","بیاد","خنده","اخه","فیترشکن","برام","بفرستین","داشتم","شماره","رو","شمارت","ذخیرس","دارمت","داری","بدی","استیکر","شدی","ادد","ادی","هیع","کردم","شمارتو","کصم","میخاره","خوجله","عشقو","بده","کجایی","چطوری","چخبر","اشنا","بشیم","زیبای","درونمی","جنگلتم"}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع التكلم بالفارسيه هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع التكلم بالفارسيه هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 return false
 end
@@ -1602,6 +1616,13 @@ if text and database:get(bot_id..'lock:Eng'..msg.chat_id_) and not Mempaam(msg) 
 list = {'a','u','y','l','t','b','A','Q','U','J','K','L','B','D','L','V','Z','k','n','c','r','q','o','z','I','j','m','M','w','d','h','e'}
 for k,v in pairs(list) do
 if string.find(text,v) ~= nil then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع التكلم بالانكليزيه هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع التكلم بالانكليزيه هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 return false
 end
@@ -1634,7 +1655,14 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("@[%a%d_]+") or msg.content_.caption_:match("@(.+)") then  
-if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" and not Special(msg) then    
+if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" and not Special(msg) then   
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال المعرفات هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال المعرفات هنا\n" ) 
+end
+end,nil)    
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1650,7 +1678,14 @@ end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("@[%a%d_]+") or text and text:match("@(.+)") then    
-if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" and not Special(msg) then    
+if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" and not Special(msg) then   
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال المعرفات هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال المعرفات هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1666,7 +1701,14 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("#[%a%d_]+") or msg.content_.caption_:match("#(.+)") then 
-if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" and not Special(msg) then    
+if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" and not Special(msg) then   
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الهاشتاك هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الهاشتاك هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1682,7 +1724,14 @@ end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("#[%a%d_]+") or text and text:match("#(.+)") then
-if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" and not Special(msg) then    
+if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" and not Special(msg) then   
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الهاشتاك هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الهاشتاك هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1698,7 +1747,14 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("/[%a%d_]+") or msg.content_.caption_:match("/(.+)") then  
-if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" and not Special(msg) then    
+if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" and not Special(msg) then   
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الشارحه هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الشارحه هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1714,7 +1770,14 @@ end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("/[%a%d_]+") or text and text:match("/(.+)") then
-if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" and not Special(msg) then    
+if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" and not Special(msg) then   
+ tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الشارحه هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الشارحه هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ked" and not Special(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1732,6 +1795,13 @@ if msg.content_.caption_ then
 if not Special(msg) then 
 if msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]://") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]://") or msg.content_.caption_:match("[Ww][Ww][Ww].") or msg.content_.caption_:match(".[Cc][Oo][Mm]") or msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or msg.content_.caption_:match(".[Pp][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or msg.content_.caption_:match("[Tt].[Mm][Ee]/") then 
 if database:get(bot_id.."lock:Link"..msg.chat_id_) == "del" and not Special(msg) then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الروابط هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الروابط هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Link"..msg.chat_id_) == "ked" and not Special(msg) then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1749,6 +1819,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or text and text:match("[Hh][Tt][Tt][Pp][Ss]://") or text and text:match("[Hh][Tt][Tt][Pp]://") or text and text:match("[Ww][Ww][Ww].") or text and text:match(".[Cc][Oo][Mm]") or text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or text and text:match(".[Pp][Ee]") or text and text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or text and text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or text and text:match("[Tt].[Mm][Ee]/") and not Special(msg) then
 if database:get(bot_id.."lock:Link"..msg.chat_id_) == "del" and not Special(msg) then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الروابط هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الروابط هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Link"..msg.chat_id_) == "ked" and not Special(msg) then 
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1764,6 +1841,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessagePhoto' and not Special(msg) then     
 if database:get(bot_id.."lock:Photo"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الصور هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الصور هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Photo"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1779,6 +1863,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageVideo' and not Special(msg) then     
 if database:get(bot_id.."lock:Video"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الفيديو هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الفيديو هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Video"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1794,6 +1885,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageAnimation' and not Special(msg) then     
 if database:get(bot_id.."lock:Animation"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال المتحركات هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال المتحركات هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Animation"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1809,6 +1907,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.game_ and not Special(msg) then     
 if database:get(bot_id.."lock:geam"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع الالعاب هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع الالعاب هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:geam"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1824,6 +1929,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageAudio' and not Special(msg) then     
 if database:get(bot_id.."lock:Audio"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الأغاني هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الأغاني هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Audio"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1839,6 +1951,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageVoice' and not Special(msg) then     
 if database:get(bot_id.."lock:vico"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الصوت هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الصوت هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:vico"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1854,6 +1973,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.reply_markup_ and msg.reply_markup_.ID == 'ReplyMarkupInlineKeyboard' and not Special(msg) then     
 if database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الكيبورد هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الكيبورد هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1869,6 +1995,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageSticker' and not Special(msg) then     
 if database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الملصقات هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الملصقات هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1883,6 +2016,13 @@ end
 end
 if tonumber(msg.via_bot_user_id_) ~= 0 and not Special(msg) then
 if database:get(bot_id.."lock:inline"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الهمسات هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الهمسات هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:inline"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1898,6 +2038,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.forward_info_ and not Special(msg) then     
 if database:get(bot_id.."lock:forward"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع إعادة التوجيه هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع إعادة التوجيه هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 return false
 elseif database:get(bot_id.."lock:forward"..msg.chat_id_) == "ked" then
@@ -1917,6 +2064,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageDocument' and not Special(msg) then     
 if database:get(bot_id.."lock:Document"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الملفات هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الملفات هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Document"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1932,6 +2086,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == "MessageUnsupported" and not Special(msg) then      
 if database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال السيلفي هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال السيلفي هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1968,6 +2129,13 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.ID == 'MessageContact' and not Special(msg) then      
 if database:get(bot_id.."lock:Contact"..msg.chat_id_) == "del" then
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الجهات هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الجهات هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Contact"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -1986,6 +2154,13 @@ local _nl, ctrl_ = string.gsub(text, '%c', '')
 local _nl, real_ = string.gsub(text, '%d', '')   
 sens = 400  
 if database:get(bot_id.."lock:Spam"..msg.chat_id_) == "del" and string.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
+tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+if data.username_ ~= false then
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الكلايش هنا\n" ) 
+else
+send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {["..data.first_name_.."](T.ME/SoalfLove)}\n❦ ⁞ ممنوع أرسال الكلايش هنا\n" ) 
+end
+end,nil)   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "ked" and string.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
 ked(msg.chat_id_,msg.sender_user_id_)
@@ -2458,17 +2633,17 @@ database:set(bot_id..'lock:edit'..msg.chat_id_,true)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم قفـل تعديل\n❦ ⁞ الحاله ← المسح ')  
 end,nil)   
-elseif text == 'قفل الفشار' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+elseif text == 'قفل الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id..'lock:Fshar'..msg.chat_id_,true) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞  تـم قفـل الفشار\n❦ ⁞ الحاله ← المسح ')  
 end,nil)  
-elseif text == 'قفل الفارسيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+elseif text == 'قفل الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id..'lock:Iran'..msg.chat_id_,true) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم قفـل الفارسيه\n❦ ⁞ الحاله ← المسح ')  
 end,nil)   
-elseif text == 'قفل الانكليزيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+elseif text == 'قفل الانكليزيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id..'lock:Eng'..msg.chat_id_,true) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم قفـل الانكليزيه\n❦ ⁞ الحاله ← المسح ')  
@@ -2554,7 +2729,7 @@ database:set(bot_id.."lock:Fshar"..msg.chat_id_,'kick')
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم قفـل الفشار بالطرد\n❦ ⁞ الحاله ←الطرد ')  
 end,nil)
-elseif text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+elseif text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم فـتح الفشار\n❦ ⁞ الحاله ← المسح  ')  
@@ -2574,7 +2749,7 @@ database:set(bot_id.."lock:Iran"..msg.chat_id_,'kick')
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم قفـل الفارسيه بالطرد\n❦ ⁞ الحاله ←الطرد ')  
 end,nil)
-elseif text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+elseif text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id..'lock:Iran'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم فـتح الفارسيه\n❦ ⁞ الحاله ← المسح  ')  
@@ -2594,7 +2769,7 @@ database:set(bot_id.."lock:Eng"..msg.chat_id_,'kick')
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم قفـل الانكليزيه بالطرد\n❦ ⁞ الحاله ←الطرد ')  
 end,nil)
-elseif text == 'فتح الانكليزيه' and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+elseif text == 'فتح الانكليزيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id..'lock:Eng'..msg.chat_id_) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..utf8.sub(data.first_name_,0,60)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم فـتح الانكليزيه\n❦ ⁞ الحاله ← المسح  ')  
@@ -8917,7 +9092,7 @@ tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(extr
 local rtp = Rutba(result.sender_user_id_,msg.chat_id_)
 local username = ' ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
 local iduser = result.sender_user_id_
-send(msg.chat_id_, msg.id_,'*- العضو » (*'..username..'*)\n- الرتبه » ('..rtp..')*\n')
+send(msg.chat_id_, msg.id_,'*❦ ⁞ العضو ⏦ (*'..username..'*)\n❦ ⁞ الرتبه ⏦ ('..rtp..')*\n')
 end,nil)
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
@@ -8931,7 +9106,7 @@ tdcli_function ({ID = "GetUser",user_id_ = result.id_},function(extra,data)
 local rtp = Rutba(result.id_,msg.chat_id_)
 local username = ('[@'..data.username_..']' or 'لا يوجد')
 local iduser = result.id_
-send(msg.chat_id_, msg.id_,'*- العضو » (*'..username..'*)\n- الرتبه » ('..rtp..')*\n')
+send(msg.chat_id_, msg.id_,'*❦ ⁞ العضو ⏦ (*'..username..'*)\n❦ ⁞ الرتبه ⏦ ('..rtp..')*\n')
 end,nil)
 else
 send(msg.chat_id_, msg.id_,'- المعرف غير صحيح ')
