@@ -1714,18 +1714,18 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("#[%a%d_]+") or msg.content_.caption_:match("#(.+)") then 
-if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" and not Special(msg) then   
+if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" and not Mempaam(msg) then   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Special(msg) then    
+elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Mempaam(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "kick" and not Special(msg) then    
+elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "kick" and not Mempaam(msg) then    
 chat_kick(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ktm" and not Special(msg) then    
+elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ktm" and not Mempaam(msg) then    
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "warn" and not Special(msg) then   
+elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "warn" and not Mempaam(msg) then   
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الهاشتاك هنا\n" ) 
@@ -1739,18 +1739,18 @@ end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("#[%a%d_]+") or text and text:match("#(.+)") then
-if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" and not Special(msg) then   
+if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" and not Mempaam(msg) then   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Special(msg) then    
+elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Mempaam(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "kick" and not Special(msg) then    
+elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "kick" and not Mempaam(msg) then    
 chat_kick(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ktm" and not Special(msg) then    
+elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ktm" and not Mempaam(msg) then    
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "warn" and not Special(msg) then   
+elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "warn" and not Mempaam(msg) then   
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0, "❦ ⁞عذرا يا ⏦ {[@"..data.username_.."]}\n❦ ⁞  ممنوع أرسال الهاشتاك هنا\n" ) 
@@ -8835,7 +8835,7 @@ database:sadd(bot_id..'Spam:Texting'..msg.sender_user_id_,text)
 end  
 end
 end
-if text == ("مسح ردود المدير") and Manager(msg) then
+if text == ("مسح ردود المدير") and Constructor(msg) then
 local list = database:smembers(bot_id..'List:Manager'..msg.chat_id_..'')
 for k,v in pairs(list) do
 database:del(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_)   
@@ -9972,7 +9972,8 @@ send(msg.chat_id_,msg.id_,'\n❦ ⁞ اهلا عزيزي البوت هنا مش�
 end
 end
 end
-if text:match("^كول (.*)$") then
+
+if text and text:match("^كول (.*)$") and Special(msg) then
 local txt = {string.match(text, "^(كول) (.*)$")}
 send(msg.chat_id_, 0, txt[2], "md")
 local id = msg.id_
@@ -9983,17 +9984,17 @@ local chat = msg.chat_id_
 delete_msg(chat, msgs)
 end
 
-if text and text:match("^تغير رد المطور (.*)$") and Manager(msg) then
+if text and text:match("^تغير رد المطور (.*)$") and Sudo(msg) then
 local Teext = text:match("^تغير رد المطور (.*)$") 
 database:set(bot_id.."Sudo:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"❦ ⁞ تم تغير رد المطور الى ⏦ "..Teext)
 end
-if text and text:match("^تغير رد منشئ الاساسي (.*)$") and Manager(msg) then
+if text and text:match("^تغير رد منشئ الاساسي (.*)$") and BasicConstructor(msg) then
 local Teext = text:match("^تغير رد منشئ الاساسي (.*)$") 
 database:set(bot_id.."BasicConstructor:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"❦ ⁞ تم تغير رد المنشئ الاساسي الى ⏦ "..Teext)
 end
-if text and text:match("^تغير رد المنشئ (.*)$") and Manager(msg) then
+if text and text:match("^تغير رد المنشئ (.*)$") and Constructor(msg) then
 local Teext = text:match("^تغير رد المنشئ (.*)$") 
 database:set(bot_id.."Constructor:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"❦ ⁞ تم تغير رد المنشئ الى ⏦ "..Teext)
@@ -10024,15 +10025,15 @@ database:set(bot_id.."Memp:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"❦ ⁞ تم تغير رد العضو الى ⏦ "..Teext)
 end
 
-if text == 'مسح رد المطور' and Manager(msg) then
+if text == 'مسح رد المطور' and Sudo(msg) then
 database:del(bot_id..'Sudo:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '❦ ⁞ تم مسح رد المطور')
 end
-if text == 'مسح رد منشئ الاساسي' and Manager(msg) then
+if text == 'مسح رد منشئ الاساسي' and BasicConstructor(msg) then
 database:del(bot_id..'BasicConstructor:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '❦ ⁞ تم مسح رد المنشئ الاساسي')
 end
-if text == 'مسح رد المنشئ' and Manager(msg) then
+if text == 'مسح رد المنشئ' and Constructor(msg) then
 database:del(bot_id..'Constructor:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '❦ ⁞ تم مسح رد المنشئ')
 end
