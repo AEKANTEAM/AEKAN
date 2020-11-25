@@ -991,9 +991,10 @@ end
 
 
 if text == 'تحديث السورس 𖤂' and SudoBot(msg) then 
+send(msg.chat_id_, msg.id_,'جاري تحديث سورس ايكان')
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
+send(msg.chat_id_, msg.id_,'❦ ⁞ تم تنزيل اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
 dofile('AEKAN.lua') 
 io.popen("rm -rf ~/.telegram-cli/data/audio/*")
 io.popen("rm -rf ~/.telegram-cli/data/document/*")
@@ -1004,7 +1005,8 @@ io.popen("rm -rf ~/.telegram-cli/data/thumb/*")
 io.popen("rm -rf ~/.telegram-cli/data/video/*")
 io.popen("rm -rf ~/.telegram-cli/data/voice/*")
 io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
-print("\27[31;47m\n          ( ❦ ⁞ تم تحديث السورس )          \n\27[0;34;49m\n")
+print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n")
+send(msg.chat_id_, msg.id_, '❦ ⁞ تم تحديث السورس') 
 end
 if text == 'الاصدار ☫' and SudoBot(msg) then 
 database:del(bot_id..'Srt:Bot') 
@@ -2475,9 +2477,10 @@ send(msg.chat_id_, msg.id_,'❦ ⁞ لا تستطيع استخدام البوت 
 end
 return false
 end
+send(msg.chat_id_, msg.id_,'جاري تحديث سورس ايكان')
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
+send(msg.chat_id_, msg.id_,'❦ ⁞ تم تنزيل اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
 dofile('AEKAN.lua') 
 io.popen("rm -rf ~/.telegram-cli/data/audio/*")
 io.popen("rm -rf ~/.telegram-cli/data/document/*")
@@ -2488,7 +2491,8 @@ io.popen("rm -rf ~/.telegram-cli/data/thumb/*")
 io.popen("rm -rf ~/.telegram-cli/data/video/*")
 io.popen("rm -rf ~/.telegram-cli/data/voice/*")
 io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
-print("\27[31;47m\n          ( ❦ ⁞ تم تحديث السورس )          \n\27[0;34;49m\n")
+print("\27[31;47m\n          ( تم تحديث السورس )          \n\27[0;34;49m\n")
+send(msg.chat_id_, msg.id_, '❦ ⁞ تم تحديث السورس') 
 end
 
 
@@ -3425,7 +3429,8 @@ io.popen("rm -rf ~/.telegram-cli/data/temp/*")
 io.popen("rm -rf ~/.telegram-cli/data/thumb/*") 
 io.popen("rm -rf ~/.telegram-cli/data/video/*") 
 io.popen("rm -rf ~/.telegram-cli/data/voice/*") 
-io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
+io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*")
+print("\27[31;47m\n        ( ❦ ⁞ تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
 send(msg.chat_id_, msg.id_, '❦ ⁞ تم تحديث جميع ملفات البوت') 
 end 
 if text == ("مسح قائمه العام") and SudoBot(msg) then
