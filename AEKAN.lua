@@ -1,12 +1,16 @@
 redis = require('redis')
 http = require("socket.http")
-https = require ("ssl.https") 
-serpent = dofile("./library/serpent.lua") 
-json = dofile("./library/JSON.lua") 
+https = require ("ssl.https")
+HTTPS = require ("ssl.https")
+serpent = dofile("./library/serpent.lua")
+json = dofile("./library/JSON.lua")
 JSON  = dofile("./library/dkjson.lua")
-URL = require('socket.url')  
-utf8 = require ('lua-utf8') 
-database = redis.connect('127.0.0.1', 6379) 
+lgi = require('lgi')
+notify = lgi.require('Notify')
+URL = require('socket.url')
+utf8 = require ('lua-utf8')
+notify.init ("Telegram updates")
+database = redis.connect('127.0.0.1', 6379)
 id_server = io.popen("echo $SSH_CLIENT | awk '{ print $1}'"):read('*a')
 --------------------------------------------------------------------------------------------------------------
 local AutoSet = function() 
@@ -989,8 +993,18 @@ end
 if text == 'تحديث السورس 𖤂' and SudoBot(msg) then 
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'❦ ⁞ تم تحديث البوت \n❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
-dofile('AEKAN.lua')  
+send(msg.chat_id_, msg.id_,'❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
+dofile('AEKAN.lua') 
+io.popen("rm -rf ~/.telegram-cli/data/audio/*")
+io.popen("rm -rf ~/.telegram-cli/data/document/*")
+io.popen("rm -rf ~/.telegram-cli/data/photo/*")
+io.popen("rm -rf ~/.telegram-cli/data/sticker/*")
+io.popen("rm -rf ~/.telegram-cli/data/temp/*")
+io.popen("rm -rf ~/.telegram-cli/data/thumb/*") 
+io.popen("rm -rf ~/.telegram-cli/data/video/*")
+io.popen("rm -rf ~/.telegram-cli/data/voice/*")
+io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
+print("\27[31;47m\n          ( ❦ ⁞ تم تحديث السورس )          \n\27[0;34;49m\n")
 end
 if text == 'الاصدار ☫' and SudoBot(msg) then 
 database:del(bot_id..'Srt:Bot') 
@@ -2463,8 +2477,18 @@ return false
 end
 os.execute('rm -rf AEKAN.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-send(msg.chat_id_, msg.id_,'❦ ⁞ تم تحديث البوت \n❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
-dofile('AEKAN.lua')  
+send(msg.chat_id_, msg.id_,'❦ ⁞ لديك اخر اصدار سورس ايكان\n❦ ⁞ الاصدار ← { 1.7v}')
+dofile('AEKAN.lua') 
+io.popen("rm -rf ~/.telegram-cli/data/audio/*")
+io.popen("rm -rf ~/.telegram-cli/data/document/*")
+io.popen("rm -rf ~/.telegram-cli/data/photo/*")
+io.popen("rm -rf ~/.telegram-cli/data/sticker/*")
+io.popen("rm -rf ~/.telegram-cli/data/temp/*")
+io.popen("rm -rf ~/.telegram-cli/data/thumb/*") 
+io.popen("rm -rf ~/.telegram-cli/data/video/*")
+io.popen("rm -rf ~/.telegram-cli/data/voice/*")
+io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
+print("\27[31;47m\n          ( ❦ ⁞ تم تحديث السورس )          \n\27[0;34;49m\n")
 end
 
 
@@ -3392,7 +3416,16 @@ send(msg.chat_id_, msg.id_,'❦ ⁞ تم فتح التكرار')
 end 
 --------------------------------------------------------------------------------------------------------------
 if text == 'تحديث' and SudoBot(msg) then    
-dofile('AEKAN.lua')  
+dofile('AEKAN.lua') 
+io.popen("rm -rf ~/.telegram-cli/data/audio/*") 
+io.popen("rm -rf ~/.telegram-cli/data/document/*") 
+io.popen("rm -rf ~/.telegram-cli/data/photo/*") 
+io.popen("rm -rf ~/.telegram-cli/data/sticker/*") 
+io.popen("rm -rf ~/.telegram-cli/data/temp/*") 
+io.popen("rm -rf ~/.telegram-cli/data/thumb/*") 
+io.popen("rm -rf ~/.telegram-cli/data/video/*") 
+io.popen("rm -rf ~/.telegram-cli/data/voice/*") 
+io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*") 
 send(msg.chat_id_, msg.id_, '❦ ⁞ تم تحديث جميع ملفات البوت') 
 end 
 if text == ("مسح قائمه العام") and SudoBot(msg) then
