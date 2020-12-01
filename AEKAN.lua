@@ -2671,6 +2671,95 @@ send(msg.chat_id_, msg.id_,'❦ ⁞ تم حفظ الامر')
 database:del(bot_id.."Set:Cmd:Group1"..msg.chat_id_..':'..msg.sender_user_id_)
 return false
 end
+function sendVoicebot(chat_id,reply_id,voice,caption,func)
+pcall(tdcli_function({
+ID="SendMessage",
+chat_id_ = chat_id,
+reply_to_message_id_ = reply_id,
+disable_notification_ = 0,
+from_background_ = 1,
+reply_markup_ = nil,
+input_message_content_ = {
+ID="InputMessageVoice",
+voice_ = GetInputFile(voice),
+duration_ = "",
+waveform_ = "",
+caption_ = caption or ""
+}},func or dl_cb,nil))
+end
+function sendAudiobot(chat_id,reply_id,audio,title,caption,performer,func)
+pcall(tdcli_function({
+ID="SendMessage",
+chat_id_ = chat_id,
+reply_to_message_id_ = reply_id,
+disable_notification_ = 0,
+from_background_ = 1,
+reply_markup_ = nil,
+input_message_content_ = {
+ID="InputMessageAudio",
+audio_ = GetInputFile(audio),
+duration_ = "",
+title_ = title or "",
+performer_ = performer or "",
+caption_ = caption or ""
+}},func or dl_cb,nil))
+end
+function download(url, file_path) 
+local respbody = {} 
+local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
+local response = nil 
+options.redirect = false 
+response = {http.request(options)} 
+local code = response[2] 
+local headers = response[3] 
+local status = response[4] 
+if code ~= 200 then return false, code 
+end 
+file = io.open(file_path, "w+") 
+file:write(table.concat(respbody)) 
+file:close() 
+return './'..file_path 
+end
+if text == 'تعطيل اليوتيوب' and Constructor(msg) then  
+send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تم تعطيل اليوتيوب')
+database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"close") 
+return false  
+end 
+if text == 'تفعيل اليوتيوب' and Constructor(msg) then  
+send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تم تفعيل اليوتيوب')
+database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"open") 
+return false  
+end
+if text and text:match('^بصمه (.*)$')  and database:get(bot_id.."dl_yt_dl"..msg.chat_id_) == "open" then            
+local Ttext = text:match('^بصمه (.*)$') 
+local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
+local JsonSearch = JSON.decode(InfoSearch)
+for k,vv in pairs(JsonSearch.results) do
+if k == 1 then
+local GetStart = io.popen('downloadsh '..vv.url):read('*all')
+if GetStart and GetStart:match('(.*)oksend(.*)') then
+print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
+sendVoice(msg.chat_id_, msg.id_, 0, 1, nil,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @SoalfLove','@SoalfLove')  
+os.execute('rm -rf ./'..vv.url..'.mp3') 
+end
+end
+end
+end
+if text and text:match('^صوت (.*)$')  and database:get(bot_id.."dl_yt_dl"..msg.chat_id_) == "open" then            
+local Ttext = text:match('^صوت (.*)$') 
+local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
+local JsonSearch = JSON.decode(InfoSearch)
+for k,vv in pairs(JsonSearch.results) do
+if k == 1 then
+local GetStart = io.popen('downloadsh '..vv.url):read('*all')
+if GetStart and GetStart:match('(.*)oksend(.*)') then
+print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
+sendAudio(msg.chat_id_,msg.id_,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @SoalfLove','@SoalfLove')
+os.execute('rm -rf ./'..vv.url..'.mp3') 
+end
+end
+end
+end
 --------------------------------------------------------------------------------------------------------------
 if text == 'قفل الدردشه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id.."lock:text"..msg.chat_id_,true) 
@@ -8383,27 +8472,39 @@ Text = '\n❦ ⁞ بالتاكيد تم تعطيل البوت الخدمي'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text and text:match('^تنظيف (%d+)$') and Mod(msg) or text and text:match('^حذف (%d+)$') and Mod(msg) then
-local num = tonumber(text:match('^تنظيف (%d+)$')) or tonumber(text:match('^حذف (%d+)$'))
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
+if text == 'تعطيل التنظيف' and Constructor(msg) then   
+if database:get(bot_id..'Lock:delmsg'..msg.chat_id_)  then
+database:del(bot_id..'Lock:delmsg'..msg.chat_id_) 
+Text = '\n❦ ⁞ تم تعطيل التنظيف' 
 else
-send(msg.chat_id_, msg.id_,'❦ ⁞ لا تستطيع استخدام البوت يرجى الاشتراك في القناة حتى تتمكن من استخدام الاوامر \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+Text = '\n❦ ⁞ بالتاكيد تم تعطيل التنظيف'
 end
-return false
+send(msg.chat_id_, msg.id_,Text) 
 end
-if num > 1000 then 
-send(msg.chat_id_, msg.id_,'❦ ⁞ تستطيع التنظيف ل1000 رساله كحد اقصى') 
+if text == 'تفعيل التنظيف' and Constructor(msg) then  
+if not database:get(bot_id..'Lock:delmsg'..msg.chat_id_)  then
+database:set(bot_id..'Lock:delmsg'..msg.chat_id_,true) 
+Text = '\n❦ ⁞ تم تفعيل التنظيف' 
+else
+Text = '\n❦ ⁞ بالتاكيد تم تفعيل التنظيف'
+end
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text and text:match('^تنظيف (%d+)$') and Mod(msg) or text and text:match('^حذف (%d+)$') and Mod(msg) and database:get(bot_id..'Lock:delmsg'..msg.chat_id_) then                
+if not database:get(bot_id..'AEKAN:Delete:Time'..msg.chat_id_..':'..msg.sender_user_id_) then           
+local Number = tonumber(text:match('^تنظيف (%d+)$')) or tonumber(text:match('^حذف (%d+)$'))
+if Number > 1000 then 
+send(msg.chat_id_, msg.id_,'❦ ⁞ لا تستطيع تنظيف اكثر من *~ 1000* رساله') 
 return false  
 end  
-local msgm = msg.id_
-for i=1,tonumber(num) do
-DeleteMessage(msg.chat_id_, {[0] = msgm})
-msgm = msgm - 1048576
+local Message = msg.id_
+for i=1,tonumber(Number) do
+DeleteMessage(msg.chat_id_,{[0]=Message})
+Message = Message - 1048576
 end
-send(msg.chat_id_,msg.id_,'❦ ⁞ تم حذف {'..num..'}')  
+send(msg.chat_id_, msg.id_,'• تم حذف *~ '..Number..'* رساله .')  
+database:setex(bot_id..'AEKAN:Delete:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
+end
 end
 
 if text == "تنظيف الميديا" and Mod(msg) or text == "حذف الميديا" and Mod(msg) then
