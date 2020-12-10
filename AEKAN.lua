@@ -7634,7 +7634,6 @@ local text =
 ' }\n'..'❦ ⁞ الانكليزيه ← { '..lock_Eng..
 ' }\n'..'❦ ⁞ الفشار ← { '..lock_Fshar..
 ' }\n'..'❦ ⁞ التكرار ← { '..flood..
-' }\n'..'❦ ⁞ الترحيب ← { '..welcome..
 ' }\n'..'❦ ⁞ عدد التكرار ← { '..NUM_MSG_MAX..
 ' }\nٴ•━━━━━━━━━━━━━•'..
 '\n❦ ⁞ علامة ال {✓} تعني مفعل'..
@@ -7647,6 +7646,7 @@ local text =
 ' }\n'..'❦ ⁞ ردود المطور ← { '..rdsudo..
 ' }\n'..'❦ ⁞ الايدي ← { '..idgp..
 ' }\n'..'❦ ⁞ الايدي بالصوره ← { '..idph..
+' }\n'..'❦ ⁞ الترحيب ← { '..welcome..
 ' }\n'..'❦ ⁞ الرفع ← { '..setadd..
 ' }\n'..'❦ ⁞ الحظر ← { '..banm..' }\n\n⏦Ⓐ⓷ⓀⓄⓃ ❦ ⓇⓉ⊝ⓎⓉ⏦\nて [𝘈𝘌𝘒𝘈𝘕 𝘊𝘩𝘢𝘯𝘯𝘦𝘭](t.me/SoalfLove)➤\n'
 send(msg.chat_id_, msg.id_,text)     
@@ -7766,11 +7766,11 @@ return false
 end
 local link = database:get(bot_id.."Private:Group:Link"..msg.chat_id_)            
 if link then                              
-send(msg.chat_id_,msg.id_,'❦ ⁞ *Link* -\n┉ ┉ ┉  ┉  ┉  ┉  ┉  ┉\n ['..link..']')                          
+send(msg.chat_id_,msg.id_,'❦ ⁞ *Link* -\n•━━━━━━━━━━━━━•\n ['..link..']')                          
 else                
 local linkgpp = json:decode(https.request('https://api.telegram.org/bot'..token..'/exportChatInviteLink?chat_id='..msg.chat_id_))
 if linkgpp.ok == true then 
-linkgp = '❦ ⁞ *Link* -\n┉  ┉  ┉  ┉  ┉  ┉  ┉\n ['..linkgpp.result..']'
+linkgp = '❦ ⁞ *Link* -\n•━━━━━━━━━━━━━•\n ['..linkgpp.result..']'
 else
 linkgp = '❦ ⁞ لا يوجد رابط ارسل ضع رابط'
 end  
@@ -8607,9 +8607,18 @@ Text = '\n❦ ⁞ بالتاكيد تم تفعيل التنظيف'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text and text:match('^تنظيف (%d+)$') and Mod(msg) or text and text:match('^حذف (%d+)$') and Mod(msg) and database:get(bot_id..'Lock:delmsg'..msg.chat_id_) then                
+if text and text:match('^تنظيف (%d+)$') and Mod(msg) or text and text:match('^حذف (%d+)$') and Mod(msg) or text and text:match('^مسح (%d+)$') and Mod(msg) and database:get(bot_id..'Lock:delmsg'..msg.chat_id_) then                
 if not database:get(bot_id..'AEKAN:Delete:Time'..msg.chat_id_..':'..msg.sender_user_id_) then           
-local Number = tonumber(text:match('^تنظيف (%d+)$')) or tonumber(text:match('^حذف (%d+)$'))
+local Number = tonumber(text:match('^تنظيف (%d+)$')) or tonumber(text:match('^حذف (%d+)$')) or tonumber(text:match('^مسح (%d+)$'))
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يرجى الاشتراك بالقناه اولا \n  ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
 if Number > 1000 then 
 send(msg.chat_id_, msg.id_,'❦ ⁞ لا تستطيع تنظيف اكثر من *~ 1000* رساله') 
 return false  
@@ -8623,31 +8632,41 @@ send(msg.chat_id_, msg.id_,'• تم حذف *~ '..Number..'* رساله .')
 database:setex(bot_id..'AEKAN:Delete:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
 end
 end
-
-if text == "تنظيف الميديا" and Mod(msg) or text == "حذف الميديا" and Mod(msg) then
-msgm = {[0]=msg.id_}
-local Message = msg.id_
-for i=1,100 do
-Message = Message - 1048576
-msgm[i] = Message
+if (msg.content_.animation_) or (msg.content_.photo_) or (msg.content_.video_) or (msg.content_.document) or (msg.content_.sticker_) or (msg.content_.voice_) or (msg.content_.audio_) and msg.reply_to_message_id_ == 0 then      
+database:sadd(bot_id.."AEKAN:rho"..msg.chat_id_, msg.id_)
 end
-tdcli_function({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = msgm},function(arg,data)
-new = 0
-msgm2 = {}
-for i=0 ,data.total_count_ do
-if data.messages_[i] and data.messages_[i].content_ and data.messages_[i].content_.ID ~= "MessageText" then
-msgm2[new] = data.messages_[i].id_
-new = new + 1
+if text == ("تنظيف الميديا") and Mod(msg) or text == ("حذف الميديا") and Mod(msg) or text == ("امسح") and Mod(msg) then  
+local list = database:smembers(bot_id.."AEKAN:rho"..msg.chat_id_)
+for k,v in pairs(list) do
+local Message = v
+if Message then
+t = "❦ ⁞ تم حذف "..k.." من الوسائط الموجوده"
+DeleteMessage(msg.chat_id_,{[0]=Message})
+database:del(bot_id.."AEKAN:rho"..msg.chat_id_)
 end
 end
-DeleteMessage(msg.chat_id_,msgm2)
-end,nil) 
-send(msg.chat_id_, msg.id_,"❦ ⁞ تم حذف 100 من الوسائط ")
+if #list == 0 then
+t = "❦ ⁞ لا يوجد ميديا في المجموعه"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+if text == ("عدد الميديا") and Mod(msg) then  
+local num = database:smembers(bot_id.."AEKAN:rho"..msg.chat_id_)
+for k,v in pairs(num) do
+local numl = v
+if numl then
+l = "❦ ⁞ عدد الميديا الموجود هو "..k
+end
+end
+if #num == 0 then
+l = "❦ ⁞ لا يوجد ميديا في المجموعه"
+end
+send(msg.chat_id_, msg.id_, l)
 end
 if text == "تنظيف التعديل" and Mod(msg) or text == "حذف التعديل" and Mod(msg) then
 Msgs = {[0]=msg.id_}
 local Message = msg.id_
-for i=1,100 do
+for i=1,500 do
 Message = Message - 1048576
 Msgs[i] = Message
 end
@@ -8662,7 +8681,7 @@ end
 end
 DeleteMessage(msg.chat_id_,Msgs2)
 end,nil)  
-send(msg.chat_id_, msg.id_,'❦ ⁞ تم حذف 100 رساله معدله ')
+send(msg.chat_id_, msg.id_,'❦ ⁞ تم حذف جميع الرسائل المعدله ')
 end
 if text == "تغير اسم البوت" or text == "تغيير اسم البوت" then 
 if SudoBot(msg) then
@@ -8802,6 +8821,46 @@ end
 end,nil) 
 end
 
+if text == "all" and Special(msg) or text == "@all" and Special(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يرجى الاشتراك بالقناه اولا \n  ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if database:get(bot_id.."AEKAN:all:Time"..msg.chat_id_..':'..msg.sender_user_id_) then  
+return 
+send(msg.chat_id_, msg.id_,"انتظر دقيقه من فضلك")
+end
+database:setex(bot_id..'AEKAN:all:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
+tdcli_function({ID="GetChannelFull",channel_id_ = msg.chat_id_:gsub('-100','')},function(argg,dataa) 
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = dataa.member_count_},function(ta,AEKAN)
+x = 0
+tags = 0
+local list = AEKAN.members_
+for k, v in pairs(list) do
+tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)
+if x == 5 or x == tags or k == 0 then
+tags = x + 5
+t = "#all"
+end
+x = x + 1
+tagname = data.first_name_
+tagname = tagname:gsub("]","")
+tagname = tagname:gsub("[[]","")
+t = t..", ["..tagname.."](tg://user?id="..v.user_id_..")"
+if x == 5 or x == tags or k == 0 then
+local Text = t:gsub('#all,','#all\n')
+sendText(msg.chat_id_,Text,0,'md')
+end
+end,nil)
+end
+end,nil)
+end,nil)
+end
 if text == "تاك للكل" and Mod(msg) or text == "تاك" and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -8818,14 +8877,56 @@ local t = "\n❦ ⁞ قائمة الاعضاء \n•━━━━━━━━━�
 x = 0
 local list = AEKAN.members_
 for k, v in pairs(list) do
+tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)
 x = x + 1
-if database:get(bot_id..'user:Name'..v.user_id_) then
-t = t..""..x.." → {[@"..database:get(bot_id..'user:Name'..v.user_id_).."]}\n"
+if data.username_ then
+t = t..""..x.."→ {[@"..data.username_.."]} \n"
 else
-t = t..""..x.." → {"..v.user_id_.."}\n"
+tagname = data.first_name_
+tagname = tagname:gsub("]","")
+tagname = tagname:gsub("[[]","")
+t = t..""..x.."→ {["..tagname.."](tg://user?id="..v.user_id_..")} \n"
 end
-end
+if k == 0 then
 send(msg.chat_id_,msg.id_,t)
+end
+end,nil)
+end
+end,nil)
+end
+
+if text and text:match("^تاك ل (%d+)$") and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,' ❦ ⁞ لا تستطيع استخدام البوت \n  ❦ ⁞ يرجى الاشتراك بالقناه اولا \n  ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+taglimit = text:match("^تاك ل (%d+)$"):gsub('تاك ل ','')
+tdcli_function({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub('-100',''), offset_ = 0,limit_ = taglimit
+},function(ta,AEKAN)
+local t = "\n❦ ⁞  قائمة الاعضاء \n•━━━━━━━━━━━━━•\n"
+x = 0
+local list = AEKAN.members_
+for k, v in pairs(list) do
+tdcli_function({ID="GetUser",user_id_ = v.user_id_},function(arg,data)
+x = x + 1
+if data.username_ then
+t = t..""..x.."→ {[@"..data.username_.."]} \n"
+else
+tagname = data.first_name_
+tagname = tagname:gsub("]","")
+tagname = tagname:gsub("[[]","")
+t = t..""..x.."→ {["..tagname.."](tg://user?id="..v.user_id_..")} \n"
+end
+if k == 0 then
+send(msg.chat_id_,msg.id_,t)
+end
+end,nil)
+end
 end,nil)
 end
 if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and Mod(msg) then
@@ -10293,7 +10394,7 @@ end
 getChannelFull(msg.chat_id_, gpinfo, nil) 
 end
 -----------
-if text ==("مسح") and Mod(msg) and tonumber(msg.reply_to_message_id_) > 0 then
+if text ==("مسح") and Mod(msg) or text ==("حذف") and Mod(msg) and tonumber(msg.reply_to_message_id_) > 0 then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -10766,7 +10867,7 @@ send(msg.chat_id_, msg.id_,'❦ ⁞ يرجى الاشتراك بالقناه ا�
 end
 return false
 end
-zh = https.request('https://rudi-dev.tk/Amir1/Boyka.php?en='..URL.escape(TextZhrfa)..'')
+zh = https.request('https://mode-dev.tk/api3/nigga.php?en='..URL.escape(TextZhrfa)..'')
 zx = JSON.decode(zh)
 t = "\n❦ ⁞ قائمه الزخرفه \nٴ❦ ⁞⫷━━━━━━━𝘼𝙆━━━━━━━⫸❦ ⁞○ٴ \n"
 i = 0
@@ -10809,7 +10910,7 @@ send(msg.chat_id_, msg.id_,'❦ ⁞ يرجى الاشتراك بالقناه ا�
 end
 return false
 end
-ge = https.request('https://rudi-dev.tk/Amir3/Boyka.php?age='..URL.escape(Textage)..'')
+ge = https.request('https://mode-dev.tk/Api1/niggaapi.php?age='..URL.escape(Textage)..'')
 ag = JSON.decode(ge)
 i = 0
 for k,v in pairs(ag.ok) do
@@ -10829,7 +10930,7 @@ end
 return false
 end
 send(msg.chat_id_, msg.id_, '❦ ⁞ تم تعطيل الافلام')
-database:set(bot_id.."AMIR:movie_bot"..msg.chat_id_,"close")
+database:set(bot_id.."AEKAN:movie_bot"..msg.chat_id_,"close")
 end
 if text == "تفعيل الافلام" and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
@@ -10842,9 +10943,9 @@ end
 return false
 end
 send(msg.chat_id_, msg.id_,'❦ ⁞ تم تفعيل الافلام')
-database:set(bot_id.."AMIR:movie_bot"..msg.chat_id_,"open")
+database:set(bot_id.."AEKAN:movie_bot"..msg.chat_id_,"open")
 end
-if text and text:match("^فلم (.*)$") and database:get(bot_id.."AMIR:movie_bot"..msg.chat_id_) == "open" then
+if text and text:match("^فلم (.*)$") and database:get(bot_id.."AEKAN:movie_bot"..msg.chat_id_) == "open" then
 local Textm = text:match("^فلم (.*)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
