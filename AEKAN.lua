@@ -1611,8 +1611,8 @@ end
 end 
 --------------------------------------------------------------------------------------------------------------
 if text and database:get(bot_id..'lock:Fshar'..msg.chat_id_) and not Mempaam(msg) then 
-list = {"كس","كسمك","كسختك","عير","كسخالتك","خرا بالله","عير بالله","خرب الله","كسخواتكم","كحاب","نيجه","نيجج","كحوبه","عيري","مشتهيه","نيج","انيجك","انيجج","كواده","طيزج","كسج","مناويج","منيجه","كحبه","ابن الكحبه","فرخ","فروخ","طيزك","طيزختك","كساسه","سكسي","كوسي","xxnx","XXNX","xxxn","XXXN","بلاع","بلاع العير","سالب","موجب","ابن الكس","مصاص الخصوه","العار","ابن العاهره","عاهره","كواد","بعصتهم","بعصته","نجتهم","ناجني","كسك","fuck","FUCK","sexy","SEXY","ناجونه","نجناهم","بعصناهم","خصاوي","ناجوك","تنيج","عار"}
-for k,v in pairs(list) do
+list_fshar = {"كس","كسمك","كسختك","عير","كسخالتك","خرا بالله","عير بالله","خرب الله","كسخواتكم","كحاب","نيجه","نيجج","كحوبه","عيري","مشتهيه","نيج","انيجك","انيجج","كواده","طيزج","كسج","مناويج","منيجه","كحبه","ابن الكحبه","فرخ","فروخ","طيزك","طيزختك","كساسه","سكسي","كوسي","xxnx","XXNX","xxxn","XXXN","بلاع","بلاع العير","سالب","موجب","ابن الكس","مصاص الخصوه","العار","ابن العاهره","عاهره","كواد","بعصتهم","بعصته","نجتهم","ناجني","كسك","fuck","FUCK","sexy","SEXY","ناجونه","نجناهم","بعصناهم","خصاوي","ناجوك","تنيج","عار"}
+for k,v in pairs(list_fshar) do
 print(string.find(text,v))
 if string.find(text,v) ~= nil then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
@@ -1631,8 +1631,8 @@ end
 end
 end
 if text and database:get(bot_id..'lock:Iran'..msg.chat_id_) and not Mempaam(msg) then 
-list = {"ڄ","گ","که","پی","خسته","برم","راحتی","بیام","دوستان","شادی","بپوشم","گرمه","چه","اخ کیر","زیباترین","میخام","خوبم","تو فق","زیباتون","دوستان","خوشکلم","ای","ازش","جانمونی","ریتم","نیاری","ملایم","داداش","بیا","باشم","میخوای","تندتر","ریتمو","زیرت","بکشی","کنی","اومدم","شه","خوب","هست","کسی","دستم","صبجتون","کیر","چ","ڬ","ٺ","چ","ڇ","ڿ","ڀ","ڎ","ݫ","ژ","ڟ","ݜ","ڸ","پ","۴","زدن","دخترا","دیوث","مک","زدن","تخماتو","بمالونم","بزنم","بهش","اقا","جذابیتت","خیلی","بالااااس","بهداشتی","مخوام","میخوام","اهلیم","حوصلم","بی","یه","کی","بریم","دوست","شمارتو","خوبی","شبتون","صکصی","رفقا","یکی","بیاد","پ","یوی","یکم","بچیتیم","غوغای","قهرمان‌","هاشون‌","هَوَلای‌مآن","وی","جدیدامو","نشونش","بچها","برفی","اینجا","خوب","سراغ","کجایین","گفتم","نیومد","پیویم","دیشب","پیام","دادین","نزاشتن","بخوابیم","پسر","خوشتیپ","هرگز","چيز","زندگيت","فراموش","نکن","نمیخوام","دیلدو","برانداز","میکنم","نشونت","باهم","بشیم","بیاد","خنده","اخه","فیترشکن","برام","بفرستین","داشتم","شماره","رو","شمارت","ذخیرس","دارمت","داری","بدی","استیکر","شدی","ادد","ادی","هیع","کردم","شمارتو","کصم","میخاره","خوجله","عشقو","بده","کجایی","چطوری","چخبر","اشنا","بشیم","زیبای","درونمی","جنگلتم"}
-for k,v in pairs(list) do
+list_iran = {"ڄ","گ","که","پی","خسته","برم","راحتی","بیام","دوستان","شادی","بپوشم","گرمه","چه","اخ کیر","زیباترین","میخام","خوبم","تو فق","زیباتون","دوستان","خوشکلم","ای","ازش","جانمونی","ریتم","نیاری","ملایم","داداش","بیا","باشم","میخوای","تندتر","ریتمو","زیرت","بکشی","کنی","اومدم","شه","خوب","هست","کسی","دستم","صبجتون","کیر","چ","ڬ","ٺ","چ","ڇ","ڿ","ڀ","ڎ","ݫ","ژ","ڟ","ݜ","ڸ","پ","۴","زدن","دخترا","دیوث","مک","زدن","تخماتو","بمالونم","بزنم","بهش","اقا","جذابیتت","خیلی","بالااااس","بهداشتی","مخوام","میخوام","اهلیم","حوصلم","بی","یه","کی","بریم","دوست","شمارتو","خوبی","شبتون","صکصی","رفقا","یکی","بیاد","پ","یوی","یکم","بچیتیم","غوغای","قهرمان‌","هاشون‌","هَوَلای‌مآن","وی","جدیدامو","نشونش","بچها","برفی","اینجا","خوب","سراغ","کجایین","گفتم","نیومد","پیویم","دیشب","پیام","دادین","نزاشتن","بخوابیم","پسر","خوشتیپ","هرگز","چيز","زندگيت","فراموش","نکن","نمیخوام","دیلدو","برانداز","میکنم","نشونت","باهم","بشیم","بیاد","خنده","اخه","فیترشکن","برام","بفرستین","داشتم","شماره","رو","شمارت","ذخیرس","دارمت","داری","بدی","استیکر","شدی","ادد","ادی","هیع","کردم","شمارتو","کصم","میخاره","خوجله","عشقو","بده","کجایی","چطوری","چخبر","اشنا","بشیم","زیبای","درونمی","جنگلتم"}
+for k,v in pairs(list_iran) do
 if string.find(text,v) ~= nil then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 return false
@@ -1650,8 +1650,8 @@ end
 end
 end
 if text and database:get(bot_id..'lock:Eng'..msg.chat_id_) and not Mempaam(msg) then 
-list = {'a','u','y','l','t','b','A','Q','U','J','K','L','B','D','L','V','Z','k','n','c','r','q','o','z','I','j','m','M','w','d','h','e'}
-for k,v in pairs(list) do
+list_eng = {'a','u','y','l','t','b','A','Q','U','J','K','L','B','D','L','V','Z','k','n','c','r','q','o','z','I','j','m','M','w','d','h','e'}
+for k,v in pairs(list_eng) do
 if string.find(text,v) ~= nil then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 return false
@@ -8428,22 +8428,22 @@ end
 end
 if text == 'قفل التفليش' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id..'lock:tagrvrbot'..msg.chat_id_,true)   
-list ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Sticker","lock:Animation","lock:Video","lock:Fshar","lock:Iran","lock:Eng","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam"}
-for i,lock in pairs(list) do 
+list_tflesh ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Photo","lock:Sticker","lock:Animation","lock:Video","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam",'lock:edit','lock_edit_med'}
+for i,lock in pairs(list_tflesh) do 
 database:set(bot_id..lock..msg.chat_id_,'del')    
 end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم قفـل التفليش\n❦ ⁞ الحاله ← المسح ')  
+send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم تفعيل الحمايه القصوى\nٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ\n❦ ⁞ تم قفل البوتات بالطرد\n❦ ⁞ تم قفل المعرفات \n❦ ⁞ تم قفل الروابط\n❦ ⁞ تم قفل التوجيه\n❦ ⁞ تم قفل الصور\n❦ ⁞ تم قفل المتحركه\n❦ ⁞ تم قفل الملصقات\n❦ ⁞ تم قفل الفيديو\n❦ ⁞ تم تعطيل الايدي بالصوره\n❦ ⁞ تم قفل الصوت\n❦ ⁞ تم قفل الاغاني\n❦ ⁞ تم قفل الملفات\n❦ ⁞ تم قفل السيلفي\n❦ ⁞ تم قفل الماركداون\n❦ ⁞ تم قفل الجهات\n❦ ⁞ تم قفل الكلايش\n❦ ⁞ تم قفل التعديل\n❦ ⁞ تم قفل تعديل الميديا\n\nٴ⏦Ⓐ⓷ⓀⓄⓃ ❦ ⓇⓉ⊝ⓎⓉ⏦ٴ')
 end,nil)   
 end
 if text == 'فتح التفليش' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id..'lock:tagrvrbot'..msg.chat_id_)   
-list ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Sticker","lock:Animation","lock:Video","lock:Fshar","lock:Iran","lock:Eng","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam"}
-for i,lock in pairs(list) do 
+list_tflesh ={"lock:Bot:kick","lock:user:name","lock:Link","lock:forward","lock:Photo","lock:Sticker","lock:Animation","lock:Video","Bot:Id:Photo","lock:Audio","lock:vico","lock:Document","lock:Unsupported","lock:Markdaun","lock:Contact","lock:Spam",'lock:edit','lock_edit_med'}
+for i,lock in pairs(list_tflesh) do 
 database:del(bot_id..lock..msg.chat_id_)    
 end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
-send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم فـتح التفليش\n❦ ⁞ الحاله ← المسح ')  
+send(msg.chat_id_, msg.id_,'❦ ⁞ بواسطه ← ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n❦ ⁞ تـم تعطيل الحمايه القصوى\nٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ\n❦ ⁞ تم فتح البوتات بالطرد\n❦ ⁞ تم فتح المعرفات \n❦ ⁞ تم فتح الروابط\n❦ ⁞ تم فتح التوجيه\n❦ ⁞ تم فتح الصور\n❦ ⁞ تم فتح المتحركه\n❦ ⁞ تم فتح الملصقات\n❦ ⁞ تم فتح الفيديو\n❦ ⁞ تم تفعيل الايدي بالصوره\n❦ ⁞ تم فتح الصوت\n❦ ⁞ تم فتح الاغاني\n❦ ⁞ تم فتح الملفات\n❦ ⁞ تم فتح السيلفي\n❦ ⁞ تم فتح الماركداون\n❦ ⁞ تم فتح الجهات\n❦ ⁞ تم فتح الكلايش\n❦ ⁞ تم فتح التعديل\n❦ ⁞ تم فتح تعديل الميديا\n\nٴ⏦Ⓐ⓷ⓀⓄⓃ ❦ ⓇⓉ⊝ⓎⓉ⏦ٴ')
 end,nil)   
 end
 if text == 'طرد المحذوفين' or text == 'مسح المحذوفين' then  
@@ -8928,25 +8928,40 @@ end
 return false
 end
 
-if text == 'تفعيل وضع حسابي' and Constructor(msg) then
-if not database:get(bot_id..'lock:pubgacuount'..msg.chat_id_) then
-database:set(bot_id..'Lock:pubgacuount'..msg.chat_id_,true) 
-Text = '\n❦ ⁞ تم تفعيل وضع حسابي' 
+if text and text == 'تفعيل وضع حسابي' and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
 else
-Text = '\n❦ ⁞ بالتاكيد تم تفعيل وضع حسابي'
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
-send(msg.chat_id_, msg.id_,Text) 
+return false
 end
-if text == 'تعطيل وضع حسابي' and Constructor(msg) then
-if database:get(bot_id..'lock:pubgacuount'..msg.chat_id_) then
-database:del(bot_id..'Lock:pubgacuount'..msg.chat_id_) 
-Text = '\n❦ ⁞ تم تعطيل وضع حسابي' 
+if not database:get(bot_id..'bot:pubgacuount'..msg.chat_id_) then
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ بالتاكيد تم تفعيل وضع حسابي')  
 else
-Text = '\n❦ ⁞ بالتاكيد تم تعطيل وضع حسابي'
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ تم تفعيل وضع حسابي')
+database:del(bot_id..'bot:pubgacuount'..msg.chat_id_)
+end end
+if text and text == 'تعطيل وضع حسابي' and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
-send(msg.chat_id_, msg.id_,Text) 
+return false
 end
+if database:get(bot_id..'bot:pubgacuount'..msg.chat_id_) then
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ بالتاكيد تم تعطيل وضع حسابي') 
+else
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ تم تعطيل وضع حسابي')
+database:set(bot_id..'bot:pubgacuount'..msg.chat_id_,true)
+end end
 
+if not database:get(bot_id..'bot:pubgacuount'..msg.chat_id_) then
 if (text and text == 'وضع حسابي') then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -8956,27 +8971,27 @@ else
 send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
 end
 return false
-end     
-send(msg.chat_id_, msg.id_,'❦ ⁞ إرسل لي اسم حسابك')  
-database:set(bot_id..'pubg:n1'..msg.sender_user_id_..'','yes')
+end
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ ارسل لي اسم حسابك')
+database:set(bot_id..'bot:n1'..msg.sender_user_id_..'','yes')
 return false end 
-local pubg = database:get(bot_id..'pubg:n1'..msg.sender_user_id_)
+local pubg = database:get(bot_id..'bot:n1'..msg.sender_user_id_)
 if pubg == 'yes' then
 if text:match("^(.*)$") then
-send(msg.chat_id_, msg.id_, '❦ ⁞ تم حفظ الاسم \n❦ ⁞ ارسل ايدي حسابك')
-database:set(bot_id..'pubg:n1'..msg.sender_user_id_..'','no')
-database:set(bot_id..'pubg:name_acount'..msg.sender_user_id_, text)
-database:set(bot_id..'pubg:n2'..msg.sender_user_id_ ,'yes')
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ تم حفظ اسمك \n❦ ⁞ ارسل ايدي حسابك ')
+database:set(bot_id..'bot:n1'..msg.sender_user_id_..'','no')
+database:set(bot_id..'bot:name_acount'..msg.sender_user_id_, text)
+database:set(bot_id..'bot:n2'..msg.sender_user_id_ ,'yes')
 return false end
 end 
-local pubg = database:get(bot_id..'pubg:n2'..msg.sender_user_id_)
+local pubg = database:get(bot_id..'bot:n2'..msg.sender_user_id_)
 if pubg == 'yes' then
 if text:match("^(%d+)$") then
-database:set(bot_id..'pubg:idacount'..msg.sender_user_id_, text)
-database:set(bot_id..'pubg:n2'..msg.sender_user_id_, 'no')
+database:set(bot_id..'bot:idacount'..msg.sender_user_id_, text)
+database:set(bot_id..'bot:n2'..msg.sender_user_id_, 'no')
 local aa = [[
-❦ ⁞تم حفظ ايديك ✅
-❦ ⁞ارسل لي تقييمك كمثال :- 
+❦ ⁞ تم حفظ ايديك
+❦ ⁞ ارسل لي تقييمك كمثال :-
 
 - برونز 1 
 - كولد 2
@@ -8987,20 +9002,20 @@ local aa = [[
 - كونكر 
 ]]
 send(msg.chat_id_, msg.id_,aa)
-database:set(bot_id..'pubg:n3'..msg.sender_user_id_, 'yes')
+database:set(bot_id..'bot:n3'..msg.sender_user_id_, 'yes')
 return false 
 else 
 return false end
 end 
-local pubg = database:get(bot_id..'pubg:n3'..msg.sender_user_id_)
+local pubg = database:get(bot_id..'bot:n3'..msg.sender_user_id_)
 if pubg == 'yes' then
 if text:match("^برونز (%d+)$") or text:match("^كولد (%d+)$") or text:match("^بلاتينيوم (%d+)$") or text:match("^دايموند (%d+)$") or text:match("^كراون (%d+)$") or text:match("^ايس$") or text:match("^كونكر$") then
-database:set(bot_id..'pubg:n3'..msg.sender_user_id_, 'no')
-send(msg.chat_id_, msg.id_, '❦ ⁞ تم حفظ التقييم \n❦ ⁞ تم حفظ حسابك')
-database:set(bot_id..'pubg:acctear'..msg.sender_user_id_, text)
+database:set(bot_id..'bot:n3'..msg.sender_user_id_, 'no')
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ تم حفظ تقييمك \n❦ ⁞ تم حفظ حسابك في '..Namebot..' ')
+database:set(bot_id..'bot:acctear'..msg.sender_user_id_, text)
 return false 
 else 
-send(msg.chat_id_, msg.id_, '❦ ⁞ لم يتم حفظ التقييم يوجد خطأ')
+send(msg.chat_id_, msg.id_, '❦ ⁞ لم يتم حفظ تقييمك \n ❦ ⁞ إرسل تقييمك بشكل صحيح ')
 return false end
 end
 
@@ -9014,10 +9029,10 @@ send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتر
 end
 return false
 end
-database:del(bot_id..'pubg:idacount'..msg.sender_user_id_)
-database:del(bot_id..'pubg:acctear'..msg.sender_user_id_)
-database:del(bot_id..'pubg:name_acount'..msg.sender_user_id_)
-send(msg.chat_id_, msg.id_, '❦ ⁞ تم مسح حسابك')
+database:del(bot_id..'bot:idacount'..msg.sender_user_id_)
+database:del(bot_id..'bot:acctear'..msg.sender_user_id_)
+database:del(bot_id..'bot:name_acount'..msg.sender_user_id_)
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ تم مسح حسابك من '..Namebot..' ')
 end
 
 if (text and text == 'حسابي') then
@@ -9030,12 +9045,12 @@ send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتر
 end
 return false
 end
-if database:get(bot_id..'pubg:idacount'..msg.sender_user_id_)then
-local n = database:get(bot_id..'pubg:idacount'..msg.sender_user_id_)
-local nn = database:get(bot_id..'pubg:acctear'..msg.sender_user_id_)
-local nnn = database:get(bot_id..'pubg:name_acount'..msg.sender_user_id_)
+if database:get(bot_id..'bot:idacount'..msg.sender_user_id_)then
+local n = database:get(bot_id..'bot:idacount'..msg.sender_user_id_)
+local nn = database:get(bot_id..'bot:acctear'..msg.sender_user_id_)
+local nnn = database:get(bot_id..'bot:name_acount'..msg.sender_user_id_)
 local Texting = {
-'ككفو وربي😌🤞',
+'كفووو وربي 😌🤞',
 "تقييمك مصعده كمبره ؟ 😉💞",
 "تقيمك هذا وحدك جبته لْـۆ هكر وياك 🥱!",
 "طفي الهاك اخي طفي 🤥",
@@ -9043,10 +9058,10 @@ local Texting = {
 "شكبرك شكدك وهذا تقيمك مقتنع بي انته!!!",
 }
 local pubg_send = Texting[math.random(#Texting)]
-send(msg.chat_id_, msg.id_,'[\n❦ ⁞حسابك على الببجي ،\n❦ ⁞اسم حسابك ، {'..nnn..'}\n❦ ⁞ايدي حسابك ، {'..n..'}\n❦ ⁞تقييمك ، {'..nn..'}\n\n❦ ⁞{' ..pubg_send..'}]\n')
+send(msg.chat_id_, msg.id_,'[\n❦ ⁞ حسابك على الببجي\n❦ ⁞ اسم حسابك ⏦ {'..nnn..'}\n❦ ⁞ ايدي حسابك ⏦ {'..n..'}\n❦ ⁞ تقييمك ⏦ {'..nn..'}\n\n❦ ⁞ {' ..pubg_send..'}]\n')
 else 
-send(msg.chat_id_, msg.id_, '❦ ⁞ لم يتم حفظ حسابك \n❦ ⁞ ارسل وضع حسابي ليتم حفظه')
-end end
+send(msg.chat_id_, msg.id_, '\n❦ ⁞ لم يتم حفظ حسابك في '..Namebot..' \n❦ ⁞ ارسل { وضع حسابي } حته احفظه')
+end end end
 
 
 if text == ""..(database:get(bot_id..'Name:Bot') or 'ايكان').."" then 
@@ -10748,12 +10763,11 @@ end
 return false
 end
 
-if text:match("^(gpinfo)$") or text:match("^معلومات المجموعه$") then
-function gpinfo(arg,data)
--- vardump(data) 
-AEKANdx(msg.chat_id_, msg.id_, '❦ ⁞ ايدي المجموعة ⏦ ( '..msg.chat_id_..' )\n❦ ⁞ عدد الادمنيه ⏦ ( *'..data.administrator_count_..' )*\n❦ ⁞ عدد المحظورين ⏦ ( *'..data.kicked_count_..' )*\n❦ ⁞ عدد الاعضاء ⏦ ( *'..data.member_count_..' )*\n', 'md') 
-end 
-getChannelFull(msg.chat_id_, gpinfo, nil) 
+if text:match("^ايدي المجموعه$") and Sudo(msg) or text:match("^ايدي الكروب$") and Sudo(msg) then
+send(msg.chat_id_, msg.id_, '❦ ⁞ ايدي المجموعه ⏦ '..msg.chat_id_..'')
+end
+if text:match("^(time)$") and Mod(msg) or text:match("^(الوقت)$") and Mod(msg) or text:match("^(الساعه)$") and Mod(msg) or text:match("^(التاريخ)$") and Mod(msg) then
+send(msg.chat_id_, msg.id_, '❦ ⁞ الساعه ⏦ '..os.date("%I:%M%p")..' \n❦ ⁞ التاريخ ⏦ '..os.date("%Y/%m/%d")..' \n')
 end
 -----------
 if text ==("مسح") and Mod(msg) or text ==("حذف") and Mod(msg) and tonumber(msg.reply_to_message_id_) > 0 then
@@ -11538,7 +11552,7 @@ end
 t =[[
 ❦ ⁞ رابط الحذف في جميع مواقع التواصل
 ❦ ⁞ فكر قبل لا تتسرع
-ٴ⫷━━━━━━━??𝙆━━━━━━━⫸ٴ
+ٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ
  ❦ ⁞ رابط حذف  [Telegram](https://my.telegram.org/auth?to=delete) ܁
  ❦ ⁞ رابط حذف [instagram](https://www.instagram.com/accounts/login/?next=/accounts/remove/request/permanent/) ܁
  ❦ ⁞ رابط حذف [Facebook](https://www.facebook.com/help/deleteaccount) ܁
