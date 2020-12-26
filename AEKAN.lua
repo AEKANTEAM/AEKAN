@@ -6437,7 +6437,7 @@ send(msg.chat_id_, msg.id_,'*❦ ⁞ البوت ليس مشرف يرجى ترق�
 return false  
 end
 database:sadd(bot_id..'Ban:User'..msg.chat_id_, result.id_)
-usertext = '\n❦ ⁞ المستخدم ⏦ ['..result.title_..'](t.me/'..(username or 'GLOBLA')..')'
+usertext = '\n❦ ⁞ المستخدم ⏦ ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 status  = '\n*❦ ⁞ تم حظره*'
 texts = usertext..status
 chat_kick(msg.chat_id_, result.id_)
@@ -10605,7 +10605,7 @@ local List = {
 ]],
 [[
 .𖣂 𝙪𝙨𝙚𝙧𝙣𝙖𝙢𝙚 , #username  
-.𖣂 𝙨𝙩𝙖𝙨𝙩 , #stast  
+.𖣂 𝙨𝙩𝙖𝙨?? , #stast  
 .𖣂 𝙡𝘿 , #id  
 .𖣂 𝙂𝙖𝙢𝙨 , #game 
 .𖣂 𝙢𝙨𝙂𝙨 , #msgs
