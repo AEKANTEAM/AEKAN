@@ -11606,7 +11606,7 @@ database:del(bot_id..'Sudo:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*❦ ⁞ تم مسح رد المطور*')
 end
 if text == 'مسح رد المالك' and CoSu(msg) or text == 'حذف رد المالك' and CoSu(msg) then
-database:del(bot_id..'Sudo:Rd'..msg.chat_id_)
+database:del(bot_id..'CoSu:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*❦ ⁞ تم مسح رد المالك*')
 end
 if text == 'مسح رد منشئ الاساسي' and BasicConstructor(msg) or text == 'حذف رد المنشئ الاساسي' and BasicConstructor(msg) then
