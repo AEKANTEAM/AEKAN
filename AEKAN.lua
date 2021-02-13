@@ -230,14 +230,6 @@ else
 return false    
 end 
 end
-function cleaner(msg)
-local hash = database:sismember(bot_id.."MN:TF"..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or BasicConstructor(msg) or Bot(msg)  then       
-return true    
-else    
-return false    
-end 
-end
 function Mod(msg)
 local hash = database:sismember(bot_id..'Mod:User'..msg.chat_id_,msg.sender_user_id_)    
 if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Bot(msg) then    
@@ -289,8 +281,6 @@ elseif database:sismember(bot_id..'Constructor'..chat_id, user_id) then
 var = true  
 elseif database:sismember(bot_id..'Manager'..chat_id, user_id) then
 var = true 
-elseif database:sismember(bot_id..'MN:TF'..chat_id, user_id) then
-var = true
 elseif database:sismember(bot_id..'Mod:User'..chat_id, user_id) then
 var = true  
 elseif database:sismember(bot_id..'Special:User'..chat_id, user_id) then  
@@ -324,8 +314,6 @@ elseif database:sismember(bot_id..'Constructor'..chat_id, user_id) then
 var = database:get(bot_id.."Constructor:Rd"..msg.chat_id_) or 'المنشئ'  
 elseif database:sismember(bot_id..'Manager'..chat_id, user_id) then
 var = database:get(bot_id.."Manager:Rd"..msg.chat_id_) or 'المدير'
-elseif database:sismember(bot_id..'MN:TF'..chat_id, user_id) then
-var = database:get(bot_id.."MN:TF:Rd"..msg.chat_id_) or 'المنظف'  
 elseif database:sismember(bot_id..'Mod:User'..chat_id, user_id) then
 var = database:get(bot_id.."Mod:Rd"..msg.chat_id_) or 'الادمن'  
 elseif database:sismember(bot_id..'Special:User'..chat_id, user_id) then  
@@ -652,7 +640,31 @@ file = io.open(file_path, "w+")
 file:write(table.concat(respbody)) 
 file:close() 
 return file_path, code 
-end 
+end
+function Addjpg(msg,chat,ID_FILE,File_Name)
+local File = json:decode(https.request('https://api.telegram.org/bot'.. token..'/getfile?file_id='..ID_FILE)) 
+download_to_file('https://api.telegram.org/file/bot'..token..'/'..File.result.file_path,File_Name) 
+sendPhoto(msg.chat_id_, msg.id_, 0, 1, nil,'./'..File_Name,'تم تحويل الملصق الى صوره')     
+os.execute('rm -rf ./'..File_Name) 
+end
+function Addvoi(msg,chat,vi,ty)
+local eq = json:decode(https.request('https://api.telegram.org/bot'.. token..'/getfile?file_id='..vi)) 
+download_to_file('https://api.telegram.org/file/bot'..token..'/'..eq.result.file_path,ty) 
+sendVoice(msg.chat_id_, msg.id_, 0, 1, nil, './'..ty)   
+os.execute('rm -rf ./'..ty) 
+end
+function Addmp3(msg,chat,aek,aaek)
+local eer = json:decode(https.request('https://api.telegram.org/bot'.. token..'/getfile?file_id='..aek)) 
+download_to_file('https://api.telegram.org/file/bot'..token..'/'..eer.result.file_path,aaek) 
+sendAudio(msg.chat_id_,msg.id_,'./'..aaek,"@SoalfLove")  
+os.execute('rm -rf ./'..aaek) 
+end
+function Addsticker(msg,chat,Sd,akk)
+local Qw = json:decode(https.request('https://api.telegram.org/bot'.. token..'/getfile?file_id='..Sd)) 
+download_to_file('https://api.telegram.org/file/bot'..token..'/'..Qw.result.file_path,akk) 
+sendSticker(msg.chat_id_, msg.id_, 0, 1, nil, './'..akk)
+os.execute('rm -rf ./'..akk) 
+end
 function AddFile_Bot(msg,chat,ID_FILE,File_Name)
 if File_Name:match('.json') then
 if tonumber(File_Name:match('(%d+)')) ~= tonumber(bot_id) then 
@@ -1549,7 +1561,7 @@ else
 t = '\n• نورت حبي \n•  name \n• user' 
 end 
 t = t:gsub('name',result.first_name_) 
-t = t:gsub('user',('@'..result.username_ or 'لا يوجد')) 
+t = t:gsub('user',('@'..result.username_ or 'SoalfLove')) 
 send(msg.chat_id_, msg.id_,'['..t..']')
 end,nil) 
 end 
@@ -3001,6 +3013,17 @@ end
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 send(msg.chat_id_, msg.id_,'*❦ ⁞ بواسطة ⏦* ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n*❦ ⁞ تـم قفـل جميع الاوامر*\n*❦ ⁞ الحاله ⏦ المسح* ')  
 end,nil)   
+end
+if text == 'قفل الاباحي' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:set(bot_id.."lock:Lock:Xn"..msg.chat_id_,'del')  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,' *❦ ⁞ بواسطه ⏦* ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n *❦ ⁞ تـم قفـل الاباحي* ')
+end,nil)   
+elseif text == 'فتح الاباحي' and Mod(msg) and msg.reply_to_message_id_ == 0 then 
+database:del(bot_id.."lock:Lock:Xn"..msg.chat_id_)  
+tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
+send(msg.chat_id_, msg.id_,' *❦ ⁞ بواسطه ⏦* ['..Rutba(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n *❦ ⁞ تـم فتح الاباحي* ')
+end,nil)  
 end
 if text == 'فتح الانلاين' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id.."lock:inline"..msg.chat_id_)  
@@ -4518,7 +4541,94 @@ database:del(bot_id..'Basic:Constructor'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '\n*❦ ⁞ تم مسح قائمه المنشئين الاساسين*')
 return false
 end
-
+if (msg.content_.sticker_)  and msg.reply_to_message_id_ == 0 and database:get(bot_id.."lock:Lock:Xn"..msg.chat_id_)=="del" then      
+sticker_id = msg.content_.sticker_.sticker_.persistent_id_
+st = https.request('https://black-source.tk/BlackTeAM/ImageInfo.php?token='..token..'&url='..sticker_id.."&type=sticker")
+eker = JSON.decode(st)
+if eker.ok.Info == "Indecent" then
+local list = database:smembers(bot_id.."Basic:Constructor"..msg.chat_id_)
+a = "*❦ ⁞ المنشئين الاساسين تعالوا مخرب* \n *•━━━━━━━━━━━━━•* \n"
+for k,v in pairs(list) do
+local username = database:get(bot_id.."user:Name" .. v)
+if username then
+a = a..""..k.."- ([@"..username.."])\n"
+else
+a = a..""..k.."- {["..v.."](tg://user?id="..v..")}\n"
+end
+end
+if #list == 0 then
+a = "*❦ ⁞ لايوجد منشئين اساسيين*"
+end
+Reply_Status(msg,msg.sender_user_id_,"reply","*❦ ⁞ قام بنشر ملصق اباحي*\n"..a)  
+DeleteMessage(msg.chat_id_,{[0] = tonumber(msg.id_),msg.id_})   
+end   
+end
+if text == 'ملصق' then   
+if tonumber(msg.reply_to_message_id_) > 0 then
+function by_reply(extra, result, success)   
+if result.content_.photo_ then 
+local pn = result.content_.photo_.sizes_[1].photo_.persistent_id_
+Addsticker(msg,msg.chat_id_,pn,msg.sender_user_id_..'.png')
+end   
+end
+tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
+end
+end
+if text == 'صوت' then   
+if tonumber(msg.reply_to_message_id_) > 0 then
+function by_reply(extra, result, success)   
+if result.content_.voice_ then 
+local mr = result.content_.voice_.voice_.persistent_id_ 
+Addmp3(msg,msg.chat_id_,mr,msg.sender_user_id_..'.mp3')
+end   
+end
+tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
+end
+end
+if text == 'بصمه' then   
+if tonumber(msg.reply_to_message_id_) > 0 then
+function by_reply(extra, result, success)   
+if result.content_.audio_ then 
+local mr = result.content_.audio_.audio_.persistent_id_
+Addvoi(msg,msg.chat_id_,mr,msg.sender_user_id_..'.ogg')
+end   
+end
+tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
+end
+end
+if text == 'صوره' then   
+if tonumber(msg.reply_to_message_id_) > 0 then
+function by_reply(extra, result, success)   
+if result.content_.sticker_ then 
+local Str = result.content_.sticker_.sticker_.persistent_id_ 
+Addjpg(msg,msg.chat_id_,Str,msg.sender_user_id_..'.jpg')
+end   
+end
+tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, by_reply, nil)
+end
+end
+if (msg.content_.photo_) and msg.reply_to_message_id_ == 0 and database:get(bot_id.."lock:Lock:Xn"..msg.chat_id_)=="del" then
+photo_id = msg.content_.photo_.sizes_[1].photo_.persistent_id_  
+Srrt = https.request('https://black-source.tk/BlackTeAM/ImageInfo.php?token='..token..'&url='..photo_id.."&type=photo")
+Sto = JSON.decode(Srrt)
+if Sto.ok.Info == "Indecent" then
+local list = database:smembers(bot_id.."Basic:Constructor"..msg.chat_id_)
+a = "*❦ ⁞ المنشئين الاساسين تعالوا مخرب* \n *•━━━━━━━━━━━━━•* \n"
+for k,v in pairs(list) do
+local username = database:get(bot_id.."user:Name" .. v)
+if username then
+a = a..""..k.."- {[@"..username.."]}\n"
+else
+a = a..""..k.."- {["..v.."](tg://user?id="..v..")}\n"
+end
+end
+if #list == 0 then
+a = "*❦ ⁞ لايوجد منشئين اساسيين*"
+end
+Reply_Status(msg,msg.sender_user_id_,"reply","*❦ ⁞ قام بنشر صوره اباحيه*\n"..a)  
+DeleteMessage(msg.chat_id_,{[0] = tonumber(msg.id_),msg.id_})   
+end   
+end
 if text == 'المنشئين الاساسين' and CoSu(msg) then
 local list = database:smembers(bot_id..'Basic:Constructor'..msg.chat_id_)
 a = "\n*❦ ⁞ قائمة المنشئين الاساسين* \n*•━━━━━━━━━━━━━•*\n"
@@ -9578,55 +9688,6 @@ send(msg.chat_id_, msg.id_,'*❦ ⁞ تم حذف*'..Number..'*رساله .*')
 database:setex(bot_id..'AEKAN:Delete:Time'..msg.chat_id_..':'..msg.sender_user_id_,300,true)
 end
 end
-if (msg.content_.animation_) or (msg.content_.photo_) or (msg.content_.video_) or (msg.content_.document) or (msg.content_.sticker_) or (msg.content_.voice_) or (msg.content_.audio_) and msg.reply_to_message_id_ == 0 then      
-database:sadd(bot_id.."AEKAN:rho"..msg.chat_id_, msg.id_)
-end
-if text == ("تنظيف الميديا") and cleaner(msg) or text == ("حذف الميديا") and cleaner(msg) or text == ("امسح") and cleaner(msg) then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-local list = database:smembers(bot_id.."AEKAN:rho"..msg.chat_id_)
-for k,v in pairs(list) do
-local Message = v
-if Message then
-t = "*❦ ⁞ تم حذف* "..k.." *من الوسائط الموجوده*"
-DeleteMessage(msg.chat_id_,{[0]=Message})
-database:del(bot_id.."AEKAN:rho"..msg.chat_id_)
-end
-end
-if #list == 0 then
-t = "*❦ ⁞ لا توجد ميديا في الكروب*"
-end
-send(msg.chat_id_, msg.id_, t)
-end
-if text == ("عدد الميديا") and cleaner(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-local num = database:smembers(bot_id.."AEKAN:rho"..msg.chat_id_)
-for k,v in pairs(num) do
-local numl = v
-if numl then
-l = "*❦ ⁞ عدد الميديا الموجود هو* "..k
-end
-end
-if #num == 0 then
-l = "*❦ ⁞ لا توجد ميديا في الكروب*"
-end
-send(msg.chat_id_, msg.id_, l)
-end
 if text == "تنظيف التعديل" and Mod(msg) or text == "حذف التعديل" and Mod(msg) then
 Msgs = {[0]=msg.id_}
 local Message = msg.id_
@@ -11172,7 +11233,6 @@ if text == 'تنزيل جميع الرتب' and CoSu(msg) or text == 'تنزيل
 database:del(bot_id..'Basic:Constructor'..msg.chat_id_)
 database:del(bot_id..'Constructor'..msg.chat_id_)
 database:del(bot_id..'Manager'..msg.chat_id_)
-database:del(bot_id..'MN:TF'..msg.chat_id_)
 database:del(bot_id..'Mod:User'..msg.chat_id_)
 database:del(bot_id..'Special:User'..msg.chat_id_)
 database:del(bot_id..'Bnt:User'..msg.chat_id_)
