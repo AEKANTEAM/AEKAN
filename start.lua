@@ -32,7 +32,6 @@ if not redis:get(Server_Done.."Token_Write") then
 print('\n\27[1;41m ارسل توكن البوت الان : \n\27[0;39;49m')
 local token = io.read()
 if token ~= '' then
-data,res =
 if res == 200 then
 tr = json:decode(data)
 if tr.Info.info == 'Is_Spam' then
@@ -58,7 +57,6 @@ if not redis:get(Server_Done.."UserSudo_Write") then
 print('\n\27[1;41m ارسل ايدي مطور البوت الان : \n\27[0;39;49m')
 local Id = io.read():gsub(' ','') 
 if tostring(Id):match('%d+') then
-data,res =
 if res == 200 then
 aekan = json:decode(data)
 if aekan.Info.info == 'Is_Spam' then
