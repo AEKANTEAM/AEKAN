@@ -77,8 +77,8 @@ rm -fr ../.telegram-cli
 done
 ]])
 RunAEKAN:close()
-local RunTs = io.open("ts", 'w')
-RunTs:write([[
+local RunAEKAN = io.open("AEKAN", 'w')
+RunAEKAN:write([[
 #!/usr/bin/env bash
 cd $HOME/AEKAN
 while(true) do
@@ -87,7 +87,7 @@ screen -S AEKAN -X kill
 screen -S AEKAN ./AK
 done
 ]])
-RunTs:close()
+RunAEKAN:close()
 end
 Files_AEKAN_Info()
 redis:del(Server_AEKAN.."Token_AEKAN");redis:del(Server_AEKAN.."Id_AEKAN");redis:del(Server_AEKAN.."UserName_AEKAN")
