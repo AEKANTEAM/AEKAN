@@ -3,7 +3,7 @@ cd $HOME/AEKAN
 install() {
 rm -rf $HOME/.telegram-cli
 sudo chmod +x tg
-chmod +x AEKAN
+chmod +x Run
 chmod +x AK
 ./AK
 }
@@ -16,6 +16,7 @@ lua start.lua
 installall(){
 apt update
 apt upgrade
+apt install dnsutils
 sudo apt-get update
 sudo apt-get upgrade
 sudo apt-get install tmux
