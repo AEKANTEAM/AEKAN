@@ -87,18 +87,4 @@ redis:del(Server_Done.."Token_Write");redis:del(Server_Done.."UserSudo_Write")
 sudos = dofile('sudo.lua')
 os.execute('./install.sh ins')
 end 
-local function Load_File()  
-local f = io.open("./sudo.lua", "r")  
-if not f then   
-AutoFiles_Write()  
-var = true
-else   
-f:close()  
-redis:del(Server_Done.."Token_Write");redis:del(Server_Done.."UserSudo_Write")
-sudos = dofile('sudo.lua')
-os.execute('./install.sh ins')
-var = false
-end  
-return var
-end
 Load_File()
