@@ -28,36 +28,35 @@ Sudo = ]]..Sudo..[[
 ]])
 Write_Info_Sudo:close()
 end  
-if not redis:get(Server_Done.."Token_Write") then
-print('\n\27[1;41m ارسل توكن البوت الان : \n\27[0;39;49m')
+if not redi:get(id_server..":token") then
+io.write('\27[0;31m\n ارسل لي توكن البوت الان ↓ :\na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\27')
 local token = io.read()
 if token ~= '' then
 local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
 if res ~= 200 then
-io.write('\n\27[1;35m عذرا التوكن خطأ  : \n\27[0;39;49m')
+print('\27[0;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n التوكن غير صحيح تاكد منه ثم ارسله')
 else
-io.write('\n\27[1;45m تم حفظ التوكن : \n\27[0;39;49m') 
-redis:set(Server_Done.."Token_Write",token)
-os.execute('lua start.lua')
-end ---ifok
-end ---ifok
+io.write('\27[0;31m تم حفظ التوكن بنجاح \na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n27[0;39;49m')
+redi:set(id_server..":token",token)
+end 
 else
-os.execute('lua start.lua')
-end ---ifnot
-if not redis:get(Server_Done.."UserSudo_Write") then
-print('\n\27[1;41m ارسل ايدي مطور البوت الان : \n\27[0;39;49m')
-local Id = io.read():gsub(' ','') 
-if tostring(Id):match('%d+') then
-if res == 200 then
-os.execute('lua start.lua')
-end ---ifBn
-io.write('\n\27[1;39m تم حفظ الايدي بنجاح \n\27[0;39;49m') 
-redis:set(Server_Done.."UserSudo_Write",Id)
-end ---ifok
-else
-os.execute('lua start.lua')
-end ---ifnot
+print('\27[0;35m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ التوكن ارسل لي التوكن الان')
+end 
+os.execute('lua AEKAN.lua')
 end
+if not redi:get(id_server..":SUDO:ID") then
+io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\27[0;33;49m')
+local SUDOID = io.read()
+if SUDOID ~= '' then
+io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n27[0;39;49m')
+redi:set(id_server..":SUDO:ID",SUDOID)
+else
+print('\27[0;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
+end 
+os.execute('lua AEKAN.lua')
+end
+local function Files_Info_Get()
+Create_Info(redis:get(Server_Done.."Token_Write"),redis:get(Server_Done.."UserSudo_Write"))   
 local RunBot = io.open("Run", 'w')
 RunBot:write([[
 #!/usr/bin/env bash
