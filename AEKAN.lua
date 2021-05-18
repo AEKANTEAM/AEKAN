@@ -8255,9 +8255,7 @@ end
 if text == ("تحديث السورس") and DevAEKAN(msg) then  
 send(msg.chat_id_,msg.id_,'♡∶ تم التحديث')
 os.execute('rm -rf AEKAN.lua')
-os.execute('rm -rf start.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/start.lua')
 dofile('AEKAN.lua')  
 return false
 end
@@ -9767,9 +9765,7 @@ end
 if text == "تحديث السورس ♡" then
 send(msg.chat_id_,msg.id_,'♡∶ تم التحديث')
 os.execute('rm -rf AEKAN.lua')
-os.execute('rm -rf start.lua')
 os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
-os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/start.lua')
 dofile('AEKAN.lua')  
 return false
 end
