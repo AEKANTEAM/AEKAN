@@ -14,6 +14,135 @@ IP = io.popen("dig +short myip.opendns.com @resolver1.opendns.com"):read('*a')
 name = io.popen("uname -a | awk '{ name = $2 } END { print name }'"):read('*a')
 port = io.popen("echo ${SSH_CLIENT} | awk '{ port = $3 } END { print port }'"):read('*a')
 Rtime = io.popen("date +'%Y-%m-%d %T'"):read('*a')
+--------------------------------------------------------------------------------------------------------------
+local AutoSet = function() 
+local create = function(data, file, uglify)  
+file = io.open(file, "w+")   
+local serialized   
+if not uglify then  
+serialized = serpent.block(data, {comment = false, name = "Info"})  
+else  
+serialized = serpent.dump(data)  
+end    
+file:write(serialized)    
+file:close()  
+end  
+if not database:get(id_server..":token") then
+io.write('\27[0;31m\n ارسل لي توكن البوت الان ↓ :\na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\27')
+local token = io.read()
+if token ~= '' then
+local url , res = https.request('https://api.telegram.org/bot'..token..'/getMe')
+if res ~= 200 then
+print('\27[0;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n التوكن غير صحيح تاكد منه ثم ارسله')
+else
+io.write('\27[0;31m تم حفظ التوكن بنجاح \na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n27[0;39;49m')
+database:set(id_server..":token",token)
+end 
+else
+print('\27[0;35m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ التوكن ارسل لي التوكن الان')
+end 
+os.execute('lua AEKAN.lua')
+end
+if not database:get(id_server..":SUDO:ID") then
+io.write('\27[0;35m\n ارسل لي ايدي المطور الاساسي ↓ :\na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\27[0;33;49m')
+local SUDOID = io.read()
+if SUDOID ~= '' then
+io.write('\27[1;35m تم حفظ ايدي المطور الاساسي \na┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n27[0;39;49m')
+database:set(id_server..":SUDO:ID",SUDOID)
+else
+print('\27[0;31m┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n لم يتم حفظ ايدي المطور الاساسي ارسله مره اخره')
+end 
+os.execute('lua AEKAN.lua')
+end
+if not database:get(id_server..":SUDO:USERNAME") then
+io.write('\27[1;31m ↓ ارسل معرف المطور الاساسي :\n SEND ID FOR SIDO : \27[0;39;49m')
+local SUDOUSERNAME = io.read():gsub('@','')
+if SUDOUSERNAME ~= '' then
+io.write('\n\27[1;34m تم حفظ معرف المطور :\n\27[0;39;49m')
+database:set(id_server..":SUDO:USERNAME",'@'..SUDOUSERNAME)
+else
+print('\n\27[1;34m لم يتم حفظ معرف المطور :')
+end 
+os.execute('lua AEKAN.lua')
+end
+local create_config_auto = function()
+config = {
+token = database:get(id_server..":token"),
+SUDO = database:get(id_server..":SUDO:ID"),
+UserName = database:get(id_server..":SUDO:USERNAME"),
+ }
+create(config, "./Info.lua")   
+end 
+create_config_auto()
+token = database:get(id_server..":token")
+SUDO = database:get(id_server..":SUDO:ID")
+install = io.popen("whoami"):read('*a'):gsub('[\n\r]+', '') 
+print('\n\27[1;34m doneeeeeeee senddddddddddddd :')
+file = io.open("AEKAN", "w")  
+file:write([[
+#!/usr/bin/env bash
+cd $HOME/AEKAN
+token="]]..database:get(id_server..":token")..[["
+while(true) do
+rm -fr ../.telegram-cli
+if [ ! -f ./tg ]; then
+echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉┉ ┉ ┉ ┉ ┉ ┉ ┉"
+echo "TG IS NOT FIND IN FILES BOT"
+echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉"
+exit 1
+fi
+if [ ! $token ]; then
+echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉"
+echo -e "\e[1;36mTOKEN IS NOT FIND IN FILE INFO.LUA \e[0m"
+echo "┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉┉ ┉"
+exit 1
+fi
+echo -e "\033[38;5;208m"
+echo -e "                                                  "
+echo -e "\033[0;00m"
+echo -e "\e[36m"
+./tg -s ./AEKAN.lua -p PROFILE --bot=$token
+done
+]])  
+file:close()  
+file = io.open("AK", "w")  
+file:write([[
+#!/usr/bin/env bash
+cd $HOME/AEKAN
+while(true) do
+rm -fr ../.telegram-cli
+screen -S AEKAN -X kill
+screen -S AEKAN ./AEKAN
+done
+]])  
+file:close() 
+os.execute('rm -fr $HOME/.telegram-cli')
+end 
+local serialize_to_file = function(data, file, uglify)  
+file = io.open(file, "w+")  
+local serialized  
+if not uglify then   
+serialized = serpent.block(data, {comment = false, name = "Info"})  
+else   
+serialized = serpent.dump(data) 
+end  
+file:write(serialized)  
+file:close() 
+end 
+local load_redis = function()  
+local f = io.open("./Info.lua", "r")  
+if not f then   
+AutoSet()  
+else   
+f:close()  
+database:del(id_server..":token")
+database:del(id_server..":SUDO:ID")
+end  
+local config = loadfile("./Info.lua")() 
+return config 
+end 
+_redis = load_redis()  
+--------------------------------------------------------------------------------------------------------------
 print("\27[34m"..[[
 ┏━━━┓┏━━━┓┏┓┏━┓┏━━━┓┏━┓━┏┓
 ┃┏━┓┃┃┏━━┛┃┃┃┏┛┃┏━┓┃┃┃┗┓┃┃
@@ -8123,8 +8252,8 @@ if text == ("تحديث السورس") and DevAEKAN(msg) then
 send(msg.chat_id_,msg.id_,'♡∶ تم التحديث')
 os.execute('rm -rf AEKAN.lua')
 os.execute('rm -rf start.lua')
-os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/main/AEKAN.lua')
-os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/main/start.lua')
+os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
+os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/start.lua')
 dofile('AEKAN.lua')  
 return false
 end
@@ -8580,7 +8709,7 @@ send(msg.chat_id_, msg.id_,t)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
 if DevAEKAN(msg) then
-local Get_Files, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/main/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/master/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
@@ -8618,7 +8747,7 @@ t = "*♡∶  الملف ⤙ {"..file.."}\n♡∶  تم تعطيله وحذفه 
 else
 t = "*♡∶  بالتاكيد تم تعطيل وحذف ملف ⤙ {"..file.."} \n✓*"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/main/Files_AEKAN/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/master/Files_AEKAN/"..file)
 if res == 200 then
 os.execute("rm -fr Files/"..file)
 send(msg.chat_id_, msg.id_,t) 
@@ -8638,7 +8767,7 @@ t = "*♡∶  بالتاكيد تم تنزيل وتفعيل ملف ⤙ {"..file.
 else
 t = "*♡∶  الملف ⤙ {"..file.."}\n♡∶  تم تنزيله وتفعيله بنجاح \n*"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/main/Files_AEKAN/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/master/Files_AEKAN/"..file)
 if res == 200 then
 local chek = io.open("Files/"..file,'w+')
 chek:write(json_file)
@@ -9635,8 +9764,8 @@ if text == "تحديث السورس ♡" then
 send(msg.chat_id_,msg.id_,'♡∶ تم التحديث')
 os.execute('rm -rf AEKAN.lua')
 os.execute('rm -rf start.lua')
-os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/main/AEKAN.lua')
-os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/main/start.lua')
+os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/AEKAN.lua')
+os.execute('wget https://raw.githubusercontent.com/AEKANTEAM/AEKAN/master/start.lua')
 dofile('AEKAN.lua')  
 return false
 end
