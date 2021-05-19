@@ -4189,7 +4189,7 @@ end
 if text == 'الملفات' and SudoBot(msg) then
 t = '♡∶ ملفات السورس ايكان ↓\n *•━━━━━━━━━━━━━•*ٴ \n'
 i = 0
-for v in io.popen('ls File_Bot'):lines() do
+for v in io.popen('ls Files_AEKAN'):lines() do
 if v:match(".lua$") then
 i = i + 1
 t = t..i..'- الملف ← {'..v..'}\n'
@@ -4208,7 +4208,7 @@ local TextS = "\n♡∶ اهلا بك في متجر ملفات ايكان\n♡�
 local TextE = "\n*•━━━━━━━━━━━━━•*\n♡∶  علامة تعني { ✓ } ملف مفعل\n♡∶ علامة تعني { ✘ } ملف معطل\n♡∶ قناة سورس ايكان ↓\n".."♡∶ [اضغط هنا لدخول](t.me/SoalfLove) \n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
-local Check_File_is_Found = io.open("File_Bot/"..name,"r")
+local Check_File_is_Found = io.open("Files_AEKAN/"..name,"r")
 if Check_File_is_Found then
 io.close(Check_File_is_Found)
 CeckFile = "(✓)"
@@ -4230,16 +4230,16 @@ end
 if text and text:match("^(تعطيل) (.*)(.lua)$") and SudoBot(msg) then
 local name_t = {string.match(text, "^(تعطيل) (.*)(.lua)$")}
 local file = name_t[2]..'.lua'
-local file_bot = io.open("File_Bot/"..file,"r")
+local file_bot = io.open("Files_AEKAN/"..file,"r")
 if file_bot then
 io.close(file_bot)
 t = "♡∶ الملف ← "..file.."\n♡∶ تم تعطيل ملف \n"
 else
 t = "♡∶ بالتاكيد تم تعطيل ملف → "..file.."\n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/master/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/master/Files_AEKAN/"..file)
 if res == 200 then
-os.execute("rm -fr File_Bot/"..file)
+os.execute("rm -fr Files_AEKAN/"..file)
 send(msg.chat_id_, msg.id_,t) 
 dofile('AEKAN.lua')  
 else
@@ -4250,16 +4250,16 @@ end
 if text and text:match("^(تفعيل) (.*)(.lua)$") and SudoBot(msg) then
 local name_t = {string.match(text, "^(تفعيل) (.*)(.lua)$")}
 local file = name_t[2]..'.lua'
-local file_bot = io.open("File_Bot/"..file,"r")
+local file_bot = io.open("Files_AEKAN/"..file,"r")
 if file_bot then
 io.close(file_bot)
 t = "♡∶ بالتاكيد تم تفعيل ملف → "..file.." \n"
 else
 t = "♡∶ الملف ← "..file.."\n♡∶ تم تفعيل ملف \n"
 end
-local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/master/File_Bot/"..file)
+local json_file, res = https.request("https://raw.githubusercontent.com/AEKANTEAM/Files_AEKAN/master/Files_AEKAN/"..file)
 if res == 200 then
-local chek = io.open("File_Bot/"..file,'w+')
+local chek = io.open("Files_AEKAN/"..file,'w+')
 chek:write(json_file)
 chek:close()
 send(msg.chat_id_, msg.id_,t) 
@@ -4270,7 +4270,7 @@ end
 return false
 end
 if text == "مسح الملفات" and SudoBot(msg) then
-os.execute("rm -fr File_Bot/*")
+os.execute("rm -fr Files_AEKAN/*")
 send(msg.chat_id_,msg.id_,"*♡∶ تم مسح الملفات*")
 return false
 end
@@ -12788,7 +12788,7 @@ end
 end   
 --------------------------------------------------------------------------------------------------------------
 SourceAEKAN(data.message_,data)
-plugin_mjnonh(data.message_)
+plugin_A(data.message_)
 --------------------------------------------------------------------------------------------------------------
 if Chat_Type == 'GroupBot' and ChekAdd(msg.chat_id_) == true then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
