@@ -3820,7 +3820,7 @@ io.popen("rm -rf ~/.telegram-cli/data/voice/*")
 io.popen("rm -rf ~/.telegram-cli/data/profile_photo/*")
 print("\27[31;47m\n        ( ♡∶ تم تحديث ملفات البوت )        \n\27[0;34;49m\n") 
 send(msg.chat_id_, msg.id_, '*♡∶ تم تحديث جميع ملفات البوت*') 
-end 
+end
 if text == ("مسح قائمه العام") and SudoBot(msg) then
 database:del(bot_id..'GBan:User')
 send(msg.chat_id_, msg.id_, '\n*♡∶ تم مسح قائمه العام*')
@@ -12122,40 +12122,10 @@ ID = "OpenChat",
 chat_id_ = chat_id
 }, cb, nil)
 end
-if text == 'م1' or text == 'م2' or text == 'م3' or text == 'م4' or text == 'م5' then
-send(msg.chat_id_, msg.id_,"مرحبا . اكتب `الاوامر` وتحكم في الكيبورد الكلايش")
-return false
-end
 if text == 'رابط الحذف' or text == 'رابط حذف' then
 send(msg.chat_id_, msg.id_,"رابط الحذف في جميع مواقع التواصل ♡∶\nفكر قبل لا تتسرع وتروح\n﹊﹊﹊﹊﹊﹊﹊﹊﹊\n ♡∶ رابط حذف  [Telegram](https://my.telegram.org/auth?to=delete) ܁\n ♡∶ رابط حذف [instagram](https://www.instagram.com/accounts/login/?next=/accounts/remove/request/permanent/) ܁\n ♡∶ رابط حذف [Facebook](https://www.facebook.com/help/deleteaccount) ܁\n ♡∶ رابط حذف [Snspchat](https://accounts.snapchat.com/accounts/login?continue=https%3A%2F%2Faccounts.snapchat.com%2Faccounts%2Fdeleteaccount) ܁") 
 return false
 end
-if text == 'الاوامر' then
-if not Addictive(msg) then
-send(msg.chat_id_, msg.id_,'♡ عذرا الاوامر هذا لا تخصك ') 
-return false
-end
-local Text =[[
- ﹊﹊﹊﹊﹊﹊﹊﹊﹊
-♡∶  1 ⤙ لعرض اوامر الحمايه
-♡∶  2 ⤙ لعرض اوامر الادمنيه
-♡∶  3 ⤙ لعرض اوامر المدراء
-♡∶  4 ⤙ لعرض اوامر المنشئين
-♡∶  5 ⤙ لعرض اوامر المطورين
- ﹊﹊﹊﹊﹊﹊﹊﹊﹊
-[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
-]]
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"}},
-{{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-return false
-end
-end ---- Chat_Type = 'GroupBot' 
-end ---- Chat_Type = 'GroupBot' 
 if text == "تعطيل الزخرفه" and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -12446,15 +12416,877 @@ end
 end -- Chat_Type = 'GroupBot' 
 end -- end msg
 --------------------------------------------------------------------------------------------------------------
-function tdcli_update_callback(data)  -- clback
+function tdcli_update_callback(data)
 if data.ID == "UpdateChannel" then 
 if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
 database:srem(bot_id..'Chek:Groups','-100'..data.channel_.id_)  
 end
 end
-if data.ID == "UpdateNewMessage" then  -- new msg
-msg = data.message_
-text = msg.content_.text_
+if data.ID == "UpdateNewCallbackQuery" then
+local Chat_id = data.chat_id_
+local From_id = data.id_
+local Msg_id = data.message_id_
+local msg_idd = Msg_id/2097152/0.5
+local DAata = data.payload_.data_
+if Addictive(data) then  
+sender_id  = DAata:match("(%d+)")  
+ta = DAata:gsub(data.sender_user_id_,'')
+if ta == "LS0" then   ---LS0
+if tonumber(data.sender_user_id_) == tonumber(sender_id) then
+if database:get(bot_id.."Lock:text"..Chat_id) == true then
+te = "الدردشه ∶ ✘ ∶ بالمسح"
+else
+te =  "الدردشه ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:AddMempar"..Chat_id) == "kick" then
+AddM = "الاضافه ∶ ✘ ∶ بالطرد"
+else
+AddM =  "الاضافه ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Join"..Chat_id) == "kick" then
+Jo = "الدخول ∶ ✘ ∶ بالطرد"
+else
+Jo =  "الدخول ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Bot:kick"..Chat_id) == "del" then
+Botki = "البوتات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Bot:kick:"..Chat_id) == "kick" then
+Botki = "البوتات ∶ ✘ ∶ بالطرد"
+else
+Botki =  "البوتات ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:tagservr"..Chat_id) == "del" then
+tag = "الاشعارات ∶ ✘ ∶ بالمسح"
+else
+tag =  "الاشعارات ∶ ✔"   
+end        
+if database:get(bot_id.."lockpin"..Chat_id) == true then
+pin = "التثبيت ∶ ✘ ∶ بالمسح"
+else
+pin =  "التثبيت ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:edit"..Chat_id) == true then
+edit = "التعديل ∶ ✘ ∶ بالمسح"
+else
+edit =  "التعديل ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:edit"..Chat_id) == true then
+edi = "تعديل الميديا ∶ ✘ ∶ بالمسح"
+else
+edi =  "تعديل الميديا ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Link"..Chat_id) == "del" then
+Link = "الروابط ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Link:"..Chat_id) == "kick" then
+Link = "الروابط ∶ ✘ ∶ بالطرد"
+elseif database:get(bot_id.."Lock:Link:"..Chat_id) == "ktm" then
+Link = "الروابط ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Link:"..Chat_id) == "ked" then
+Link = "الروابط ∶ ✘ ∶ بالتقييد"
+else
+Link =  "الروابط ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:User:Name"..Chat_id) == "del" then
+usNa = "المعرفات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:User:Name:"..Chat_id) == "kick" then
+usNa = "المعرفات ∶ ✘ ∶ بالطرد"
+elseif database:get(bot_id.."Lock:User:Name:"..Chat_id) == "ktm" then
+usNa = "المعرفات ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:User:Name:"..Chat_id) == "ked" then
+usNa = "المعرفات ∶ ✘ ∶ بالتقييد"
+else
+usNa =  "المعرفات ∶ ✔"   
+end        
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text =te,callback_data=data.sender_user_id_.."TR:Lock:text"},{text =usNa,callback_data=data.sender_user_id_.."Lock:User:Name"}},
+{{text =AddM,callback_data=data.sender_user_id_.."Lock:AddMempar"},{text =Link,callback_data=data.sender_user_id_.."Lock:Link"}},
+{{text =Jo,callback_data=data.sender_user_id_.."Lock:Join"},{text =edi,callback_data=data.sender_user_id_.."Lock:edit"}},
+{{text =Botki,callback_data=data.sender_user_id_.."Lock:Bot:kick"},{text =edit,callback_data=data.sender_user_id_.."TR:Lock:pin"}},
+{{text =tag,callback_data=data.sender_user_id_.."Lock:tagservr"},{text =pin,callback_data=data.sender_user_id_.."TR:Lock:pin"}},
+{{text ="التالي ⊁ .",callback_data=data.sender_user_id_.."LS1"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageReplyMarkup?chat_id='..Chat_id..'&message_id='..msg_idd..'&reply_markup='..JSON.encode(keyboard)) 
+else 
+return https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape('♡∶ عذرا الامر ليس لك .').."&show_alert=true")
+end
+end
+sender_id  = DAata:match("(%d+)")  
+ta = DAata:gsub(data.sender_user_id_,'')
+if ta == "LS1" then   ---LS1
+if tonumber(data.sender_user_id_) == tonumber(sender_id) then
+if database:get(bot_id.."lock:Fshar"..Chat_id) == true then
+ar = "الفارسيه ∶ ✘ ∶ بالمسح"
+else
+ar =  "الفارسيه ∶ ✔"   
+end        
+if database:get(bot_id.."lock:Fshar"..Chat_id) == true then
+arw = "الفشار ∶ ✘ ∶ بالمسح"
+else
+arw =  "الفشار ∶ ✔"   
+end        
+if database:hget(bot_id.."flooding:settings:"..Chat_id, "flood") == "kick" then     
+flood = "التكرار ∶ ✘ ∶ بالطرد"
+elseif database:hget(bot_id.."flooding:settings:"..Chat_id,"flood") == "keed" then     
+flood = "التكرار ∶ ✘ ∶ بالتقييد"
+elseif database:hget(bot_id.."flooding:settings:"..Chat_id,"flood") == "mute" then     
+flood = "التكرار ∶ ✘ ∶ بالكتم"
+elseif database:hget(bot_id.."flooding:settings:"..Chat_id,"flood") == "del" then     
+flood = "التكرار ∶ ✘ ∶ بالمسح"
+else     
+flood =  "التكرار ∶ ✔"   
+end
+if database:get(bot_id.."Lock:hashtak"..Chat_id) == "del" then
+ash = "التاك ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:hashtak"..Chat_id) == "ked" then 
+ash = "التاك ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:hashtak"..Chat_id) == "ktm" then 
+ash = "التاك ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:hashtak"..Chat_id) == "kick" then 
+ash = "التاك ∶ ✘ ∶ بالطرد"
+else
+ash =  "التاك ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Cmd"..Chat_id) == "del" then
+Cmd = "الشارحه ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Cmd"..Chat_id) == "ked" then 
+Cmd = "الشارحه ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Cmd"..Chat_id) == "ktm" then 
+Cmd = "الشارحه ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Cmd"..Chat_id) == "kick" then 
+Cmd = "الشارحه ∶ ✘ ∶ بالطرد"
+else
+Cmd =  "الشارحه ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Photo"..Chat_id) == "del" then
+hot = "الصور ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Photo"..Chat_id) == "ked" then 
+hot = "الصور ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Photo"..Chat_id) == "ktm" then 
+hot = "الصور ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Photo"..Chat_id) == "kick" then 
+hot = "الصور ∶ ✘ ∶ بالطرد"
+else
+hot =  "الصور ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Video"..Chat_id) == "del" then
+de = "الفيديو ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Video"..Chat_id) == "ked" then 
+de = "الفيديو ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Video"..Chat_id) == "ktm" then 
+de = "الفيديو ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Video"..Chat_id) == "kick" then 
+de = "الفيديو ∶ ✘ ∶ بالطرد"
+else
+de =  "الفيديو ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Animation"..Chat_id) == "del" then
+Anima = "المتحركه ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Animation"..Chat_id) == "ked" then 
+Anima = "المتحركه ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Animation"..Chat_id) == "ktm" then 
+Anima = "المتحركه ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Animation"..Chat_id) == "kick" then 
+Anima = "المتحركه ∶ ✘ ∶ بالطرد"
+else
+Anima =  "المتحركه ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Audio"..Chat_id) == "del" then
+Audi = "الاغاني ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Audio"..Chat_id) == "ked" then 
+Audi = "الاغاني ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Audio"..Chat_id) == "ktm" then 
+Audi = "الاغاني ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Audio"..Chat_id) == "kick" then 
+Audi = "الاغاني ∶ ✘ ∶ بالطرد"
+else
+Audi =  "الاغاني ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:vico"..Chat_id) == "del" then
+vico = "الاغاني ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:vico"..Chat_id) == "ked" then 
+vico = "الاغاني ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:vico"..Chat_id) == "ktm" then 
+vico = "الاغاني ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:vico"..Chat_id) == "kick" then 
+vico = "الاغاني ∶ ✘ ∶ بالطرد"
+else
+vico =  "الاغاني ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Keyboard"..Chat_id) == "del" then
+Keyboard = "الكيبورد ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Keyboard"..Chat_id) == "ked" then 
+Keyboard = "الكيبورد ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Keyboard"..Chat_id) == "ktm" then 
+Keyboard = "الكيبورد ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Keyboard"..Chat_id) == "kick" then 
+Keyboard = "الكيبورد ∶ ✘ ∶ بالطرد"
+else
+Keyboard =  "الكيبورد ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Sticker"..Chat_id) == "del" then
+Sti = "الملصقات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Sticker"..Chat_id) == "ked" then 
+Sti = "الملصقات ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Sticker"..Chat_id) == "ktm" then 
+Sti = "الملصقات ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Sticker"..Chat_id) == "kick" then 
+Sti = "الملصقات ∶ ✘ ∶ بالطرد"
+else
+Sti =  "الملصقات ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:forward"..Chat_id) == "del" then
+orwa = "التوجيه ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:forward"..Chat_id) == "ked" then 
+orwa = "التوجيه ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:forward"..Chat_id) == "ktm" then 
+orwa = "التوجيه ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:forward"..Chat_id) == "kick" then 
+orwa = "التوجيه ∶ ✘ ∶ بالطرد"
+else
+orwa =  "التوجيه ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Document"..Chat_id) == "del" then
+Docu = "الملفات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Document"..Chat_id) == "ked" then 
+Docu = "الملفات ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Document"..Chat_id) == "ktm" then 
+Docu = "الملفات ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Document"..Chat_id) == "kick" then 
+Docu = "الملفات ∶ ✘ ∶ بالطرد"
+else
+Docu =  "الملفات ∶ ✔"   
+end    
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text =Sti,callback_data=data.sender_user_id_.."Lock:Sticker"},{text =Keyboard,callback_data=data.sender_user_id_.."Lock:Keyboard"}},
+{{text =Docu,callback_data=data.sender_user_id_.."Lock:Document"},{text =orwa,callback_data=data.sender_user_id_.."Lock:forward"}},
+{{text =ar,callback_data=data.sender_user_id_.."TR:lock:Fshar"},{text =arw,callback_data=data.sender_user_id_.."TR:lock:Fshar"}},
+{{text =flood,callback_data=data.sender_user_id_.."flooding:settings"},{text =ash,callback_data=data.sender_user_id_.."Lock:hashtak"}},
+{{text =Cmd,callback_data=data.sender_user_id_.."Lock:Cmd"},{text =vico,callback_data=data.sender_user_id_.."Lock:vico"}},
+{{text =hot,callback_data=data.sender_user_id_.."Lock:Photo"},{text =de,callback_data=data.sender_user_id_.."Lock:Video"}},
+{{text =Anima,callback_data=data.sender_user_id_.."Lock:Animation"},{text =Audi,callback_data=data.sender_user_id_.."Lock:Audio"}},
+{{text ="التالي ⊁ .",callback_data=data.sender_user_id_.."LS2"},{text ="السابق ⊀ .",callback_data=data.sender_user_id_.."LS0"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageReplyMarkup?chat_id='..Chat_id..'&message_id='..msg_idd..'&reply_markup='..JSON.encode(keyboard)) 
+else 
+return https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape('♡∶ عذرا الامر ليس لك .').."&show_alert=true")
+end
+end
+sender_id  = DAata:match("(%d+)")  
+ta = DAata:gsub(data.sender_user_id_,'')
+if ta == "LS2" then   ---LS2
+if tonumber(data.sender_user_id_) == tonumber(sender_id) then
+if database:get(bot_id.."Lock:Unsupported"..Chat_id) == "del" then
+rted = "السيلفي ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Unsupported"..Chat_id) == "ked" then 
+rted = "السيلفي ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Unsupported"..Chat_id) == "ktm" then 
+rted = "السيلفي ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Unsupported"..Chat_id) == "kick" then 
+rted = "السيلفي ∶ ✘ ∶ بالطرد"
+else
+rted =  "السيلفي ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Markdaun"..Chat_id) == "del" then
+daun = "الماركداون ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Markdaun"..Chat_id) == "ked" then 
+daun = "الماركداون ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Markdaun"..Chat_id) == "ktm" then 
+daun = "الماركداون ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Markdaun"..Chat_id) == "kick" then 
+daun = "الماركداون ∶ ✘ ∶ بالطرد"
+else
+daun =  "الماركداون ∶ ✔"   
+end   
+if database:get(bot_id.."Lock:geam"..Chat_id) == "del" then
+eam = "الالعاب ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:geam"..Chat_id) == "ked" then 
+eam = "الالعاب ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:geam"..Chat_id) == "ktm" then 
+eam = "الالعاب ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:geam"..Chat_id) == "kick" then 
+eam = "الالعاب ∶ ✘ ∶ بالطرد"
+else
+eam =  "الالعاب ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Spam"..Chat_id) == "del" then
+pam = "الكلايش ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Spam"..Chat_id) == "ked" then 
+pam = "الكلايش ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Spam"..Chat_id) == "ktm" then 
+pam = "الكلايش ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Spam"..Chat_id) == "kick" then 
+pam = "الكلايش ∶ ✘ ∶ بالطرد"
+else
+pam =  "الكلايش ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Contact"..Chat_id) == "del" then
+tact = "الجهات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Contact"..Chat_id) == "ked" then 
+tact = "الجهات ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Contact"..Chat_id) == "ktm" then 
+tact = "الجهات ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Contact"..Chat_id) == "kick" then 
+tact = "الجهات ∶ ✘ ∶ بالطرد"
+else
+tact =  "الجهات ∶ ✔"   
+end    
+if database:get(bot_id.."Lock:Inlen"..Chat_id) == "del" then
+len = "الانلاين ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Inlen"..Chat_id) == "ked" then 
+len = "الانلاين ∶ ✘ ∶ بالتقييد"
+elseif database:get(bot_id.."Lock:Inlen"..Chat_id) == "ktm" then 
+len = "الانلاين ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Inlen"..Chat_id) == "kick" then 
+len = "الانلاين ∶ ✘ ∶ بالطرد"
+else
+len =  "الانلاين ∶ ✔"   
+end   
+if database:get(bot_id.."Lock:Xn"..Chat_id) == "del" then
+Xn = "الاباحي ∶ ✘ ∶ بالمسح"
+else
+Xn =  "الاباحي ∶ ✔"   
+end    
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text =rted,callback_data=data.sender_user_id_.."Lock:Unsupported"},{text =Xn,callback_data=data.sender_user_id_.."Lock:Xn"}},
+{{text =daun,callback_data=data.sender_user_id_.."Lock:Markdaun"},{text =len,callback_data=data.sender_user_id_.."Lock:Inlen"}},
+{{text =eam,callback_data=data.sender_user_id_.."Lock:geam"},{text =tact,callback_data=data.sender_user_id_.."Lock:Contact"}},
+{{text =pam,callback_data=data.sender_user_id_.."Lock:Spam"}},
+{{text ="السابق ⊀ .",callback_data=data.sender_user_id_.."LS1"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageReplyMarkup?chat_id='..Chat_id..'&message_id='..msg_idd..'&reply_markup='..JSON.encode(keyboard)) 
+else 
+return https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape('♡∶ عذرا الامر ليس لك .').."&show_alert=true")
+end
+end
+end
+if Addictive(data) then  
+sender_match  = DAata:match("(%d+)")  
+get_r = DAata:gsub(sender_match,''):gsub("TR:",'')
+get_database = DAata:gsub(sender_match,'')
+if DAata and get_database:match("^Lock:(.*)$") then   
+if tonumber(data.sender_user_id_) == tonumber(sender_match) then
+if not database:get(bot_id..""..get_database..""..Chat_id) then ---not
+database:set(bot_id..""..get_database..""..Chat_id,"del") 
+elseif database:get(bot_id..""..get_database..""..Chat_id)== "del" then
+database:set(bot_id..""..get_database..""..Chat_id,"ktm") 
+elseif database:get(bot_id..""..get_database..""..Chat_id)== "ktm" then
+database:set(bot_id..""..get_database..""..Chat_id,"kick") 
+elseif database:get(bot_id..""..get_database..""..Chat_id)== "kick" then
+database:set(bot_id..""..get_database..""..Chat_id,"ked") 
+elseif database:get(bot_id..""..get_database..""..Chat_id)== "ked" then
+database:del(bot_id..""..get_database..""..Chat_id)  
+end ---notget
+if get_database == "flooding:settings" then
+if not database:hget(bot_id.."flooding:settings:"..Chat_id,"flood") then    
+database:hset(bot_id.."flooding:settings:"..Chat_id ,"flood","del")  
+elseif database:hget(bot_id.."flooding:settings:"..Chat_id,"flood") == "del" then     
+database:hset(bot_id.."flooding:settings:"..Chat_id ,"flood","ktm") 
+elseif database:hget(bot_id.."flooding:settings:"..Chat_id,"flood") == "ktm" then     
+database:hset(bot_id.."flooding:settings:"..Chat_id ,"flood","ked") 
+elseif database:hget(bot_id.."flooding:settings:"..Chat_id,"flood") == "ked" then     
+database:hset(bot_id.."flooding:settings:"..Chat_id ,"flood","ked") 
+elseif database:hget(bot_id.."flooding:settings:"..Chat_id,"kick") == "kick" then     
+database:hdel(bot_id.."flooding:settings:"..msg.chat_id_ ,"flood")  
+end ---notget
+end ---get_database
+if DAata and get_database:match("^TR:(.*)$") then   
+if not database:get(bot_id..""..get_r..""..Chat_id) then ---not
+database:set(bot_id..""..get_r..""..Chat_id,true) 
+elseif database:get(bot_id..""..get_r..""..Chat_id)== true then
+database:del(bot_id..""..get_r..""..Chat_id) 
+end ---TR
+end ---get_r
+if database:get(bot_id.."Lock:text"..Chat_id) == true then
+te = "الدردشه ∶ ✘ ∶ بالمسح"
+else
+te =  "الدردشه ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:AddMempar"..Chat_id) == "kick" then
+AddM = "الاضافه ∶ ✘ ∶ بالطرد"
+else
+AddM =  "الاضافه ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Join"..Chat_id) == "kick" then
+Jo = "الدخول ∶ ✘ ∶ بالطرد"
+else
+Jo =  "الدخول ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Bot:kick"..Chat_id) == "del" then
+Botki = "البوتات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Bot:kick:"..Chat_id) == "kick" then
+Botki = "البوتات ∶ ✘ ∶ بالطرد"
+else
+Botki =  "البوتات ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:tagservr"..Chat_id) == "del" then
+tag = "الاشعارات ∶ ✘ ∶ بالمسح"
+else
+tag =  "الاشعارات ∶ ✔"   
+end        
+if database:get(bot_id.."lockpin"..Chat_id) == true then
+pin = "التثبيت ∶ ✘ ∶ بالمسح"
+else
+pin =  "التثبيت ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:edit"..Chat_id) == true then
+edit = "التعديل ∶ ✘ ∶ بالمسح"
+else
+edit =  "التعديل ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:edit"..Chat_id) == true then
+edi = "تعديل الميديا ∶ ✘ ∶ بالمسح"
+else
+edi =  "تعديل الميديا ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Link"..Chat_id) == "del" then
+Link = "الروابط ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Link:"..Chat_id) == "kick" then
+Link = "الروابط ∶ ✘ ∶ بالطرد"
+elseif database:get(bot_id.."Lock:Link:"..Chat_id) == "ktm" then
+Link = "الروابط ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Link:"..Chat_id) == "ked" then
+Link = "الروابط ∶ ✘ ∶ بالتقييد"
+else
+Link =  "الروابط ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:User:Name"..Chat_id) == "del" then
+usNa = "المعرفات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:User:Name:"..Chat_id) == "kick" then
+usNa = "المعرفات ∶ ✘ ∶ بالطرد"
+elseif database:get(bot_id.."Lock:User:Name:"..Chat_id) == "ktm" then
+usNa = "المعرفات ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:User:Name:"..Chat_id) == "ked" then
+usNa = "المعرفات ∶ ✘ ∶ بالتقييد"
+else
+usNa =  "المعرفات ∶ ✔"   
+end        
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text =te,callback_data=data.sender_user_id_.."TR:Lock:text"},{text =usNa,callback_data=data.sender_user_id_.."Lock:User:Name"}},
+{{text =AddM,callback_data=data.sender_user_id_.."Lock:AddMempar"},{text =Link,callback_data=data.sender_user_id_.."Lock:Link"}},
+{{text =Jo,callback_data=data.sender_user_id_.."Lock:Join"},{text =edi,callback_data=data.sender_user_id_.."Lock:edit"}},
+{{text =Botki,callback_data=data.sender_user_id_.."Lock:pin"},{text =edit,callback_data=data.sender_user_id_.."Lock:edit"}},
+{{text =tag,callback_data=data.sender_user_id_.."Lock:tagservr"},{text =pin,callback_data=data.sender_user_id_.."lockpin"}},
+{{text ="التالي ⊁ .",callback_data=data.sender_user_id_.."LS1"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageReplyMarkup?chat_id='..Chat_id..'&message_id='..msg_idd..'&reply_markup='..JSON.encode(keyboard)) 
+else 
+return https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape('♡∶ عذرا الامر ليس لك .').."&show_alert=true")
+end
+end
+end
+if DAata == '/help1' then
+if not Addictive(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر حمايه المجموعه
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶قفل/فتح + الاوامر الادناه 
+♡∶قفل/فتح + الامر بالتقيد • بالطرد • بالكتم
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الروابط
+♡∶المعرف
+♡∶التاك
+♡∶الشارحه
+♡∶التعديل
+♡∶التثبيت
+♡∶المتحركه
+♡∶الملفات
+♡∶الصور
+﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الملصقات
+♡∶الفيديو
+♡∶الانلاين
+♡∶الدردشه
+♡∶التوجيه
+♡∶الاغاني
+♡∶الصوت
+♡∶الجهات
+♡∶الاشعارات
+﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الماركداون
+♡∶البوتات
+♡∶التكرار
+♡∶الكلايش
+♡∶السيلفي
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help2' then
+if not Addictive(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر الادمنيه
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊ 
+ - تفعيل/تعطيل الترحيب
+ - اضف /مسح صلاحيه
+♡∶وضع تكرار + العدد
+♡∶رفع/تنزيل مميز
+♡∶عدد الكروب
+♡∶تاك للكل
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶كتم
+♡∶حظر
+♡∶طرد
+♡∶منع
+♡∶تقيد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+ - المكتومين
+♡∶المحظورين
+♡∶المميزين
+♡∶الصلاحيات
+♡∶قائمه المنع
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الغاء كتم
+♡∶الغاء حظر
+♡∶الغاء منع
+♡∶الغاء تقيد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الغاء تثبيت
+♡∶الاعدادات
+♡∶تثبيت
+♡∶الرابط
+♡∶القوانين
+♡∶الترحيب
+♡∶ايدي
+♡∶جهاتي
+♡∶سحكاتي
+♡∶رسائلي
+♡∶كشف البوتات
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶وضع اسم
+♡∶وضع رابط
+♡∶وضع صوره
+♡∶وضع وصف
+♡∶وضع قوانين
+♡∶وضع ترحيب
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶مسح قائمه المنع
+♡∶مسح المحظورين
+♡∶مسح المميزين
+♡∶مسح المكتومين
+♡∶مسح المطرودين
+♡∶مسح القوانين
+♡∶مسح البوتات
+♡∶مسح الصوره
+♡∶مسح الصلاحيات
+♡∶مسح الرابط
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help3' then
+if not Addictive(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر المدير
+﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶رفع القيود
+♡∶كشف القيود
+♡∶تنزيل الكل
+♡∶رفع ادمن
+♡∶ تنزيل ادمن
+♡∶رفع الادمنيه
+♡∶مسح الادمنيه
+♡∶الادمنيه
+♡∶ صلاحياته
+♡∶ صلاحياتي
+♡∶تعين الايدي
+♡∶تغير الايدي
+♡∶مسح الايدي
+♡∶ردود المدير
+♡∶اضف رد
+♡∶حذف رد
+♡∶تنظيف + عدد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶تفعيل/تعطيل الرفع
+♡∶تفعيل/تعطيل الايدي
+♡∶تفعيل/تعطيل الابراج
+♡∶تفعيل/تعطيل اطردني
+♡∶تفعيل/تعطيل الزخرفه
+♡∶تفعيل/تعطيل ردود المدير
+♡∶تفعيل/تعطيل حساب العمر
+♡∶تفعيل/تعطيل ردود المطور
+♡∶تفعيل/تعطيل الحظر/الطرد
+♡∶تفعيل/تعطيل اللعبه/الالعاب
+♡∶تفعيل/تعطيل الايدي بالصوره
+♡∶تفعيل/تعطيل الرابط/جلب الرابط
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help4' then
+if not Addictive(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر المنشئين الاساسين 
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶رفع/تنزيل منشئ اساسي
+♡∶رفع/تنزيل منشئ
+♡∶المنشئين
+♡∶مسح المنشئين
+♡∶مسح ردود المدير
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶اوامر المنشئين
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶رفع/تنزيل مدير
+♡∶المدراء
+♡∶مسح المدراء
+♡∶تعين/مسح الايدي
+♡∶اضف/حذف امر
+♡∶الاوامر المضافه
+♡∶حذف/مسح الاوامر المضافه
+♡∶اضف رسائل + العدد بالرد
+♡∶اضف مجوهرات + العدد بالرد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help5' then
+if not Addictive(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر المطور الاساسي  
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶تحديث
+♡∶الملفات
+♡∶المتجر
+♡∶حظر عام
+♡∶الغاء العام
+♡∶ الثانويين
+♡∶ اضف مطور ثانوي
+♡∶ حذف مطور ثانوي
+♡∶المطورين
+♡∶ردود المطور
+♡∶اوامر المطور
+♡∶اضف رد للكل
+♡∶حذف رد للكل
+♡∶ مسح الثانويين
+♡∶مسح المطورين
+♡∶مسح قائمه العام
+♡∶تعطيل الاذاعه
+♡∶تفعيل الاذاعه
+♡∶تعطيل الاذاعه
+♡∶تفعيل المغادرة
+♡∶ تحديث السورس
+♡∶مسح ردود المطور
+♡∶مسح جميع الملفات
+♡∶اضف /حذف مطور
+♡∶وضع كليشه المطور
+♡∶حذف كليشه المطور
+♡∶تفعيل البوت الخدمي
+♡∶تعطيل البوت الخدمي
+♡∶تفعيل ملف + اسم الملف
+♡∶تعطيل ملف + اسم الملف
+♡∶ تعين عدد الاعضاء + العدد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶غادر 
+♡∶اذاعه 
+♡∶رفع منشئ 
+♡∶اذاعه خاص 
+♡∶الاحصائيات 
+♡∶غادر + الايدي
+♡∶تفعيل /تعطيل
+♡∶اذاعه بالتوجيه
+♡∶اذاعه بالتثبيت 
+♡∶المنشئين الاساسين 
+♡∶رفع/تنزيل منشئ اساسي
+♡∶مسح المنشئين الاساسين
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help' then
+if not Addictive(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶  1 ⤙ لعرض اوامر الحمايه
+♡∶  2 ⤙ لعرض اوامر الادمنيه
+♡∶  3 ⤙ لعرض اوامر المدراء
+♡∶  4 ⤙ لعرض اوامر المنشئين
+♡∶  5 ⤙ لعرض اوامر المطورين
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"}},
+{{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata and DAata:match("^animation(.*)$") and Addictive(data) then  
+idch = DAata:match("-100(%d+)")
+local idchci = "-100"..idch
+local animation = DAata:match("^animation(.*)$"):gsub('chatid',''):gsub('chatid',''):gsub(idch,''):gsub('-100','')
+local Text ="♡∶ تم الغاء منعها بنجاح"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+database:srem(bot_id.."List:Filter:Animation"..idchci,animation)  
+end
+if DAata and DAata:match("^pito(.*)$") and Addictive(data) then  
+local idchci = database:get(bot_id.."Filter:msg")
+local photo = DAata:match("^pito(.*)$")
+local Text ="♡∶ تم الغاء منعها بنجاح"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+database:srem(bot_id.."List:Filter:Photo"..idchci,photo)  
+end
+if DAata and DAata:match("^Sticker(.*)$") and Addictive(data) then  
+idch = DAata:match("-100(%d+)")
+local idchci = "-100"..idch
+local Sticker = DAata:match("^Sticker(.*)$"):gsub('chatid',''):gsub('chatid',''):gsub(idch,''):gsub('-100','')
+local Text ="♡∶ تم الغاء منعه بنجاح"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+database:srem(bot_id.."List:Filter:Sticker"..idchci,Sticker)  
+end
+if DAata and DAata:match("^delallSticker(.*)$") and Addictive(data) then  
+local delallSticker = DAata:match("^delallSticker(.*)$")
+local Text ="♡∶ تم الغاء منع كل المتحركات"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+local listSticker = database:smembers(bot_id.."List:Filter:Sticker"..delallSticker)  
+for k,v in pairs(listSticker) do  
+database:srem(bot_id.."List:Filter:Sticker"..delallSticker,v)  
+end  
+end
+if DAata and DAata:match("^delallanimation(.*)$") and Addictive(data) then  
+local delallmation = DAata:match("^delallanimation(.*)$")
+local Text ="♡∶ تم الغاء منع كل المتحركات"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+local listAnimation = database:smembers(bot_id.."List:Filter:Animation"..delallmation)  
+for k,v in pairs(listAnimation) do  
+database:srem(bot_id.."List:Filter:Animation"..delallmation,v)  
+end  
+end
+if DAata and DAata:match("^delallph(.*)$") and Addictive(data) then  
+local delallph = DAata:match("^delallph(.*)$")
+local Text ="♡∶ تم الغاء منع كل الصور"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+local listPhoto = database:smembers(bot_id.."List:Filter:Photo"..delallph)  
+for k,v in pairs(listPhoto) do  
+database:srem(bot_id.."List:Filter:Photo"..delallph,v)  
+end  
+end
+end
+if (data.ID == "UpdateNewMessage") then
+local msg = data.message_
+local text = msg.content_.text_
+if msg.date_ and msg.date_ < tonumber(os.time() - 30) then
+print("OLD MESSAGE")
+return false
+end
+if msg.sender_user_id_ and Muted_Groups(msg.chat_id_,msg.sender_user_id_) then 
+DeleteMessage(msg.chat_id_, {[0] = msg.id_})  
+return false  
+end
 --------------------------------------------------------------------------------------------------------------
 if text and not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
 database:del(bot_id..'Spam:Texting'..msg.sender_user_id_) 
