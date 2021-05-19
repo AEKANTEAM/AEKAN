@@ -12122,10 +12122,40 @@ ID = "OpenChat",
 chat_id_ = chat_id
 }, cb, nil)
 end
+if text == 'م1' or text == 'م2' or text == 'م3' or text == 'م4' or text == 'م5' then
+send(msg.chat_id_, msg.id_,"مرحبا . اكتب `الاوامر` وتحكم في الكيبورد الكلايش")
+return false
+end
 if text == 'رابط الحذف' or text == 'رابط حذف' then
 send(msg.chat_id_, msg.id_,"رابط الحذف في جميع مواقع التواصل ♡∶\nفكر قبل لا تتسرع وتروح\n﹊﹊﹊﹊﹊﹊﹊﹊﹊\n ♡∶ رابط حذف  [Telegram](https://my.telegram.org/auth?to=delete) ܁\n ♡∶ رابط حذف [instagram](https://www.instagram.com/accounts/login/?next=/accounts/remove/request/permanent/) ܁\n ♡∶ رابط حذف [Facebook](https://www.facebook.com/help/deleteaccount) ܁\n ♡∶ رابط حذف [Snspchat](https://accounts.snapchat.com/accounts/login?continue=https%3A%2F%2Faccounts.snapchat.com%2Faccounts%2Fdeleteaccount) ܁") 
 return false
 end
+if text == 'الاوامر' then
+if not Addictive(msg) then
+send(msg.chat_id_, msg.id_,'♡ عذرا الاوامر هذا لا تخصك ') 
+return false
+end
+local Text =[[
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶  1 ⤙ لعرض اوامر الحمايه
+♡∶  2 ⤙ لعرض اوامر الادمنيه
+♡∶  3 ⤙ لعرض اوامر المدراء
+♡∶  4 ⤙ لعرض اوامر المنشئين
+♡∶  5 ⤙ لعرض اوامر المطورين
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"}},
+{{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+return false
+end
+end ---- Chat_Type = 'GroupBot' 
+end ---- Chat_Type = 'GroupBot' 
 if text == "تعطيل الزخرفه" and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
