@@ -12428,7 +12428,7 @@ local From_id = data.id_
 local Msg_id = data.message_id_
 local msg_idd = Msg_id/2097152/0.5
 local DAata = data.payload_.data_
-if Addictive(data) then  
+if Mod(data) then  
 sender_id  = DAata:match("(%d+)")  
 ta = DAata:gsub(data.sender_user_id_,'')
 if ta == "LS0" then   ---LS0
@@ -12762,7 +12762,7 @@ return https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuer
 end
 end
 end
-if Addictive(data) then  
+if Mod(data) then  
 sender_match  = DAata:match("(%d+)")  
 get_r = DAata:gsub(sender_match,''):gsub("TR:",'')
 get_database = DAata:gsub(sender_match,'')
@@ -12879,7 +12879,7 @@ end
 end
 end
 if DAata == '/help1' then
-if not Addictive(data) then
+if not Mod(data) then
 local notText = '♡ عذرا الاوامر هذه لا تخصك'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
@@ -12933,7 +12933,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if DAata == '/help2' then
-if not Addictive(data) then
+if not Mod(data) then
 local notText = '♡ عذرا الاوامر هذه لا تخصك'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
@@ -13012,7 +13012,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if DAata == '/help3' then
-if not Addictive(data) then
+if not Mod(data) then
 local notText = '♡ عذرا الاوامر هذه لا تخصك'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
@@ -13068,7 +13068,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if DAata == '/help4' then
-if not Addictive(data) then
+if not Mod(data) then
 local notText = '♡ عذرا الاوامر هذه لا تخصك'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
@@ -13111,7 +13111,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if DAata == '/help5' then
-if not Addictive(data) then
+if not Mod(data) then
 local notText = '♡ عذرا الاوامر هذه لا تخصك'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
@@ -13181,7 +13181,7 @@ keyboard.inline_keyboard = {
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
 if DAata == '/help' then
-if not Addictive(data) then
+if not Mod(data) then
 local notText = '♡ عذرا الاوامر هذه لا تخصك'
 https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
 return false
@@ -13201,7 +13201,7 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-if DAata and DAata:match("^animation(.*)$") and Addictive(data) then  
+if DAata and DAata:match("^animation(.*)$") and Mod(data) then  
 idch = DAata:match("-100(%d+)")
 local idchci = "-100"..idch
 local animation = DAata:match("^animation(.*)$"):gsub('chatid',''):gsub('chatid',''):gsub(idch,''):gsub('-100','')
@@ -13213,7 +13213,7 @@ https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..
 send_inlin_key(Chat_id,Text,inline)
 database:srem(bot_id.."List:Filter:Animation"..idchci,animation)  
 end
-if DAata and DAata:match("^pito(.*)$") and Addictive(data) then  
+if DAata and DAata:match("^pito(.*)$") and Mod(data) then  
 local idchci = database:get(bot_id.."Filter:msg")
 local photo = DAata:match("^pito(.*)$")
 local Text ="♡∶ تم الغاء منعها بنجاح"
@@ -13224,7 +13224,7 @@ https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..
 send_inlin_key(Chat_id,Text,inline)
 database:srem(bot_id.."List:Filter:Photo"..idchci,photo)  
 end
-if DAata and DAata:match("^Sticker(.*)$") and Addictive(data) then  
+if DAata and DAata:match("^Sticker(.*)$") and Mod(data) then  
 idch = DAata:match("-100(%d+)")
 local idchci = "-100"..idch
 local Sticker = DAata:match("^Sticker(.*)$"):gsub('chatid',''):gsub('chatid',''):gsub(idch,''):gsub('-100','')
@@ -13236,7 +13236,7 @@ https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..
 send_inlin_key(Chat_id,Text,inline)
 database:srem(bot_id.."List:Filter:Sticker"..idchci,Sticker)  
 end
-if DAata and DAata:match("^delallSticker(.*)$") and Addictive(data) then  
+if DAata and DAata:match("^delallSticker(.*)$") and Mod(data) then  
 local delallSticker = DAata:match("^delallSticker(.*)$")
 local Text ="♡∶ تم الغاء منع كل المتحركات"
 inline = {
@@ -13249,7 +13249,7 @@ for k,v in pairs(listSticker) do
 database:srem(bot_id.."List:Filter:Sticker"..delallSticker,v)  
 end  
 end
-if DAata and DAata:match("^delallanimation(.*)$") and Addictive(data) then  
+if DAata and DAata:match("^delallanimation(.*)$") and Mod(data) then  
 local delallmation = DAata:match("^delallanimation(.*)$")
 local Text ="♡∶ تم الغاء منع كل المتحركات"
 inline = {
@@ -13262,7 +13262,7 @@ for k,v in pairs(listAnimation) do
 database:srem(bot_id.."List:Filter:Animation"..delallmation,v)  
 end  
 end
-if DAata and DAata:match("^delallph(.*)$") and Addictive(data) then  
+if DAata and DAata:match("^delallph(.*)$") and Mod(data) then  
 local delallph = DAata:match("^delallph(.*)$")
 local Text ="♡∶ تم الغاء منع كل الصور"
 inline = {
