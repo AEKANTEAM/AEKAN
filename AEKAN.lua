@@ -12166,6 +12166,8 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 return false
 end
 end
+end
+end
 if text == "تعطيل الزخرفه" and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -12390,7 +12392,7 @@ end
 return false
 end
 if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"دور حلوين 🤕😹","جكمه وصخه عوفها ☹️😾","حقيره ومتكبره 😶😂"}
+local texting = {"دور حلوين 🤕??","جكمه وصخه عوفها ☹️😾","حقيره ومتكبره 😶😂"}
 send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
 end
 end
