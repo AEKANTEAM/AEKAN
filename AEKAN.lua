@@ -9410,31 +9410,6 @@ end,nil)
 end
 return false
 end
-if text =='تغيير المطور الاساسي ♡' and DevBotsIs(msg) then
-send(msg.chat_id_, msg.id_,'♡∶ ارسل ايدي المطور الاساسي الجديد')
-database:set(bot_id..'Ed:DevBots',true) 
-end
-if text =='تغيير المطور الاساسي ♡' and not DevBotsIs(msg) then
-send(msg.chat_id_, msg.id_,'♡∶ هذا الامر لمطور البوت فقط')
-end
-if database:get(bot_id.."Ed:DevBots") then
-if text and text:match("^(%d+)$") then
-local IdDe = text:match("^(%d+)$")
-send(msg.chat_id_,msg.id_, "♡∶ تم تحفظ المعلومات اضغط ( تحديث الملفات ♡ ) للتنفيذ")
-local A = io.open("./sudo.lua", 'w')
-A:write([[
-s = "A3KON"
-
-q = "SoalfLove"
-
-token = "]]..token..[["
-
-Sudo = ]]..IdDe..[[  
-]])
-A:close()
-database:del(bot_id.."Ed:DevBots")
-end
-end
 if text == 'تفعيل البوت الخدمي ♡' then
 database:del(bot_id..'Free:Add:Bots') 
 send(msg.chat_id_, msg.id_,'\n♡∶ تم تفعيل البوت الخدمي ') 
