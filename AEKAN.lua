@@ -11260,16 +11260,6 @@ Text = '*♡∶ تم تفعيل امر صيح مسبقاً*'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تنزيل جميع الرتب' and CoSu(msg) or text == 'تنزيل الرتب' and CoSu(msg) then
-database:del(bot_id..'Basic:Constructor'..msg.chat_id_)
-database:del(bot_id..'Constructor'..msg.chat_id_)
-database:del(bot_id..'Manager'..msg.chat_id_)
-database:del(bot_id..'Mod:User'..msg.chat_id_)
-database:del(bot_id..'Special:User'..msg.chat_id_)
-database:del(bot_id..'Bnt:User'..msg.chat_id_)
-database:del(bot_id..'Mempaam:User'..msg.chat_id_)
-send(msg.chat_id_, msg.id_, '\n*♡∶ تم تنزيل الكل من الرتب الاتيه* \n*♡∶ المميزين ، الادمنيه ، المدراء ، المنشئين* \n')
-end
 if text == 'تعطيل صيح' and Mod(msg) then  
 if not database:get(bot_id..'Seh:User'..msg.chat_id_) then
 database:set(bot_id..'Seh:User'..msg.chat_id_,true)  
@@ -12121,40 +12111,62 @@ return false
 end
 
 
+if text == 'تنزيل جميع الرتب' then
+                    if not BasicConstructor(msg) then
+                    send(msg.chat_id_, msg.id_,'♡∶ منشئ اساسي فقط لتكمز 😹😭 ') 
+                    return false
+                    end
+                    database:del(bot_id..'Constructor'..msg.chat_id_)
+                    database:del(bot_id..'Mod:User'..msg.chat_id_)
+                    database:del(bot_id..'Manager'..msg.chat_id_)
+                    database:del(bot_id..'Special:User'..msg.chat_id_)
+                    send(msg.chat_id_, msg.id_, '♡∶ تم تنزيل جميع رتب الاعضاء من ▾\n܁𓍼 :◝ المنشئين ٬ المدراء ٬ الادمنيه ٬ المميزين◟\n')
+                    end
+if text and text:match('^الحساب (%d+)$') then
+local id = text:match('^الحساب (%d+)$')
+local text = 'اضغط لمشاهده الحساب'
+tdcli_function ({ID="SendMessage", chat_id_=msg.chat_id_, reply_to_message_id_=msg.id_, disable_notification_=0, from_background_=1, reply_markup_=nil, input_message_content_={ID="InputMessageText", text_=text, disable_web_page_preview_=1, clear_draft_=0, entities_={[0] = {ID="MessageEntityMentionName", offset_=0, length_=19, user_id_=id}}}}, dl_cb, nil)
+end
+local function oChat(chat_id,cb)
+tdcli_function ({
+ID = "OpenChat",
+chat_id_ = chat_id
+}, cb, nil)
+end
+if text == 'م1' or text == 'م2' or text == 'م3' or text == 'م4' or text == 'م5' then
+send(msg.chat_id_, msg.id_,"مرحبا . اكتب `الاوامر` وتحكم في الكيبورد الكلايش")
+return false
+end
+if text == 'رابط الحذف' or text == 'رابط حذف' then
+send(msg.chat_id_, msg.id_,"رابط الحذف في جميع مواقع التواصل ♡∶\nفكر قبل لا تتسرع وتروح\n﹊﹊﹊﹊﹊﹊﹊﹊﹊\n ♡∶ رابط حذف  [Telegram](https://my.telegram.org/auth?to=delete) ܁\n ♡∶ رابط حذف [instagram](https://www.instagram.com/accounts/login/?next=/accounts/remove/request/permanent/) ܁\n ♡∶ رابط حذف [Facebook](https://www.facebook.com/help/deleteaccount) ܁\n ♡∶ رابط حذف [Snspchat](https://accounts.snapchat.com/accounts/login?continue=https%3A%2F%2Faccounts.snapchat.com%2Faccounts%2Fdeleteaccount) ܁") 
+return false
+end
 if text == 'الاوامر' then
 if not Mod(msg) then
-send(msg.chat_id_, msg.id_,'*♡∶ هذا الامر خاص بالادمنيه*\n*♡∶ ارسل {م10} لعرض اوامر الاعضاء*')
+send(msg.chat_id_, msg.id_,'♡ عذرا الاوامر هذا لا تخصك ') 
 return false
 end
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ♡∶ حتى انفذ اوامرك حبيبي \n ♡∶ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-local help_text = database:get(bot_id..'help_text')
-Text = [[
-*♡∶ اهلا بك في اوامر البوت*
-ٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ
-*♡∶ م1 ⏦ اوامر الحمايه
-♡∶ م2 ⏦ اوامر تعطيل ~ تفعيل
-♡∶ م3 ⏦ اوامر ضع ~ اضف
-♡∶ م4 ⏦ اوامر مسح ~ حذف
-♡∶ م5 ⏦ اوامر تنزيل + رفع ~ التغير
-♡∶ م6 ⏦ اوامر المجموعه
-♡∶ م7 ⏦ اوامر التحشيش
-♡∶ م8 ⏦ اوامر مطور البوت
-♡∶ م9 ⏦ اوامر مطور الاساسي
-♡∶ م10 ⏦ اوامر الاعضاء*
-ٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ
-て [ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)➤
+local Text =[[
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶  1 ⤙ لعرض اوامر الحمايه
+♡∶  2 ⤙ لعرض اوامر الادمنيه
+♡∶  3 ⤙ لعرض اوامر المدراء
+♡∶  4 ⤙ لعرض اوامر المنشئين
+♡∶  5 ⤙ لعرض اوامر المطورين
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
 ]]
-send(msg.chat_id_, msg.id_,(help_text or Text)) 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"}},
+{{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
 end
+end ---- Chat_Type = 'GroupBot' 
+end ---- Chat_Type = 'GroupBot' 
 if text == "تعطيل الزخرفه" and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -12297,26 +12309,6 @@ end
 end
 end
 ------------------------------------------------------------
-if text and text:match('^الحساب (%d+)$') then
-local id = text:match('^الحساب (%d+)$')
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ♡∶ حتى انفذ اوامرك حبيبي \n ♡∶ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-local text = 'اضغط لمشاهده الحساب'
-tdcli_function ({ID="SendMessage", chat_id_=msg.chat_id_, reply_to_message_id_=msg.id_, disable_notification_=0, from_background_=1, reply_markup_=nil, input_message_content_={ID="InputMessageText", text_=text, disable_web_page_preview_=1, clear_draft_=0, entities_={[0] = {ID="MessageEntityMentionName", offset_=0, length_=19, user_id_=id}}}}, dl_cb, nil)
-end
-local function oChat(chat_id,cb)
-tdcli_function ({
-ID = "OpenChat",
-chat_id_ = chat_id
-}, cb, nil)
-end
 if text == "صلاحياته" and tonumber(msg.reply_to_message_id_) > 0 then   
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -12460,28 +12452,6 @@ end
 database:set(bot_id..'lock:reply'..msg.chat_id_,true)  
 Text = '\n*♡∶ تم تعطيل الردود*'
 send(msg.chat_id_, msg.id_,Text) 
-end
-if text == 'رابط الحذف' or text == 'رابط حذف' then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ♡∶ حتى انفذ اوامرك حبيبي \n ♡∶ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-t =[[
-*♡∶ رابط الحذف في جميع مواقع التواصل
-♡∶ فكر قبل لا تتسرع*
-ٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ
- *♡∶ رابط حذف*  [Telegram](https://my.telegram.org/auth?to=delete) ܁
- *♡∶ رابط حذف* [instagram](https://www.instagram.com/accounts/login/?next=/accounts/remove/request/permanent/) ܁
- *♡∶ رابط حذف* [Facebook](https://www.facebook.com/help/deleteaccount) ܁
- *♡∶ رابط حذف* [Snspchat](https://accounts.snapchat.com/accounts/login?continue=https%3A%2F%2Faccounts.snapchat.com%2Faccounts%2Fdeleteaccount) ܁
-]]
-send(msg.chat_id_, msg.id_,t) 
-return false
 end
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 end -- Chat_Type = 'GroupBot' 
