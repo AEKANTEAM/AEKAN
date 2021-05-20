@@ -12151,6 +12151,331 @@ local msg_id = msg.id_/2097152/0.5
 https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
 end
+
+if DAata == '/help1' then
+if not Mod(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر حمايه المجموعه
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶قفل/فتح + الاوامر الادناه 
+♡∶قفل/فتح + الامر بالتقيد • بالطرد • بالكتم
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الروابط
+♡∶المعرف
+♡∶التاك
+♡∶الشارحه
+♡∶التعديل
+♡∶التثبيت
+♡∶المتحركه
+♡∶الملفات
+♡∶الصور
+﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الملصقات
+♡∶الفيديو
+♡∶الانلاين
+♡∶الدردشه
+♡∶التوجيه
+♡∶الاغاني
+♡∶الصوت
+♡∶الجهات
+♡∶الاشعارات
+﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الماركداون
+♡∶البوتات
+♡∶التكرار
+♡∶الكلايش
+♡∶السيلفي
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help2' then
+if not Mod(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر الادمنيه
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊ 
+ - تفعيل/تعطيل الترحيب
+ - اضف /مسح صلاحيه
+♡∶وضع تكرار + العدد
+♡∶رفع/تنزيل مميز
+♡∶عدد الكروب
+♡∶تاك للكل
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶كتم
+♡∶حظر
+♡∶طرد
+♡∶منع
+♡∶تقيد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+ - المكتومين
+♡∶المحظورين
+♡∶المميزين
+♡∶الصلاحيات
+♡∶قائمه المنع
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الغاء كتم
+♡∶الغاء حظر
+♡∶الغاء منع
+♡∶الغاء تقيد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶الغاء تثبيت
+♡∶الاعدادات
+♡∶تثبيت
+♡∶الرابط
+♡∶القوانين
+♡∶الترحيب
+♡∶ايدي
+♡∶جهاتي
+♡∶سحكاتي
+♡∶رسائلي
+♡∶كشف البوتات
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶وضع اسم
+♡∶وضع رابط
+♡∶وضع صوره
+♡∶وضع وصف
+♡∶وضع قوانين
+♡∶وضع ترحيب
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶مسح قائمه المنع
+♡∶مسح المحظورين
+♡∶مسح المميزين
+♡∶مسح المكتومين
+♡∶مسح المطرودين
+♡∶مسح القوانين
+♡∶مسح البوتات
+♡∶مسح الصوره
+♡∶مسح الصلاحيات
+♡∶مسح الرابط
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help3' then
+if not Mod(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر المدير
+﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶رفع القيود
+♡∶كشف القيود
+♡∶تنزيل الكل
+♡∶رفع ادمن
+♡∶ تنزيل ادمن
+♡∶رفع الادمنيه
+♡∶مسح الادمنيه
+♡∶الادمنيه
+♡∶ صلاحياته
+♡∶ صلاحياتي
+♡∶تعين الايدي
+♡∶تغير الايدي
+♡∶مسح الايدي
+♡∶ردود المدير
+♡∶اضف رد
+♡∶حذف رد
+♡∶تنظيف + عدد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶تفعيل/تعطيل الرفع
+♡∶تفعيل/تعطيل الايدي
+♡∶تفعيل/تعطيل الابراج
+♡∶تفعيل/تعطيل اطردني
+♡∶تفعيل/تعطيل الزخرفه
+♡∶تفعيل/تعطيل ردود المدير
+♡∶تفعيل/تعطيل حساب العمر
+♡∶تفعيل/تعطيل ردود المطور
+♡∶تفعيل/تعطيل الحظر/الطرد
+♡∶تفعيل/تعطيل اللعبه/الالعاب
+♡∶تفعيل/تعطيل الايدي بالصوره
+♡∶تفعيل/تعطيل الرابط/جلب الرابط
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help4' then
+if not Mod(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر المنشئين الاساسين 
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶رفع/تنزيل منشئ اساسي
+♡∶رفع/تنزيل منشئ
+♡∶المنشئين
+♡∶مسح المنشئين
+♡∶مسح ردود المدير
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶اوامر المنشئين
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶رفع/تنزيل مدير
+♡∶المدراء
+♡∶مسح المدراء
+♡∶تعين/مسح الايدي
+♡∶اضف/حذف امر
+♡∶الاوامر المضافه
+♡∶حذف/مسح الاوامر المضافه
+♡∶اضف رسائل + العدد بالرد
+♡∶اضف مجوهرات + العدد بالرد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help5' then
+if not Mod(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶اوامر المطور الاساسي  
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶تحديث
+♡∶الملفات
+♡∶المتجر
+♡∶حظر عام
+♡∶الغاء العام
+♡∶ الثانويين
+♡∶ اضف مطور ثانوي
+♡∶ حذف مطور ثانوي
+♡∶المطورين
+♡∶ردود المطور
+♡∶اوامر المطور
+♡∶اضف رد للكل
+♡∶حذف رد للكل
+♡∶ مسح الثانويين
+♡∶مسح المطورين
+♡∶مسح قائمه العام
+♡∶تعطيل الاذاعه
+♡∶تفعيل الاذاعه
+♡∶تعطيل الاذاعه
+♡∶تفعيل المغادرة
+♡∶ تحديث السورس
+♡∶مسح ردود المطور
+♡∶مسح جميع الملفات
+♡∶اضف /حذف مطور
+♡∶وضع كليشه المطور
+♡∶حذف كليشه المطور
+♡∶تفعيل البوت الخدمي
+♡∶تعطيل البوت الخدمي
+♡∶تفعيل ملف + اسم الملف
+♡∶تعطيل ملف + اسم الملف
+♡∶ تعين عدد الاعضاء + العدد
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶غادر 
+♡∶اذاعه 
+♡∶رفع منشئ 
+♡∶اذاعه خاص 
+♡∶الاحصائيات 
+♡∶غادر + الايدي
+♡∶تفعيل /تعطيل
+♡∶اذاعه بالتوجيه
+♡∶اذاعه بالتثبيت 
+♡∶المنشئين الاساسين 
+♡∶رفع/تنزيل منشئ اساسي
+♡∶مسح المنشئين الاساسين
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{
+{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"},
+},
+{
+{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"},
+},
+{
+{text = 'الاوامر الرئيسيه', callback_data="/help"},
+},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+if DAata == '/help' then
+if not Mod(data) then
+local notText = '♡ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+local Teext =[[
+♡∶  1 ⤙ لعرض اوامر الحمايه
+♡∶  2 ⤙ لعرض اوامر الادمنيه
+♡∶  3 ⤙ لعرض اوامر المدراء
+♡∶  4 ⤙ لعرض اوامر المنشئين
+♡∶  5 ⤙ لعرض اوامر المطورين
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
+]]
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"}},
+{{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"}},
+}
+return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+end
+
 if text == "تعطيل الزخرفه" and Mod(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
