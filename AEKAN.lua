@@ -8183,461 +8183,83 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text == 'اعدادات المجموعه' and Mod(msg) or text == 'الاعدادات' and Mod(msg) then    
-if database:get(bot_id..'lockpin'..msg.chat_id_) then    
-lock_pin = '✓'
-else 
-lock_pin = '✘'    
-end
-if database:get(bot_id..'lock:tagservr'..msg.chat_id_) then    
-lock_tagservr = '✓'
-else 
-lock_tagservr = '✘'    
-end
-if database:get(bot_id..'lock:text'..msg.chat_id_) then    
-lock_text = '✓'
-else 
-lock_text = '✘'    
-end
-if database:get(bot_id.."lock:AddMempar"..msg.chat_id_) == 'kick' then
-lock_add = '✓'
-else 
-lock_add = '✘'    
-end    
-if database:get(bot_id.."lock:Join"..msg.chat_id_) == 'kick' then
-lock_join = '✓'
-else 
-lock_join = '✘'    
-end    
-if database:get(bot_id..'lock:edit'..msg.chat_id_) then    
-lock_edit = '✓'
-else 
-lock_edit = '✘'    
-end
-print(welcome)
-if database:get(bot_id..'Get:Welcome:Group'..msg.chat_id_) then
-welcome = '✓'
-else 
-welcome = '✘'    
-end
-if database:get(bot_id..'lock:edit'..msg.chat_id_) then    
-lock_edit_med = '✓'
-else 
-lock_edit_med = '✘'    
-end
-if database:hget(bot_id.."flooding:settings:"..msg.chat_id_, "flood") == "kick" then     
-flood = 'بالطرد'     
-elseif database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"flood") == "keed" then     
-flood = 'بالتقيد'     
-elseif database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"flood") == "mute" then     
-flood = 'بالكتم'           
-elseif database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"flood") == "del" then     
-flood = 'بالمسح'           
-else     
-flood = '✘'     
-end
-if database:get(bot_id.."lock:Photo"..msg.chat_id_) == "del" then
-lock_photo = '✓' 
-elseif database:get(bot_id.."lock:Photo"..msg.chat_id_) == "ked" then 
-lock_photo = 'بالتقيد'   
-elseif database:get(bot_id.."lock:Photo"..msg.chat_id_) == "ktm" then 
-lock_photo = 'بالكتم'    
-elseif database:get(bot_id.."lock:Photo"..msg.chat_id_) == "kick" then 
-lock_photo = 'بالطرد'  
-elseif database:get(bot_id.."lock:Photo"..msg.chat_id_) == "warn" then 
-lock_photo = 'بالتحذير'   
+if text == "الاعدادات" and Mod(msg) then    
+if database:get(bot_id.."Lock:text"..msg.chat_id_) == true then
+te = "الدردشه ∶ ✘ ∶ بالمسح"
 else
-lock_photo = '✘'   
-end    
-if database:get(bot_id.."lock:Contact"..msg.chat_id_) == "del" then
-lock_phon = '✓' 
-elseif database:get(bot_id.."lock:Contact"..msg.chat_id_) == "ked" then 
-lock_phon = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Contact"..msg.chat_id_) == "ktm" then 
-lock_phon = 'بالكتم'    
-elseif database:get(bot_id.."lock:Contact"..msg.chat_id_) == "kick" then 
-lock_phon = 'بالطرد'   
-elseif database:get(bot_id.."lock:Contact"..msg.chat_id_) == "warn" then 
-lock_phon = 'بالتحذير'    
-else
-lock_phon = '✘'    
-end    
-if database:get(bot_id.."lock:Link"..msg.chat_id_) == "del" then
-lock_links = '✓'
-elseif database:get(bot_id.."lock:Link"..msg.chat_id_) == "ked" then
-lock_links = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Link"..msg.chat_id_) == "ktm" then
-lock_links = 'بالكتم'    
-elseif database:get(bot_id.."lock:Link"..msg.chat_id_) == "kick" then
-lock_links = 'بالطرد'   
-elseif database:get(bot_id.."lock:Link"..msg.chat_id_) == "warn" then
-lock_links = 'بالتحذير'    
-else
-lock_links = '✘'    
-end
-if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" then
-lock_cmds = '✓'
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ked" then
-lock_cmds = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ktm" then
-lock_cmds = 'بالكتم'   
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "kick" then
-lock_cmds = 'بالطرد'   
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "warn" then
-lock_cmds = 'بالتحذير'    
-else
-lock_cmds = '✘'    
-end
-if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" then
-lock_user = '✓'
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ked" then
-lock_user = 'بالتقيد'    
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ktm" then
-lock_user = 'بالكتم'    
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "kick" then
-lock_user = 'بالطرد'   
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "warn" then
-lock_user = 'بالتحذير'
-else
-lock_user = '✘'    
-end
-if database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "del" then
-lock_hash = '✓'
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" then 
-lock_hash = 'بالتقيد'    
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ktm" then 
-lock_hash = 'بالكتم'    
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "kick" then 
-lock_hash = 'بالطرد'   
-elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "warn" then 
-lock_hash = 'بالتحذير'    
-else
-lock_hash = '✘'    
-end
-if database:get(bot_id.."lock:Audio"..msg.chat_id_) == "del" then
-lock_muse = '✓'
-elseif database:get(bot_id.."lock:Audio"..msg.chat_id_) == "ked" then 
-lock_muse = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Audio"..msg.chat_id_) == "ktm" then 
-lock_muse = 'بالكتم'    
-elseif database:get(bot_id.."lock:Audio"..msg.chat_id_) == "kick" then 
-lock_muse = 'بالطرد'   
-elseif database:get(bot_id.."lock:Audio"..msg.chat_id_) == "warn" then 
-lock_muse = 'بالتحذير'    
-else
-lock_muse = '✘'    
-end 
-if database:get(bot_id.."lock:Video"..msg.chat_id_) == "del" then
-lock_ved = '✓'
-elseif database:get(bot_id.."lock:Video"..msg.chat_id_) == "ked" then 
-lock_ved = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Video"..msg.chat_id_) == "ktm" then 
-lock_ved = 'بالكتم'    
-elseif database:get(bot_id.."lock:Video"..msg.chat_id_) == "kick" then 
-lock_ved = 'بالطرد'   
-elseif database:get(bot_id.."lock:Video"..msg.chat_id_) == "warn" then 
-lock_ved = 'بالتحذير'    
-else
-lock_ved = '✘'    
-end
-if database:get(bot_id.."lock:Animation"..msg.chat_id_) == "del" then
-lock_gif = '✓'
-elseif database:get(bot_id.."lock:Animation"..msg.chat_id_) == "ked" then 
-lock_gif = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Animation"..msg.chat_id_) == "ktm" then 
-lock_gif = 'بالكتم'    
-elseif database:get(bot_id.."lock:Animation"..msg.chat_id_) == "kick" then 
-lock_gif = 'بالطرد'   
-elseif database:get(bot_id.."lock:Animation"..msg.chat_id_) == "warn" then 
-lock_gif = 'بالتحذير'    
-else
-lock_gif = '✘'    
-end
-if database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "del" then
-lock_ste = '✓'
-elseif database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "ked" then 
-lock_ste = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "ktm" then 
-lock_ste = 'بالكتم'    
-elseif database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "kick" then 
-lock_ste = 'بالطرد'   
-elseif database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "warn" then 
-lock_ste = 'بالتحذير'    
-else
-lock_ste = '✘'    
-end
-if database:get(bot_id.."lock:geam"..msg.chat_id_) == "del" then
-lock_geam = '✓'
-elseif database:get(bot_id.."lock:geam"..msg.chat_id_) == "ked" then 
-lock_geam = 'بالتقيد'    
-elseif database:get(bot_id.."lock:geam"..msg.chat_id_) == "ktm" then 
-lock_geam = 'بالكتم'    
-elseif database:get(bot_id.."lock:geam"..msg.chat_id_) == "kick" then 
-lock_geam = 'بالطرد'   
-elseif database:get(bot_id.."lock:geam"..msg.chat_id_) == "warn" then 
-lock_geam = 'بالتحذير'    
-else
-lock_geam = '✘'    
-end    
-if database:get(bot_id.."lock:vico"..msg.chat_id_) == "del" then
-lock_vico = '✓'
-elseif database:get(bot_id.."lock:vico"..msg.chat_id_) == "ked" then 
-lock_vico = 'بالتقيد'    
-elseif database:get(bot_id.."lock:vico"..msg.chat_id_) == "ktm" then 
-lock_vico = 'بالكتم'    
-elseif database:get(bot_id.."lock:vico"..msg.chat_id_) == "kick" then 
-lock_vico = 'بالطرد'   
-elseif database:get(bot_id.."lock:vico"..msg.chat_id_) == "warn" then 
-lock_vico = 'بالتحذير'    
-else
-lock_vico = '✘'    
-end    
-if database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "del" then
-lock_Keyboard = '✓'
-elseif database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "ked" then 
-lock_Keyboard = 'بالتقيد'
-elseif database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "ktm" then 
-lock_Keyboard = 'بالكتم'    
-elseif database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "kick" then 
-lock_Keyboard = 'بالطرد'
-elseif database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "warn" then 
-lock_Keyboard = 'بالتحذير'
-else
-lock_Keyboard = '✘'
-end
-if database:get(bot_id.."lock:inline"..msg.chat_id_) == "del" then
-lock_inlin = '✓'
-elseif database:get(bot_id.."lock:inline"..msg.chat_id_) == "ked" then 
-lock_inlin = 'بالتقيد'
-elseif database:get(bot_id.."lock:inline"..msg.chat_id_) == "ktm" then 
-lock_inlin = 'بالكتم'    
-elseif database:get(bot_id.."lock:inline"..msg.chat_id_) == "kick" then 
-lock_inlin = 'بالطرد'
-elseif database:get(bot_id.."lock:inline"..msg.chat_id_) == "warn" then 
-lock_inlin = 'بالتحذير'
-else
-lock_inlin = '✘'
-end
-if database:get(bot_id.."lock:forward"..msg.chat_id_) == "del" then
-lock_fwd = '✓'
-elseif database:get(bot_id.."lock:forward"..msg.chat_id_) == "ked" then 
-lock_fwd = 'بالتقيد'    
-elseif database:get(bot_id.."lock:forward"..msg.chat_id_) == "ktm" then 
-lock_fwd = 'بالكتم'    
-elseif database:get(bot_id.."lock:forward"..msg.chat_id_) == "kick" then 
-lock_fwd = 'بالطرد'   
-elseif database:get(bot_id.."lock:forward"..msg.chat_id_) == "warn" then 
-lock_fwd = 'بالتحذير'    
-else
-lock_fwd = '✘'    
-end    
-if database:get(bot_id.."lock:Document"..msg.chat_id_) == "del" then
-lock_file = '✓'
-elseif database:get(bot_id.."lock:Document"..msg.chat_id_) == "ked" then 
-lock_file = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Document"..msg.chat_id_) == "ktm" then 
-lock_file = 'بالكتم'    
-elseif database:get(bot_id.."lock:Document"..msg.chat_id_) == "kick" then 
-lock_file = 'بالطرد'   
-elseif database:get(bot_id.."lock:Document"..msg.chat_id_) == "warn" then 
-lock_file = 'بالتحذير'    
-else
-lock_file = '✘'    
-end    
-if database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "del" then
-lock_self = '✓'
-elseif database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "ked" then 
-lock_self = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "ktm" then 
-lock_self = 'بالكتم'    
-elseif database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "kick" then 
-lock_self = 'بالطرد'   
-elseif database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "warn" then 
-lock_self = 'بالتحذير'    
-else
-lock_self = '✘'    
-end
-if database:get(bot_id.."lock:Bot:kick"..msg.chat_id_) == 'del' then
-lock_bots = '✓'
-elseif database:get(bot_id.."lock:Bot:kick"..msg.chat_id_) == 'ked' then
-lock_bots = 'بالتقيد'   
-elseif database:get(bot_id.."lock:Bot:kick"..msg.chat_id_) == 'kick' then
-lock_bots = 'بالطرد'    
-else
-lock_bots = '✘'    
-end
-if database:get(bot_id.."lock:Markdaun"..msg.chat_id_) == "del" then
-lock_mark = '✓'
-elseif database:get(bot_id.."lock:Markdaun"..msg.chat_id_) == "ked" then 
-lock_mark = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Markdaun"..msg.chat_id_) == "ktm" then 
-lock_mark = 'بالكتم'    
-elseif database:get(bot_id.."lock:Markdaun"..msg.chat_id_) == "kick" then 
-lock_mark = 'بالطرد'    
-else
-lock_mark = '✘'    
-end
-if database:get(bot_id..'lock:Iran'..msg.chat_id_) == 'del' then
-lock_Iran = '✓'
-elseif database:get(bot_id..'lock:Iran'..msg.chat_id_) == 'warn' then
-lock_Iran = 'بالتحذير' 
-else
-lock_Iran = '✘'    
-end
-if database:get(bot_id..'lock:Eng'..msg.chat_id_) == 'del' then
-lock_Eng = '✓'
-elseif database:get(bot_id..'lock:Eng'..msg.chat_id_) == 'warn' then
-lock_Eng = 'بالتحذير'   
-else
-lock_Eng = '✘'    
-end
-if database:get(bot_id..'lock:Fshar'..msg.chat_id_) == 'del' then
-lock_Fshar = '✓'
-elseif database:get(bot_id..'lock:Fshar'..msg.chat_id_) == 'warn' then
-lock_Fshar = 'بالتحذير'
-else
-lock_Fshar = '✘'    
-end
-if database:get(bot_id.."lock:Spam"..msg.chat_id_) == "del" then    
-lock_spam = '✓'
-elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "ked" then 
-lock_spam = 'بالتقيد'    
-elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "ktm" then 
-lock_spam = 'بالكتم'    
-elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "kick" then 
-lock_spam = 'بالطرد'   
-elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "warn" then 
-lock_spam = 'بالتحذير'    
-else
-lock_spam = '✘'    
+te =  "الدردشه ∶ ✔"   
 end        
-if not database:get(bot_id..'Reply:Manager'..msg.chat_id_) then
-rdmder = '✓'
+if database:get(bot_id.."Lock:AddMempar"..msg.chat_id_) == "kick" then
+AddM = "الاضافه ∶ ✘ ∶ بالطرد"
 else
-rdmder = '✘'
-end
-if not database:get(bot_id..'Reply:Sudo'..msg.chat_id_) then
-rdsudo = '✓'
+AddM =  "الاضافه ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Join"..msg.chat_id_) == "kick" then
+Jo = "الدخول ∶ ✘ ∶ بالطرد"
 else
-rdsudo = '✘'
-end
-if not database:get(bot_id..'Bot:Id'..msg.chat_id_)  then
-idgp = '✓'
+Jo =  "الدخول ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Bot:kick"..msg.chat_id_) == "del" then
+Botki = "البوتات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Bot:kick:"..msg.chat_id_) == "kick" then
+Botki = "البوتات ∶ ✘ ∶ بالطرد"
 else
-idgp = '✘'
-end
-if not database:get(bot_id..'Bot:Id:Photo'..msg.chat_id_) then
-idph = '✓'
+Botki =  "البوتات ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:tagservr"..msg.chat_id_) == "del" then
+tag = "الاشعارات ∶ ✘ ∶ بالمسح"
 else
-idph = '✘'
-end
-if not database:get(bot_id..'Lock:kick'..msg.chat_id_)  then
-setadd = '✓'
+tag =  "الاشعارات ∶ ✔"   
+end        
+if database:get(bot_id.."lockpin"..msg.chat_id_) == true then
+pin = "التثبيت ∶ ✘ ∶ بالمسح"
 else
-setadd = '✘'
-end
-if not database:get(bot_id..'Lock:Add:Bot'..msg.chat_id_)  then
-banm = '✓'
+pin =  "التثبيت ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:edit"..msg.chat_id_) == true then
+edit = "التعديل ∶ ✘ ∶ بالمسح"
 else
-banm = '✘'
-end
-if not database:get(bot_id..'Added:Me'..msg.chat_id_) then
-addme = '✓'
+edit =  "التعديل ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:edit"..msg.chat_id_) == true then
+edi = "تعديل الميديا ∶ ✘ ∶ بالمسح"
 else
-addme = '✘'
-end
-if not database:get(bot_id..'Seh:User'..msg.chat_id_) then
-sehuser = '✓'
+edi =  "تعديل الميديا ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:Link"..msg.chat_id_) == "del" then
+Link = "الروابط ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:Link:"..msg.chat_id_) == "kick" then
+Link = "الروابط ∶ ✘ ∶ بالطرد"
+elseif database:get(bot_id.."Lock:Link:"..msg.chat_id_) == "ktm" then
+Link = "الروابط ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:Link:"..msg.chat_id_) == "ked" then
+Link = "الروابط ∶ ✘ ∶ بالتقييد"
 else
-sehuser = '✘'
-end
-if not database:get(bot_id..'Cick:Me'..msg.chat_id_) then
-kickme = '✓'
+Link =  "الروابط ∶ ✔"   
+end        
+if database:get(bot_id.."Lock:User:Name"..msg.chat_id_) == "del" then
+usNa = "المعرفات ∶ ✘ ∶ بالمسح"
+elseif database:get(bot_id.."Lock:User:Name:"..msg.chat_id_) == "kick" then
+usNa = "المعرفات ∶ ✘ ∶ بالطرد"
+elseif database:get(bot_id.."Lock:User:Name:"..msg.chat_id_) == "ktm" then
+usNa = "المعرفات ∶ ✘ ∶ بالكتم"
+elseif database:get(bot_id.."Lock:User:Name:"..msg.chat_id_) == "ked" then
+usNa = "المعرفات ∶ ✘ ∶ بالتقييد"
 else
-kickme = '✘'
-end
-NUM_MSG_MAX = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodmax") or 0
-local text = 
-'\n❦ ⁞اعدادات المجموعه كتالي √↓'..
-'\n*ٴ•━━━━━━━━━━━━━•*'..
-'\n❦ ⁞ علامة ال {✓} تعني معطل'..
-'\n❦ ⁞ علامة ال {✘} تعني مفعل'..
-'\n*ٴ•━━━━━━━━━━━━━•*'..
-'\n❦ ⁞ الروابط ← { '..lock_links..
-' }\n'..'❦ ⁞ المعرفات ← { '..lock_user..
-' }\n'..'❦ ⁞ التاك ← { '..lock_hash..
-' }\n'..'❦ ⁞ البوتات ← { '..lock_bots..
-' }\n'..'❦ ⁞التوجيه ← { '..lock_fwd..
-' }\n'..'❦ ⁞التثبيت ← { '..lock_pin..
-' }\n'..'❦ ⁞ الاشعارات ← { '..lock_tagservr..
-' }\n'..'❦ ⁞ الماركدون ← { '..lock_mark..
-' }\n'..'❦ ⁞ التعديل ← { '..lock_edit..
-' }\n'..'❦ ⁞ تعديل الميديا ← { '..lock_edit_med..
-' }\n*ٴ•━━━━━━━━━━━━━•*'..
-'\n'..'❦ ⁞ الكلايش ← { '..lock_spam..
-' }\n'..'❦ ⁞ الكيبورد ← { '..lock_Keyboard..
-' }\n'..'❦ ⁞ الانلاين ← { '..lock_inlin..
-' }\n'..'❦ ⁞ الاغاني ← { '..lock_muse..
-' }\n'..'❦ ⁞ الصوت ← { '..lock_vico..
-' }\n'..'❦ ⁞ المتحركه ← { '..lock_gif..
-' }\n'..'❦ ⁞ الملصقات ← { '..lock_ste.. 
-' }\n'..'❦ ⁞ الملفات ← { '..lock_file..
-' }\n'..'❦ ⁞ الدردشه ← { '..lock_text..
-' }\n'..'❦ ⁞ الفيديو ← { '..lock_ved..
-' }\n'..'❦ ⁞ الصور ← { '..lock_photo..
-' }\n*ٴ•━━━━━━━━━━━━━•*'..
-'\n'..'❦ ⁞ الجهات ← { '..lock_phon..
-' }\n'..'❦ ⁞ الدخول ← { '..lock_join..
-' }\n'..'❦ ⁞ الاضافه ← { '..lock_add..
-' }\n'..'❦ ⁞ السيلفي ← { '..lock_self..
-' }\n'..'❦ ⁞ الالعاب ← { '..lock_geam..
-' }\n'..'❦ ⁞ الفارسيه ← { '..lock_Iran..
-' }\n'..'❦ ⁞ الانكليزيه ← { '..lock_Eng..
-' }\n'..'❦ ⁞ الفشار ← { '..lock_Fshar..
-' }\n'..'❦ ⁞ التكرار ← { '..flood..
-' }\n'..'❦ ⁞ عدد التكرار ← { '..NUM_MSG_MAX..
-' }\n*ٴ•━━━━━━━━━━━━━•*'..
-'\n❦ ⁞ علامة ال {✓} تعني مفعل'..
-'\n❦ ⁞ علامة ال {✘} تعني معطل'..
-'\n*ٴ•━━━━━━━━━━━━━•*'..
-'\n'..'❦ ⁞ امر صيح ← { '..sehuser..
-' }\n'..'❦ ⁞ امر اطردني ← { '..kickme..
-' }\n'..'❦ ⁞ امر منو ضافني ← { '..addme..
-' }\n'..'❦ ⁞ ردود المدير ← { '..rdmder..
-' }\n'..'❦ ⁞ ردود المطور ← { '..rdsudo..
-' }\n'..'❦ ⁞ الايدي ← { '..idgp..
-' }\n'..'❦ ⁞ الايدي بالصوره ← { '..idph..
-' }\n'..'❦ ⁞ الترحيب ← { '..welcome..
-' }\n'..'❦ ⁞ الرفع ← { '..setadd..
-' }\n'..'❦ ⁞ الحظر ← { '..banm..' }\n\n⏦Ⓐ⓷ⓀⓄⓃ ❦ ⓇⓉ⊝ⓎⓉ⏦\nて [𝘈𝘌𝘒𝘈𝘕 𝘊𝘩𝘢𝘯𝘯𝘦𝘭](t.me/SoalfLove)➤\n'
-send(msg.chat_id_, msg.id_,text)     
-end    
-if text ==('تثبيت') and msg.reply_to_message_id_ ~= 0 and Mod(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-if database:sismember(bot_id..'lock:pin',msg.chat_id_) and not Constructor(msg) then
-send(msg.chat_id_,msg.id_,"*❦ ⁞ التثبيت والغاء التثبيت تم قفله من قبل المنشئين*")  
-return false  
-end
-tdcli_function ({ID = "PinChannelMessage",channel_id_ = msg.chat_id_:gsub('-100',''),message_id_ = msg.reply_to_message_id_,disable_notification_ = 1},function(arg,data) 
-if data.ID == "Ok" then
-send(msg.chat_id_, msg.id_,"*❦ ⁞ تم تثبيت الرساله*")   
-database:set(bot_id..'Pin:Id:Msg'..msg.chat_id_,msg.reply_to_message_id_)
-elseif data.code_ == 6 then
-send(msg.chat_id_,msg.id_,"*❦ ⁞ انا لست مشرف هنا يرجى ترقيتي مشرف ثم اعد المحاوله*")  
-elseif data.message_ == "CHAT_NOT_MODIFIED" then
-send(msg.chat_id_,msg.id_,"*❦ ⁞ تم تثبيت رسالتك الآن*")  
-elseif data.message_ == "CHAT_ADMIN_REQUIRED" then
-send(msg.chat_id_,msg.id_,"*❦ ⁞ ليست لدي صلاحية التثبيت يرجى التحقق من الصلاحيات*")  
-end
-end,nil) 
+usNa =  "المعرفات ∶ ✔"   
+end        
+local Text ="♡∶ اهلا بك في قائمه اعدادات المجموعه .\n♡∶  علامه ( ✘ ) تعني الامر مقفول .\n♡∶  علامه ( ✔ ) تعني الامر مفتوح ."
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text =te,callback_data=msg.sender_user_id_.."Lock:text"},{text =usNa,callback_data=msg.sender_user_id_.."Lock:User:Name"}},
+{{text =AddM,callback_data=msg.sender_user_id_.."Lock:AddMempar"},{text =Link,callback_data=msg.sender_user_id_.."Lock:Link"}},
+{{text =Jo,callback_data=msg.sender_user_id_.."Lock:Join"},{text =edi,callback_data=msg.sender_user_id_.."Lock:edit"}},
+{{text =Botki,callback_data=msg.sender_user_id_.."Lock:Bot:kick"},{text =edit,callback_data=msg.sender_user_id_.."TR:Lock:pin"}},
+{{text =tag,callback_data=msg.sender_user_id_.."Lock:tagservr"},{text =pin,callback_data=msg.sender_user_id_.."TR:Lock:pin"}},
+{{text ="التالي ⊁ .",callback_data=msg.sender_user_id_.."LS1"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 end
 if text == 'الغاء التثبيت' and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
