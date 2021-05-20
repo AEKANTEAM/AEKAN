@@ -12152,17 +12152,348 @@ https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. 
 return false
 end
 
-function function tdcli_update_callback(data)
+
+
+if text == "تعطيل الزخرفه" and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_, '*❦ ⁞ تم تعطيل الزخرفه*')
+database:set(bot_id.." amir:zhrf_Bots"..msg.chat_id_,"close")
+end
+if text == "تفعيل الزخرفه" and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_,'*❦ ⁞ تم تفعيل الزخرفه*')
+database:set(bot_id.." amir:zhrf_Bots"..msg.chat_id_,"open")
+end
+if text and text:match("^زخرفه (.*)$") and database:get(bot_id.." amir:zhrf_Bots"..msg.chat_id_) == "open" then
+local TextZhrfa = text:match("^زخرفه (.*)$")
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+zh = https.request('https://mode-dev.tk/api3/nigga.php?en='..URL.escape(TextZhrfa)..'')
+zx = JSON.decode(zh)
+t = "\n*❦ ⁞ قائمه الزخرفه* \nٴ❦ ⁞⫷━━━━━━━𝘼𝙆━━━━━━━⫸❦ ⁞○ٴ \n"
+i = 0
+for k,v in pairs(zx.ok) do
+i = i + 1
+t = t..i.."-  "..v.." \n"
+end
+send(msg.chat_id_, msg.id_, t..'ٴ❦ ⁞⫷━━━━━━━𝘼𝙆━━━━━━━⫸❦ ⁞○ٴ\n❦ ⁞ て [𝘈𝘌𝘒𝘈𝘕 𝘊𝘩𝘢𝘯𝘯𝘦𝘭](t.me/SoalfLove)➤ ')
+end
+
+if text == "تعطيل حساب العمر" and Mod(msg) then
+send(msg.chat_id_, msg.id_, '*❦ ⁞ تم تعطيل حساب العمر*')
+database:set(bot_id.." amir:age_Bots"..msg.chat_id_,"close")
+end
+if text == "تعطيل حساب العمر" and Mod(msg) then
+send(msg.chat_id_, msg.id_, '*❦ ⁞ تم تعطيل حساب العمر*')
+database:set(bot_id.." amir:age_Bots"..msg.chat_id_,"close")
+end
+if text == "تفعيل حساب العمر" and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_,'*❦ ⁞ تم تفعيل حساب العمر*')
+database:set(bot_id.." amir:age_Bots"..msg.chat_id_,"open")
+end
+if text and text:match("^احسب (.*)$") and database:get(bot_id.." amir:age_Bots"..msg.chat_id_) == "open" then
+local Textage = text:match("^احسب (.*)$")
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+ge = https.request('https://mode-dev.tk/Api1/niggaapi.php?age='..URL.escape(Textage)..'')
+ag = JSON.decode(ge)
+i = 0
+for k,v in pairs(ag.ok) do
+i = i + 1
+t = v.."\n"
+end
+send(msg.chat_id_, msg.id_, t)
+end
+if text == "تعطيل الافلام" and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_, '*❦ ⁞ تم تعطيل الافلام*')
+database:set(bot_id.."AEKAN:movie_bot"..msg.chat_id_,"close")
+end
+if text == "تفعيل الافلام" and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_,'*❦ ⁞ تم تفعيل الافلام*')
+database:set(bot_id.."AEKAN:movie_bot"..msg.chat_id_,"open")
+end
+if text and text:match("^فلم (.*)$") and database:get(bot_id.."AEKAN:movie_bot"..msg.chat_id_) == "open" then
+local Textm = text:match("^فلم (.*)$")
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+data,res = https.request('https://forhassan.ml/Black/movie.php?serch='..URL.escape(Textm)..'')
+if res == 200 then
+getmo = json:decode(data)
+if getmo.Info == true then
+local Text ='قصه الفلم'..getmo.info
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'مشاهده الفلم بجوده 240',url=getmo.sd}},
+{{text = 'مشاهده الفلم بجوده 480', url=getmo.Web},{text = 'مشاهده الفلم بجوده 1080', url=getmo.hd}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end
+end
+end
+------------------------------------------------------------
+if text and text:match('^الحساب (%d+)$') then
+local id = text:match('^الحساب (%d+)$')
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+local text = 'اضغط لمشاهده الحساب'
+tdcli_function ({ID="SendMessage", chat_id_=msg.chat_id_, reply_to_message_id_=msg.id_, disable_notification_=0, from_background_=1, reply_markup_=nil, input_message_content_={ID="InputMessageText", text_=text, disable_web_page_preview_=1, clear_draft_=0, entities_={[0] = {ID="MessageEntityMentionName", offset_=0, length_=19, user_id_=id}}}}, dl_cb, nil)
+end
+local function oChat(chat_id,cb)
+tdcli_function ({
+ID = "OpenChat",
+chat_id_ = chat_id
+}, cb, nil)
+end
+if text == "صلاحياته" and tonumber(msg.reply_to_message_id_) > 0 then   
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if tonumber(msg.reply_to_message_id_) ~= 0 then 
+function prom_reply(extra, result, success) 
+Get_Info(msg,msg.chat_id_,result.sender_user_id_)
+end  
+tdcli_function ({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},prom_reply, nil)
+end
+end
+------------------------------------------------------------------------
+if text == "صلاحياتي" then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if tonumber(msg.reply_to_message_id_) == 0 then 
+Get_Info(msg,msg.chat_id_,msg.sender_user_id_)
+end  
+end
+------------------------------------------------------------------------
+if text and text:match('^صلاحياته @(.*)') then  
+local username = text:match('صلاحياته @(.*)')  
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if tonumber(msg.reply_to_message_id_) == 0 then 
+function prom_username(extra, result, success) 
+if (result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT_OCCUPIED") then
+SendText(msg.chat_id_,msg.id_,"*❦ ⁞ المعرف غير صحيح*")   
+return false  end   
+
+Get_Info(msg,msg.chat_id_,result.id_)
+end  
+tdcli_function ({ID = "SearchPublicChat",username_ = username},prom_username,nil) 
+end 
+end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+if text == "شنو رئيك بهذا" or text == "شنو رئيك بيه" then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"ادب سز يباوع على البنات 😂🥺"," مو خوش ولد 😶","زاحف وما احبه 😾😹"}
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
+if text == "شنو رئيك بهاي" or text == "شنو رئيك بيها" then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"دور حلوين 🤕😹","جكمه وصخه عوفها ☹️😾","حقيره ومتكبره 😶😂"}
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
+if text == "هينه" or text == "رزله" then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"ولك هيو لتندك بسيادك لو بهاي 👞👈","ميستاهل اتعب روحي وياه لانه عار","عوفه يروحي لاتنزل لمستواه🤣"}
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
+if text == "مصه" or text == "بوسه" then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if not database:get(bot_id..'lock:add'..msg.chat_id_) then
+local texting = {"مووووووووواححح💋😘","مابوس ولي😌😹","خدك/ج نضيف 😂","البوسه بالف حمبي 🌝💋","خلي يزحفلي وابوسه 🙊😻","كل شويه ابوسه كافي 😏","ماابوسه والله هذا زاحف🦎","محح هاي لحاته صاكه💋"}
+send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
+end
+end
+if text == 'تفعيل الردود' and Mod(msg) then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+database:del(bot_id..'lock:reply'..msg.chat_id_)  
+Text = '*❦ ⁞ تم تفعيل الردود*'
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'تعطيل الردود' and Mod(msg) then 
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هناا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+database:set(bot_id..'lock:reply'..msg.chat_id_,true)  
+Text = '\n*❦ ⁞ تم تعطيل الردود*'
+send(msg.chat_id_, msg.id_,Text) 
+end
+if text == 'رابط الحذف' or text == 'رابط حذف' then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+t =[[
+*❦ ⁞ رابط الحذف في جميع مواقع التواصل
+❦ ⁞ فكر قبل لا تتسرع*
+ٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ
+ *❦ ⁞ رابط حذف*  [Telegram](https://my.telegram.org/auth?to=delete) ܁
+ *❦ ⁞ رابط حذف* [instagram](https://www.instagram.com/accounts/login/?next=/accounts/remove/request/permanent/) ܁
+ *❦ ⁞ رابط حذف* [Facebook](https://www.facebook.com/help/deleteaccount) ܁
+ *❦ ⁞ رابط حذف* [Snspchat](https://accounts.snapchat.com/accounts/login?continue=https%3A%2F%2Faccounts.snapchat.com%2Faccounts%2Fdeleteaccount) ܁
+]]
+send(msg.chat_id_, msg.id_,t) 
+return false
+end
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+end -- Chat_Type = 'GroupBot' 
+end -- end msg
+--------------------------------------------------------------------------------------------------------------
+function tdcli_update_callback(data)  -- clback
 if data.ID == "UpdateChannel" then 
 if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
 database:srem(bot_id..'Chek:Groups','-100'..data.channel_.id_)  
 end
-end(data)
-if data.ID == "UpdateChannel" then 
-if data.channel_.status_.ID == "ChatMemberStatusKicked" then 
-database:srem(bot_id..'Chek:Groups','-100'..data.channel_.id_)  
 end
-end
+
+
 if data.ID == "UpdateNewCallbackQuery" then
 local Chat_id = data.chat_id_
 local From_id = data.id_
@@ -12942,339 +13273,8 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
-
-if text == "تعطيل الزخرفه" and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_, '*❦ ⁞ تم تعطيل الزخرفه*')
-database:set(bot_id.." amir:zhrf_Bots"..msg.chat_id_,"close")
-end
-if text == "تفعيل الزخرفه" and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,'*❦ ⁞ تم تفعيل الزخرفه*')
-database:set(bot_id.." amir:zhrf_Bots"..msg.chat_id_,"open")
-end
-if text and text:match("^زخرفه (.*)$") and database:get(bot_id.." amir:zhrf_Bots"..msg.chat_id_) == "open" then
-local TextZhrfa = text:match("^زخرفه (.*)$")
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-zh = https.request('https://mode-dev.tk/api3/nigga.php?en='..URL.escape(TextZhrfa)..'')
-zx = JSON.decode(zh)
-t = "\n*❦ ⁞ قائمه الزخرفه* \nٴ❦ ⁞⫷━━━━━━━𝘼𝙆━━━━━━━⫸❦ ⁞○ٴ \n"
-i = 0
-for k,v in pairs(zx.ok) do
-i = i + 1
-t = t..i.."-  "..v.." \n"
-end
-send(msg.chat_id_, msg.id_, t..'ٴ❦ ⁞⫷━━━━━━━𝘼𝙆━━━━━━━⫸❦ ⁞○ٴ\n❦ ⁞ て [𝘈𝘌𝘒𝘈𝘕 𝘊𝘩𝘢𝘯𝘯𝘦𝘭](t.me/SoalfLove)➤ ')
 end
 
-if text == "تعطيل حساب العمر" and Mod(msg) then
-send(msg.chat_id_, msg.id_, '*❦ ⁞ تم تعطيل حساب العمر*')
-database:set(bot_id.." amir:age_Bots"..msg.chat_id_,"close")
-end
-if text == "تعطيل حساب العمر" and Mod(msg) then
-send(msg.chat_id_, msg.id_, '*❦ ⁞ تم تعطيل حساب العمر*')
-database:set(bot_id.." amir:age_Bots"..msg.chat_id_,"close")
-end
-if text == "تفعيل حساب العمر" and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,'*❦ ⁞ تم تفعيل حساب العمر*')
-database:set(bot_id.." amir:age_Bots"..msg.chat_id_,"open")
-end
-if text and text:match("^احسب (.*)$") and database:get(bot_id.." amir:age_Bots"..msg.chat_id_) == "open" then
-local Textage = text:match("^احسب (.*)$")
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-ge = https.request('https://mode-dev.tk/Api1/niggaapi.php?age='..URL.escape(Textage)..'')
-ag = JSON.decode(ge)
-i = 0
-for k,v in pairs(ag.ok) do
-i = i + 1
-t = v.."\n"
-end
-send(msg.chat_id_, msg.id_, t)
-end
-if text == "تعطيل الافلام" and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_, '*❦ ⁞ تم تعطيل الافلام*')
-database:set(bot_id.."AEKAN:movie_bot"..msg.chat_id_,"close")
-end
-if text == "تفعيل الافلام" and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-send(msg.chat_id_, msg.id_,'*❦ ⁞ تم تفعيل الافلام*')
-database:set(bot_id.."AEKAN:movie_bot"..msg.chat_id_,"open")
-end
-if text and text:match("^فلم (.*)$") and database:get(bot_id.."AEKAN:movie_bot"..msg.chat_id_) == "open" then
-local Textm = text:match("^فلم (.*)$")
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-data,res = https.request('https://forhassan.ml/Black/movie.php?serch='..URL.escape(Textm)..'')
-if res == 200 then
-getmo = json:decode(data)
-if getmo.Info == true then
-local Text ='قصه الفلم'..getmo.info
-keyboard = {} 
-keyboard.inline_keyboard = {
-{{text = 'مشاهده الفلم بجوده 240',url=getmo.sd}},
-{{text = 'مشاهده الفلم بجوده 480', url=getmo.Web},{text = 'مشاهده الفلم بجوده 1080', url=getmo.hd}},
-}
-local msg_id = msg.id_/2097152/0.5
-https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
-end
-end
-end
-------------------------------------------------------------
-if text and text:match('^الحساب (%d+)$') then
-local id = text:match('^الحساب (%d+)$')
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-local text = 'اضغط لمشاهده الحساب'
-tdcli_function ({ID="SendMessage", chat_id_=msg.chat_id_, reply_to_message_id_=msg.id_, disable_notification_=0, from_background_=1, reply_markup_=nil, input_message_content_={ID="InputMessageText", text_=text, disable_web_page_preview_=1, clear_draft_=0, entities_={[0] = {ID="MessageEntityMentionName", offset_=0, length_=19, user_id_=id}}}}, dl_cb, nil)
-end
-local function oChat(chat_id,cb)
-tdcli_function ({
-ID = "OpenChat",
-chat_id_ = chat_id
-}, cb, nil)
-end
-if text == "صلاحياته" and tonumber(msg.reply_to_message_id_) > 0 then   
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-if tonumber(msg.reply_to_message_id_) ~= 0 then 
-function prom_reply(extra, result, success) 
-Get_Info(msg,msg.chat_id_,result.sender_user_id_)
-end  
-tdcli_function ({ID = "GetMessage",chat_id_=msg.chat_id_,message_id_=tonumber(msg.reply_to_message_id_)},prom_reply, nil)
-end
-end
-------------------------------------------------------------------------
-if text == "صلاحياتي" then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-if tonumber(msg.reply_to_message_id_) == 0 then 
-Get_Info(msg,msg.chat_id_,msg.sender_user_id_)
-end  
-end
-------------------------------------------------------------------------
-if text and text:match('^صلاحياته @(.*)') then  
-local username = text:match('صلاحياته @(.*)')  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-if tonumber(msg.reply_to_message_id_) == 0 then 
-function prom_username(extra, result, success) 
-if (result and result.code_ == 400 or result and result.message_ == "USERNAME_NOT_OCCUPIED") then
-SendText(msg.chat_id_,msg.id_,"*❦ ⁞ المعرف غير صحيح*")   
-return false  end   
-
-Get_Info(msg,msg.chat_id_,result.id_)
-end  
-tdcli_function ({ID = "SearchPublicChat",username_ = username},prom_username,nil) 
-end 
-end
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-if text == "شنو رئيك بهذا" or text == "شنو رئيك بيه" then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"ادب سز يباوع على البنات 😂🥺"," مو خوش ولد 😶","زاحف وما احبه 😾😹"}
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "شنو رئيك بهاي" or text == "شنو رئيك بيها" then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"دور حلوين 🤕😹","جكمه وصخه عوفها ☹️😾","حقيره ومتكبره 😶😂"}
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "هينه" or text == "رزله" then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"ولك هيو لتندك بسيادك لو بهاي 👞👈","ميستاهل اتعب روحي وياه لانه عار","عوفه يروحي لاتنزل لمستواه🤣"}
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == "مصه" or text == "بوسه" then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-if not database:get(bot_id..'lock:add'..msg.chat_id_) then
-local texting = {"مووووووووواححح💋😘","مابوس ولي😌😹","خدك/ج نضيف 😂","البوسه بالف حمبي 🌝💋","خلي يزحفلي وابوسه 🙊😻","كل شويه ابوسه كافي 😏","ماابوسه والله هذا زاحف🦎","محح هاي لحاته صاكه💋"}
-send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
-end
-end
-if text == 'تفعيل الردود' and Mod(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-database:del(bot_id..'lock:reply'..msg.chat_id_)  
-Text = '*❦ ⁞ تم تفعيل الردود*'
-send(msg.chat_id_, msg.id_,Text) 
-end
-if text == 'تعطيل الردود' and Mod(msg) then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هناا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-database:set(bot_id..'lock:reply'..msg.chat_id_,true)  
-Text = '\n*❦ ⁞ تم تعطيل الردود*'
-send(msg.chat_id_, msg.id_,Text) 
-end
-if text == 'رابط الحذف' or text == 'رابط حذف' then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-t =[[
-*❦ ⁞ رابط الحذف في جميع مواقع التواصل
-❦ ⁞ فكر قبل لا تتسرع*
-ٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ
- *❦ ⁞ رابط حذف*  [Telegram](https://my.telegram.org/auth?to=delete) ܁
- *❦ ⁞ رابط حذف* [instagram](https://www.instagram.com/accounts/login/?next=/accounts/remove/request/permanent/) ܁
- *❦ ⁞ رابط حذف* [Facebook](https://www.facebook.com/help/deleteaccount) ܁
- *❦ ⁞ رابط حذف* [Snspchat](https://accounts.snapchat.com/accounts/login?continue=https%3A%2F%2Faccounts.snapchat.com%2Faccounts%2Fdeleteaccount) ܁
-]]
-send(msg.chat_id_, msg.id_,t) 
-return false
-end
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-end -- Chat_Type = 'GroupBot' 
-end -- end msg
---------------------------------------------------------------------------------------------------------------
 if data.ID == "UpdateNewMessage" then  -- new msg
 msg = data.message_
 text = msg.content_.text_
