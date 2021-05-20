@@ -12123,38 +12123,32 @@ return false
 end
 
 
+if text == 'م1' or text == 'م2' or text == 'م3' or text == 'م4' or text == 'م5' then
+send(msg.chat_id_, msg.id_,"مرحبا . اكتب `الاوامر` وتحكم في الكيبورد الكلايش")
+return false
+end
 if text == 'الاوامر' then
 if not Mod(msg) then
-send(msg.chat_id_, msg.id_,'*❦ ⁞ هذا الامر خاص بالادمنيه*\n*❦ ⁞ ارسل {م10} لعرض اوامر الاعضاء*')
+send(msg.chat_id_, msg.id_,'♡ عذرا الاوامر هذا لا تخصك ') 
 return false
 end
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'❦ ⁞ يروح '..Namebot..' يرجى الاشتراك بقناتي \n ❦ ⁞ حتى انفذ اوامرك حبيبي \n ❦ ⁞ اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end
-local help_text = database:get(bot_id..'help_text')
-Text = [[
-*❦ ⁞ اهلا بك في اوامر البوت*
-ٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ
-*❦ ⁞ م1 ⏦ اوامر الحمايه
-❦ ⁞ م2 ⏦ اوامر تعطيل ~ تفعيل
-❦ ⁞ م3 ⏦ اوامر ضع ~ اضف
-❦ ⁞ م4 ⏦ اوامر مسح ~ حذف
-❦ ⁞ م5 ⏦ اوامر تنزيل + رفع ~ التغير
-❦ ⁞ م6 ⏦ اوامر المجموعه
-❦ ⁞ م7 ⏦ اوامر التحشيش
-❦ ⁞ م8 ⏦ اوامر مطور البوت
-❦ ⁞ م9 ⏦ اوامر مطور الاساسي
-❦ ⁞ م10 ⏦ اوامر الاعضاء*
-ٴ⫷━━━━━━━𝘼𝙆━━━━━━━⫸ٴ
-て [𝘈𝘌𝘒𝘈𝘕 𝘊𝘩𝘢𝘯𝘯𝘦𝘭](t.me/SoalfLove)➤
+local Text =[[
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+♡∶  1 ⤙ لعرض اوامر الحمايه
+♡∶  2 ⤙ لعرض اوامر الادمنيه
+♡∶  3 ⤙ لعرض اوامر المدراء
+♡∶  4 ⤙ لعرض اوامر المنشئين
+♡∶  5 ⤙ لعرض اوامر المطورين
+ ﹊﹊﹊﹊﹊﹊﹊﹊﹊
+[♡ ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ](t.me/SoalfLove)
 ]]
-send(msg.chat_id_, msg.id_,(help_text or Text)) 
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = '1', callback_data="/help1"},{text = '2', callback_data="/help2"},{text = '3', callback_data="/help3"}},
+{{text = '4', callback_data="/help4"},{text = '5', callback_data="/help5"}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
 return false
 end
 if text == "تعطيل الزخرفه" and Mod(msg) then
