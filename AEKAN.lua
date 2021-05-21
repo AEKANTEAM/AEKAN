@@ -187,8 +187,8 @@ else
 return false  
 end  
 end
-function CoSu(msg)
-local hash = database:sismember(bot_id..'CoSu'..msg.chat_id_, msg.sender_user_id_) 
+function creatorA(msg)
+local hash = database:sismember(bot_id..'creatorA'..msg.chat_id_, msg.sender_user_id_) 
 if hash or SudoBot(msg) or Sudo(msg) or Bot(msg)  then   
 return true 
 else 
@@ -197,7 +197,7 @@ end
 end
 function BasicConstructor(msg)
 local hash = database:sismember(bot_id..'Basic:Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or Bot(msg) then   
+if hash or SudoBot(msg) or Sudo(msg) or creatorA(msg) or Bot(msg) then   
 return true 
 else 
 return false 
@@ -205,15 +205,15 @@ end
 end
 function Constructor(msg)
 local hash = database:sismember(bot_id..'Constructor'..msg.chat_id_, msg.sender_user_id_) 
-if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or BasicConstructor(msg) or Bot(msg) then       
+if hash or SudoBot(msg) or Sudo(msg) or creatorA(msg) or BasicConstructor(msg) or Bot(msg) then       
 return true    
 else    
 return false    
 end 
 end
-function Manager(msg)
-local hash = database:sismember(bot_id..'Manager'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or BasicConstructor(msg) or Constructor(msg) or Bot(msg) then       
+function Owner(msg)
+local hash = database:sismember(bot_id..'Owner'..msg.chat_id_,msg.sender_user_id_)    
+if hash or SudoBot(msg) or Sudo(msg) or creatorA(msg) or BasicConstructor(msg) or Constructor(msg) or Bot(msg) then       
 return true    
 else    
 return false    
@@ -221,15 +221,15 @@ end
 end
 function Mod(msg)
 local hash = database:sismember(bot_id..'Mod:User'..msg.chat_id_,msg.sender_user_id_)    
-if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Bot(msg) then    
+if hash or SudoBot(msg) or Sudo(msg) or creatorA(msg) or BasicConstructor(msg) or Constructor(msg) or Owner(msg) or Bot(msg) then    
 return true    
 else    
 return false    
 end 
 end
-function Special(msg)
-local hash = database:sismember(bot_id..'Special:User'..msg.chat_id_,msg.sender_user_id_) 
-if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or Bot(msg) then    
+function Vips(msg)
+local hash = database:sismember(bot_id..'Vips:User'..msg.chat_id_,msg.sender_user_id_) 
+if hash or SudoBot(msg) or Sudo(msg) or creatorA(msg) or BasicConstructor(msg) or Constructor(msg) or Owner(msg) or Mod(msg) or Bot(msg) then    
 return true 
 else 
 return false 
@@ -237,7 +237,7 @@ end
 end
 function Bnt(msg)
 local hash = database:sismember(bot_id..'Bnt:User'..msg.chat_id_,msg.sender_user_id_) 
-if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or Special(msg) or Bot(msg) then    
+if hash or SudoBot(msg) or Sudo(msg) or creatorA(msg) or BasicConstructor(msg) or Constructor(msg) or Owner(msg) or Mod(msg) or Vips(msg) or Bot(msg) then    
 return true 
 else 
 return false 
@@ -245,7 +245,7 @@ end
 end
 function Mempaam(msg)
 local hash = database:sismember(bot_id..'Mempaam:User'..msg.chat_id_,msg.sender_user_id_) 
-if hash or SudoBot(msg) or Sudo(msg) or CoSu(msg) or BasicConstructor(msg) or Constructor(msg) or Manager(msg) or Mod(msg) or Special(msg) or Bnt(msg) or Bot(msg) then    
+if hash or SudoBot(msg) or Sudo(msg) or creatorA(msg) or BasicConstructor(msg) or Constructor(msg) or Owner(msg) or Mod(msg) or Vips(msg) or Bnt(msg) or Bot(msg) then    
 return true 
 else 
 return false 
@@ -262,17 +262,17 @@ elseif tonumber(user_id) == tonumber(bot_id) then
 var = true  
 elseif database:sismember(bot_id..'Sudo:User', user_id) then
 var = true 
-elseif database:sismember(bot_id..'CoSu'..chat_id, user_id) then
+elseif database:sismember(bot_id..'creatorA'..chat_id, user_id) then
 var = true
 elseif database:sismember(bot_id..'Basic:Constructor'..chat_id, user_id) then
 var = true
 elseif database:sismember(bot_id..'Constructor'..chat_id, user_id) then
 var = true  
-elseif database:sismember(bot_id..'Manager'..chat_id, user_id) then
+elseif database:sismember(bot_id..'Owner'..chat_id, user_id) then
 var = true 
 elseif database:sismember(bot_id..'Mod:User'..chat_id, user_id) then
 var = true  
-elseif database:sismember(bot_id..'Special:User'..chat_id, user_id) then  
+elseif database:sismember(bot_id..'Vips:User'..chat_id, user_id) then  
 var = true 
 elseif database:sismember(bot_id..'Bnt:User'..chat_id, user_id) then  
 var = true
@@ -295,18 +295,18 @@ elseif tonumber(user_id) == tonumber(bot_id) then
 var = 'البوت'
 elseif database:sismember(bot_id..'Sudo:User', user_id) then
 var = database:get(bot_id.."Sudo:Rd"..msg.chat_id_) or 'المطور'  
-elseif database:sismember(bot_id..'CoSu'..chat_id, user_id) then
-var = database:get(bot_id.."CoSu:Rd"..msg.chat_id_) or 'المالك'
+elseif database:sismember(bot_id..'creatorA'..chat_id, user_id) then
+var = database:get(bot_id.."creatorA:Rd"..msg.chat_id_) or 'المالك'
 elseif database:sismember(bot_id..'Basic:Constructor'..chat_id, user_id) then
 var = database:get(bot_id.."BasicConstructor:Rd"..msg.chat_id_) or 'المنشئ الأساسي'
 elseif database:sismember(bot_id..'Constructor'..chat_id, user_id) then
 var = database:get(bot_id.."Constructor:Rd"..msg.chat_id_) or 'المنشئ'  
-elseif database:sismember(bot_id..'Manager'..chat_id, user_id) then
-var = database:get(bot_id.."Manager:Rd"..msg.chat_id_) or 'المدير'
+elseif database:sismember(bot_id..'Owner'..chat_id, user_id) then
+var = database:get(bot_id.."Owner:Rd"..msg.chat_id_) or 'المدير'
 elseif database:sismember(bot_id..'Mod:User'..chat_id, user_id) then
 var = database:get(bot_id.."Mod:Rd"..msg.chat_id_) or 'الادمن'  
-elseif database:sismember(bot_id..'Special:User'..chat_id, user_id) then  
-var = database:get(bot_id.."Special:Rd"..msg.chat_id_) or 'المميز'
+elseif database:sismember(bot_id..'Vips:User'..chat_id, user_id) then  
+var = database:get(bot_id.."Vips:Rd"..msg.chat_id_) or 'المميز'
 elseif database:sismember(bot_id..'Bnt:User'..chat_id, user_id) then  
 var = database:get(bot_id.."Bnt:Rd"..msg.chat_id_) or 'بنت الكروب'
 elseif database:sismember(bot_id..'Mempaam:User'..chat_id, user_id) then  
@@ -324,7 +324,7 @@ var = false
 end
 return var
 end
-function Muted_User(Chat_id,User_id) 
+function Muted_Groups(Chat_id,User_id) 
 if database:sismember(bot_id..'Muted:User'..Chat_id,User_id) then
 Var = true
 else
@@ -332,7 +332,7 @@ Var = false
 end
 return Var
 end
-function Ban_User(Chat_id,User_id) 
+function Ban_Groups(Chat_id,User_id) 
 if database:sismember(bot_id..'Ban:User'..Chat_id,User_id) then
 Var = true
 else
@@ -340,7 +340,7 @@ Var = false
 end
 return Var
 end 
-function GBan_User(User_id) 
+function Ban_All_Groups(User_id) 
 if database:sismember(bot_id..'GBan:User',User_id) then
 Var = true
 else
@@ -348,7 +348,7 @@ Var = false
 end
 return Var
 end
-function Gmute_User(User_id) 
+function Muted_All_Groups(User_id) 
 if database:sismember(bot_id..'Gmute:User',User_id) then
 Var = true
 else
@@ -382,7 +382,7 @@ chat = {ID = group_id, type = 'group'}
 end
 return chat
 end
-function chat_kick(chat,user)
+function Kick_Group(chat,user)
 tdcli_function ({
 ID = "ChangeChatMemberStatus",
 chat_id_ = chat,
@@ -641,7 +641,7 @@ NAME = 'AEKAN Chat'
 link = database:get(bot_id.."Private:Group:Link"..msg.chat_id_) or ''
 ASAS = database:smembers(bot_id..'Basic:Constructor'..v)
 MNSH = database:smembers(bot_id..'Constructor'..v)
-MDER = database:smembers(bot_id..'Manager'..v)
+MDER = database:smembers(bot_id..'Owner'..v)
 MOD = database:smembers(bot_id..'Mod:User'..v)
 if k == 1 then
 t = t..'"'..v..'":{"AEKAN":"'..NAME..'",'
@@ -768,7 +768,7 @@ end
 end
 if v.MDER then
 for k,idmder in pairs(v.MDER) do
-database:sadd(bot_id..'Manager'..idg,idmder)  
+database:sadd(bot_id..'Owner'..idg,idmder)  
 end
 end
 if v.MOD then
@@ -784,13 +784,13 @@ end
 end
 send(chat,msg.id_,"\n♡∶تم رفع الملف بنجاح وتفعيل المجموعات\n♡∶ ورفع {الامنشئين الاساسين ; والمنشئين ; والمدراء; والادمنيه} بنجاح")   
 end
-local function trigger_anti_spam(msg,type)
+local function Is_Not_Spam(msg,type)
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data)
 local Name = '['..utf8.sub(data.first_name_,0,40)..'](tg://user?id='..data.id_..')'
 if type == 'kick' then 
 Text = '\n♡∶ العضــو ⤙ '..Name..'\n♡∶ قام بالتكرار هنا وتم طرده '  
 sendText(msg.chat_id_,Text,0,'md')
-chat_kick(msg.chat_id_,msg.sender_user_id_) 
+Kick_Group(msg.chat_id_,msg.sender_user_id_) 
 my_ide = msg.sender_user_id_
 msgm = msg.id_
 local num = 100
@@ -1455,7 +1455,7 @@ end
 
 end
 --------------------------------------------------------------------------------------------------------------
-if text and not Special(msg) then  
+if text and not Vips(msg) then  
 local AEKAN1_Msg = database:get(bot_id.."AEKAN1:Add:Filter:Rp2"..text..msg.chat_id_)   
 if AEKAN1_Msg then 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -1704,7 +1704,7 @@ return false
 end
 end 
 --------------------------------------------------------------------------------------------------------------
-if AEKAN_Msg and not Special(msg) then  
+if AEKAN_Msg and not Vips(msg) then  
 local AEKAN_Msg = database:get(bot_id.."Add:Filter:Rp2"..text..msg.chat_id_)   
 if AEKAN_Msg then    
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
@@ -1719,7 +1719,7 @@ return false
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if not Special(msg) and msg.content_.ID ~= "MessageChatAddMembers" and database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"flood") then 
+if not Vips(msg) and msg.content_.ID ~= "MessageChatAddMembers" and database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"flood") then 
 floods = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"flood") or 'nil'
 NUM_MSG_MAX = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodmax") or 5
 TIME_CHECK = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodtime") or 5
@@ -1727,7 +1727,7 @@ local post_count = tonumber(database:get(bot_id..'floodc:'..msg.sender_user_id_.
 if post_count > tonumber(database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodmax") or 5) then 
 local ch = msg.chat_id_
 local type = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"flood") 
-trigger_anti_spam(msg,type)  
+Is_Not_Spam(msg,type)  
 end
 database:setex(bot_id..'floodc:'..msg.sender_user_id_..':'..msg.chat_id_, tonumber(database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodtime") or 3), post_count+1) 
 local edit_id = data.text_ or 'nil'  
@@ -1799,7 +1799,7 @@ end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if database:get(bot_id..'Lock:text'..msg.chat_id_) and not Special(msg) then       
+if database:get(bot_id..'Lock:text'..msg.chat_id_) and not Vips(msg) then       
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})   
 return false     
 end     
@@ -1807,36 +1807,36 @@ end
 if msg.content_.ID == "MessageChatAddMembers" then 
 database:incr(bot_id..'Add:Memp'..msg.chat_id_..':'..msg.sender_user_id_) 
 end
-if msg.content_.ID == "MessageChatAddMembers" and not Special(msg) then   
+if msg.content_.ID == "MessageChatAddMembers" and not Vips(msg) then   
 if database:get(bot_id.."lock:AddMempar"..msg.chat_id_) == 'kick' then
 local mem_id = msg.content_.members_  
 for i=0,#mem_id do  
-chat_kick(msg.chat_id_,mem_id[i].id_)
+Kick_Group(msg.chat_id_,mem_id[i].id_)
 end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == "MessageChatJoinByLink" and not Special(msg) then 
+if msg.content_.ID == "MessageChatJoinByLink" and not Vips(msg) then 
 if database:get(bot_id.."lock:Join"..msg.chat_id_) == 'kick' then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 return false  
 end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("@[%a%d_]+") or msg.content_.caption_:match("@(.+)") then  
-if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" and not Special(msg) then   
+if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" and not Vips(msg) then   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ked" and not Special(msg) then    
+elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ked" and not Vips(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "kick" and not Special(msg) then    
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "kick" and not Vips(msg) then    
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ktm" and not Special(msg) then    
+elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ktm" and not Vips(msg) then    
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "warn" and not Special(msg) then   
+elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "warn" and not Vips(msg) then   
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0, "*♡∶ عذرا يا ⤙* {[@"..data.username_.."]}\n*♡∶ ممنوع أرسال المعرفات هنا*\n" ) 
@@ -1850,18 +1850,18 @@ end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("@[%a%d_]+") or text and text:match("@(.+)") then    
-if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" and not Special(msg) then   
+if database:get(bot_id.."lock:user:name"..msg.chat_id_) == "del" and not Vips(msg) then   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ked" and not Special(msg) then    
+elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ked" and not Vips(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "kick" and not Special(msg) then    
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "kick" and not Vips(msg) then    
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ktm" and not Special(msg) then    
+elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "ktm" and not Vips(msg) then    
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "warn" and not Special(msg) then   
+elseif database:get(bot_id.."lock:user:name"..msg.chat_id_) == "warn" and not Vips(msg) then   
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0, "*♡∶ عذرا يا ⤙* {[@"..data.username_.."]}\n*♡∶ ممنوع أرسال المعرفات هنا*\n" ) 
@@ -1881,7 +1881,7 @@ elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Mempa
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "kick" and not Mempaam(msg) then    
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ktm" and not Mempaam(msg) then    
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -1906,7 +1906,7 @@ elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ked" and not Mempa
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "kick" and not Mempaam(msg) then    
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:hashtak"..msg.chat_id_) == "ktm" and not Mempaam(msg) then    
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -1925,18 +1925,18 @@ end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
 if msg.content_.caption_:match("/[%a%d_]+") or msg.content_.caption_:match("/(.+)") then  
-if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" and not Special(msg) then   
+if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" and not Vips(msg) then   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ked" and not Special(msg) then    
+elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ked" and not Vips(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "kick" and not Special(msg) then    
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "kick" and not Vips(msg) then    
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ktm" and not Special(msg) then    
+elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ktm" and not Vips(msg) then    
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "warn" and not Special(msg) then   
+elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "warn" and not Vips(msg) then   
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0, "*♡∶ عذرا يا ⤙* {[@"..data.username_.."]}\n*♡∶ ممنوع أرسال الشارحه هنا*\n" ) 
@@ -1950,18 +1950,18 @@ end
 end
 --------------------------------------------------------------------------------------------------------------
 if text and text:match("/[%a%d_]+") or text and text:match("/(.+)") then
-if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" and not Special(msg) then   
+if database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "del" and not Vips(msg) then   
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ked" and not Special(msg) then    
+elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ked" and not Vips(msg) then    
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "kick" and not Special(msg) then    
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "kick" and not Vips(msg) then    
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ktm" and not Special(msg) then    
+elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "ktm" and not Vips(msg) then    
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "warn" and not Special(msg) then   
+elseif database:get(bot_id.."lock:Cmd"..msg.chat_id_) == "warn" and not Vips(msg) then   
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0, "*♡∶ عذرا يا ⤙* {[@"..data.username_.."]}\n*♡∶ ممنوع أرسال الشارحه هنا*\n" ) 
@@ -1974,20 +1974,20 @@ end
 end
 --------------------------------------------------------------------------------------------------------------
 if msg.content_.caption_ then 
-if not Special(msg) then 
+if not Vips(msg) then 
 if msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp][Ss]://") or msg.content_.caption_:match("[Hh][Tt][Tt][Pp]://") or msg.content_.caption_:match("[Ww][Ww][Ww].") or msg.content_.caption_:match(".[Cc][Oo][Mm]") or msg.content_.caption_:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or msg.content_.caption_:match(".[Pp][Ee]") or msg.content_.caption_:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or msg.content_.caption_:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or msg.content_.caption_:match("[Tt].[Mm][Ee]/") then 
-if database:get(bot_id.."Lock:Link"..msg.chat_id_) == "del" and not Special(msg) then
+if database:get(bot_id.."Lock:Link"..msg.chat_id_) == "del" and not Vips(msg) then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "ked" and not Special(msg) then
+elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "ked" and not Vips(msg) then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "kick" and not Special(msg) then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "kick" and not Vips(msg) then
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "ktm" and not Special(msg) then
+elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "ktm" and not Vips(msg) then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "warn" and not Special(msg) then
+elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "warn" and not Vips(msg) then
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0, "*♡∶ عذرا يا ⤙* {[@"..data.username_.."]}\n*♡∶ ممنوع أرسال الروابط هنا*\n" ) 
@@ -2001,19 +2001,19 @@ end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or text and text:match("[Hh][Tt][Tt][Pp][Ss]://") or text and text:match("[Hh][Tt][Tt][Pp]://") or text and text:match("[Ww][Ww][Ww].") or text and text:match(".[Cc][Oo][Mm]") or text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or text and text:match(".[Pp][Ee]") or text and text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or text and text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or text and text:match("[Tt].[Mm][Ee]/") and not Special(msg) then
-if database:get(bot_id.."Lock:Link"..msg.chat_id_) == "del" and not Special(msg) then
+if text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Mm][Ee]/") or text and text:match("[Hh][Tt][Tt][Pp][Ss]://") or text and text:match("[Hh][Tt][Tt][Pp]://") or text and text:match("[Ww][Ww][Ww].") or text and text:match(".[Cc][Oo][Mm]") or text and text:match("[Tt][Ee][Ll][Ee][Gg][Rr][Aa][Mm].[Dd][Oo][Gg]/") or text and text:match(".[Pp][Ee]") or text and text:match("[Tt][Ll][Gg][Rr][Mm].[Mm][Ee]/") or text and text:match("[Jj][Oo][Ii][Nn][Cc][Hh][Aa][Tt]/") or text and text:match("[Tt].[Mm][Ee]/") and not Vips(msg) then
+if database:get(bot_id.."Lock:Link"..msg.chat_id_) == "del" and not Vips(msg) then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "ked" and not Special(msg) then 
+elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "ked" and not Vips(msg) then 
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "kick" and not Special(msg) then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "kick" and not Vips(msg) then
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
-elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "ktm" and not Special(msg) then
+elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "ktm" and not Vips(msg) then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})
-elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "warn" and not Special(msg) then
+elseif database:get(bot_id.."Lock:Link"..msg.chat_id_) == "warn" and not Vips(msg) then
 tdcli_function({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
 if data.username_ ~= false then
 send(msg.chat_id_,0, "*♡∶ عذرا يا ⤙* {[@"..data.username_.."]}\n*♡∶ ممنوع أرسال الروابط هنا*\n" ) 
@@ -2025,14 +2025,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == 'MessagePhoto' and not Special(msg) then     
+if msg.content_.ID == 'MessagePhoto' and not Vips(msg) then     
 if database:get(bot_id.."lock:Photo"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Photo"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Photo"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Photo"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2049,14 +2049,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == 'MessageVideo' and not Special(msg) then     
+if msg.content_.ID == 'MessageVideo' and not Vips(msg) then     
 if database:get(bot_id.."lock:Video"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Video"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Video"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Video"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2073,14 +2073,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == 'MessageAnimation' and not Special(msg) then     
+if msg.content_.ID == 'MessageAnimation' and not Vips(msg) then     
 if database:get(bot_id.."lock:Animation"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Animation"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Animation"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Animation"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2097,14 +2097,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.game_ and not Special(msg) then     
+if msg.content_.game_ and not Vips(msg) then     
 if database:get(bot_id.."lock:geam"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:geam"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:geam"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:geam"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2121,14 +2121,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == 'MessageAudio' and not Special(msg) then     
+if msg.content_.ID == 'MessageAudio' and not Vips(msg) then     
 if database:get(bot_id.."lock:Audio"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Audio"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Audio"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Audio"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2145,14 +2145,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == 'MessageVoice' and not Special(msg) then     
+if msg.content_.ID == 'MessageVoice' and not Vips(msg) then     
 if database:get(bot_id.."lock:vico"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:vico"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:vico"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:vico"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2169,14 +2169,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.reply_markup_ and msg.reply_markup_.ID == 'ReplyMarkupInlineKeyboard' and not Special(msg) then     
+if msg.reply_markup_ and msg.reply_markup_.ID == 'ReplyMarkupInlineKeyboard' and not Vips(msg) then     
 if database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Keyboard"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2193,14 +2193,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == 'MessageSticker' and not Special(msg) then     
+if msg.content_.ID == 'MessageSticker' and not Vips(msg) then     
 if database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Sticker"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2216,14 +2216,14 @@ end,nil)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
-if tonumber(msg.via_bot_user_id_) ~= 0 and not Special(msg) then
+if tonumber(msg.via_bot_user_id_) ~= 0 and not Vips(msg) then
 if database:get(bot_id.."lock:inline"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:inline"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:inline"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:inline"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2240,7 +2240,7 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.forward_info_ and not Special(msg) then     
+if msg.forward_info_ and not Vips(msg) then     
 if database:get(bot_id.."lock:forward"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 return false
@@ -2249,7 +2249,7 @@ ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 return false
 elseif database:get(bot_id.."lock:forward"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 return false
 elseif database:get(bot_id.."lock:forward"..msg.chat_id_) == "ktm" then
@@ -2269,14 +2269,14 @@ return false
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == 'MessageDocument' and not Special(msg) then     
+if msg.content_.ID == 'MessageDocument' and not Vips(msg) then     
 if database:get(bot_id.."lock:Document"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Document"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Document"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Document"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2293,14 +2293,14 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == "MessageUnsupported" and not Special(msg) then      
+if msg.content_.ID == "MessageUnsupported" and not Vips(msg) then      
 if database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Unsupported"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2320,14 +2320,14 @@ end
 if msg.content_.entities_ then 
 if msg.content_.entities_[0] then 
 if msg.content_.entities_[0] and msg.content_.entities_[0].ID == "MessageEntityUrl" or msg.content_.entities_[0].ID == "MessageEntityTextUrl" then      
-if not Special(msg) then
+if not Vips(msg) then
 if database:get(bot_id.."lock:Markdaun"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Markdaun"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Markdaun"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Markdaun"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2338,14 +2338,14 @@ end
 end
 end 
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.ID == 'MessageContact' and not Special(msg) then      
+if msg.content_.ID == 'MessageContact' and not Vips(msg) then      
 if database:get(bot_id.."lock:Contact"..msg.chat_id_) == "del" then
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Contact"..msg.chat_id_) == "ked" then
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Contact"..msg.chat_id_) == "kick" then
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Contact"..msg.chat_id_) == "ktm" then
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2362,7 +2362,7 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_.text_ and not Special(msg) then  
+if msg.content_.text_ and not Vips(msg) then  
 local _nl, ctrl_ = string.gsub(text, '%c', '')  
 local _nl, real_ = string.gsub(text, '%d', '')   
 sens = 400  
@@ -2372,7 +2372,7 @@ elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "ked" and string.len(m
 ked(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "kick" and string.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
-chat_kick(msg.chat_id_,msg.sender_user_id_)
+Kick_Group(msg.chat_id_,msg.sender_user_id_)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 elseif database:get(bot_id.."lock:Spam"..msg.chat_id_) == "ktm" and string.len(msg.content_.text_) > (sens) or ctrl_ > (sens) or real_ > (sens) then 
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_)
@@ -2388,7 +2388,7 @@ end,nil)
 DeleteMessage(msg.chat_id_,{[0] = msg.id_}) 
 end
 end
-if msg.content_.ID == 'MessageSticker' and not Manager(msg) then 
+if msg.content_.ID == 'MessageSticker' and not Owner(msg) then 
 local filter = database:smembers(bot_id.."filtersteckr"..msg.chat_id_)
 for k,v in pairs(filter) do
 if v == msg.content_.sticker_.set_id_ then
@@ -2408,7 +2408,7 @@ end
 ------------------------------------------------------------------------
 
 ------------------------------------------------------------------------
-if msg.content_.ID == 'MessagePhoto' and not Manager(msg) then 
+if msg.content_.ID == 'MessagePhoto' and not Owner(msg) then 
 local filter = database:smembers(bot_id.."filterphoto"..msg.chat_id_)
 for k,v in pairs(filter) do
 if v == msg.content_.photo_.id_ then
@@ -2425,7 +2425,7 @@ end
 end
 end
 ------------------------------------------------------------------------
-if msg.content_.ID == 'MessageAnimation' and not Manager(msg) then 
+if msg.content_.ID == 'MessageAnimation' and not Owner(msg) then 
 local filter = database:smembers(bot_id.."filteranimation"..msg.chat_id_)
 for k,v in pairs(filter) do
 if v == msg.content_.animation_.animation_.persistent_id_ then
@@ -2477,7 +2477,7 @@ send(msg.chat_id_, msg.id_,"*♡∶ حساب المالك محذوف*")
 return false  
 end
 local UserName = (b.username_ or "SoalfLove") 
-database:sadd(bot_id..'CoSu'..msg.chat_id_, owner_id)
+database:sadd(bot_id..'creatorA'..msg.chat_id_, owner_id)
 end,nil)   
 end
 end
@@ -2617,7 +2617,7 @@ send(msg.chat_id_, msg.id_,"*♡∶ حساب المالك محذوف*")
 return false  
 end
 local UserName = (b.username_ or "SoalfLove") 
-database:sadd(bot_id..'CoSu'..msg.chat_id_, owner_id)
+database:sadd(bot_id..'creatorA'..msg.chat_id_, owner_id)
 end,nil)   
 end
 end
@@ -2991,7 +2991,7 @@ end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if text == "قفل الدردشه" and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+if text == "قفل الدردشه" and msg.reply_to_message_id_ == 0 and Owner(msg) then 
 database:set(bot_id.."Lock:text"..msg.chat_id_,true) 
 Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل الدردشه")  
 return false
@@ -3080,7 +3080,7 @@ database:del(bot_id.."Lock:AddMempar"..msg.chat_id_)
 Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فتح اضافة الاعضاء")  
 return false
 end 
-if text == "فتح الدردشه" and msg.reply_to_message_id_ == 0 and Manager(msg) then  
+if text == "فتح الدردشه" and msg.reply_to_message_id_ == 0 and Owner(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -4063,7 +4063,7 @@ send(msg.chat_id_, msg.id_, "*♡∶ لا يمكنك حظر البوت عام*")
 return false 
 end
 database:sadd(bot_id..'GBan:User', result.sender_user_id_)
-chat_kick(result.chat_id_, result.sender_user_id_)
+Kick_Group(result.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},
 function(arg,data) 
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -4574,13 +4574,13 @@ return false
 end
 ------------------------------------------------------------------------
 if text == ("مسح المالكين") and Sudo(msg) or text == ("حذف المالكين") and Sudo(msg) then
-database:del(bot_id..'CoSu'..msg.chat_id_)
+database:del(bot_id..'creatorA'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '\n *♡∶ تم مسح المالكين*')
 return false
 end
 
 if text == 'المالكين' and Sudo(msg) then
-local list = database:smembers(bot_id..'CoSu'..msg.chat_id_)
+local list = database:smembers(bot_id..'creatorA'..msg.chat_id_)
 malk = "\n *قائمة المالكين* \n*•━━━━━━━━━━━━━•*\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -4606,7 +4606,7 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-local list = database:smembers(bot_id..'CoSu'..msg.chat_id_)
+local list = database:smembers(bot_id..'creatorA'..msg.chat_id_)
 malk = "\n *♡∶ وينكم تعالوا يريدوكم بالكروب* \n*•━━━━━━━━━━━━━•*\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -4633,7 +4633,7 @@ end
 return false
 end
 function start_function(extra, result, success)
-database:sadd(bot_id..'CoSu'..msg.chat_id_, result.sender_user_id_)
+database:sadd(bot_id..'creatorA'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n *♡∶ العضو ⤙* ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
 status  = '\n *♡∶ تم ترقيته مالك*'
@@ -4660,7 +4660,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 send(msg.chat_id_,msg.id_," ♡∶ عذرا عزيزي المستخدم هاذا معرف قناة يرجى استخدام الامر بصوره صحيحه !")   
 return false 
 end      
-database:sadd(bot_id..'CoSu'..msg.chat_id_, result.id_)
+database:sadd(bot_id..'creatorA'..msg.chat_id_, result.id_)
 usertext = '\n *♡∶ العضو ⤙* ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 status  = '\n *♡∶ تم ترقيته مالك*'
 texts = usertext..status
@@ -4683,7 +4683,7 @@ send(msg.chat_id_, msg.id_,' ♡∶ لا تستطيع استخدام البوت 
 end
 return false
 end
-database:sadd(bot_id..'CoSu'..msg.chat_id_, userid)
+database:sadd(bot_id..'creatorA'..msg.chat_id_, userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n *♡∶ العضو ⤙* ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -4707,7 +4707,7 @@ end
 return false
 end
 function start_function(extra, result, success)
-database:srem(bot_id..'CoSu'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'creatorA'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n *♡∶ العضو ⤙* ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
 status  = '\n *♡∶ تم تنزيله من المالكين*'
@@ -4730,7 +4730,7 @@ return false
 end
 function start_function(extra, result, success)
 if result.id_ then
-database:srem(bot_id..'CoSu'..msg.chat_id_, result.id_)
+database:srem(bot_id..'creatorA'..msg.chat_id_, result.id_)
 usertext = '\n *♡∶ العضو ⤙* ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 status  = '\n *♡∶ تم تنزيله من المالكين*'
 texts = usertext..status
@@ -4753,7 +4753,7 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-database:srem(bot_id..'CoSu'..msg.chat_id_, userid)
+database:srem(bot_id..'creatorA'..msg.chat_id_, userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n *♡∶ العضو ⤙* ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -4767,7 +4767,7 @@ end;end,nil)
 return false
 end
 ------------------------------------------------------------------------
-if text == ("مسح الاساسين") and CoSu(msg) or text == ("حذف الاساسيين") and CoSu(msg) then
+if text == ("مسح الاساسين") and creatorA(msg) or text == ("حذف الاساسيين") and creatorA(msg) then
 database:del(bot_id..'Basic:Constructor'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '\n*♡∶ تم مسح قائمه المنشئين الاساسين*')
 return false
@@ -4860,7 +4860,7 @@ Reply_Status(msg,msg.sender_user_id_,"reply","*♡∶ قام بنشر صوره �
 DeleteMessage(msg.chat_id_,{[0] = tonumber(msg.id_),msg.id_})   
 end   
 end
-if text == 'المنشئين الاساسين' and CoSu(msg) then
+if text == 'المنشئين الاساسين' and creatorA(msg) then
 local list = database:smembers(bot_id..'Basic:Constructor'..msg.chat_id_)
 a = "\n*♡∶ قائمة المنشئين الاساسين* \n*•━━━━━━━━━━━━━•*\n"
 for k,v in pairs(list) do
@@ -4904,7 +4904,7 @@ end
 send(msg.chat_id_, msg.id_, a)
 end
 
-if text == ("رفع منشئ اساسي") and msg.reply_to_message_id_ and CoSu(msg) then
+if text == ("رفع منشئ اساسي") and msg.reply_to_message_id_ and creatorA(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -4925,7 +4925,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^رفع منشئ اساسي @(.*)$") and CoSu(msg) then
+if text and text:match("^رفع منشئ اساسي @(.*)$") and creatorA(msg) then
 local username = text:match("^رفع منشئ اساسي @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -4954,7 +4954,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^رفع منشئ اساسي (%d+)$") and CoSu(msg) then
+if text and text:match("^رفع منشئ اساسي (%d+)$") and creatorA(msg) then
 local userid = text:match("^رفع منشئ اساسي (%d+)$") 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -4978,7 +4978,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
-if text == ("تنزيل منشئ اساسي") and msg.reply_to_message_id_ and CoSu(msg) then
+if text == ("تنزيل منشئ اساسي") and msg.reply_to_message_id_ and creatorA(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -4999,7 +4999,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^تنزيل منشئ اساسي @(.*)$") and CoSu(msg) then
+if text and text:match("^تنزيل منشئ اساسي @(.*)$") and creatorA(msg) then
 local username = text:match("^تنزيل منشئ اساسي @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -5024,7 +5024,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^تنزيل منشئ اساسي (%d+)$") and CoSu(msg) then
+if text and text:match("^تنزيل منشئ اساسي (%d+)$") and creatorA(msg) then
 local userid = text:match("^تنزيل منشئ اساسي (%d+)$") 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -5147,7 +5147,7 @@ return false
 end
 local UserName = (b.username_ or "SoalfLove")
 send(msg.chat_id_, msg.id_,"*♡∶ تم ترقية مالك الكروب* : ["..b.first_name_.."](T.me/"..UserName..")")  
-database:sadd(bot_id.."CoSu"..msg.chat_id_,b.id_)
+database:sadd(bot_id.."creatorA"..msg.chat_id_,b.id_)
 end,nil)   
 end,nil)   
 end
@@ -5294,7 +5294,7 @@ end;end,nil)
 end
 ------------------------------------------------------------------------
 if text == 'مسح المدراء' and Constructor(msg) or text == 'حذف المدراء' and Constructor(msg) then
-database:del(bot_id..'Manager'..msg.chat_id_)
+database:del(bot_id..'Owner'..msg.chat_id_)
 texts = '*♡∶ تم مسح المدراء* '
 send(msg.chat_id_, msg.id_, texts)
 end
@@ -5308,7 +5308,7 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-local list = database:smembers(bot_id..'Manager'..msg.chat_id_)
+local list = database:smembers(bot_id..'Owner'..msg.chat_id_)
 cc = "\n*♡∶ قائمة المدراء* \n*•━━━━━━━━━━━━━•*\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -5333,7 +5333,7 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-local list = database:smembers(bot_id..'Manager'..msg.chat_id_)
+local list = database:smembers(bot_id..'Owner'..msg.chat_id_)
 cc = "\n*♡∶ وينكم تعالوا يريدوكم بالكروب* \n*•━━━━━━━━━━━━━•*\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -5359,7 +5359,7 @@ end
 return false
 end
 function start_function(extra, result, success)
-database:sadd(bot_id..'Manager'..msg.chat_id_, result.sender_user_id_)
+database:sadd(bot_id..'Owner'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
 status  = '\n*♡∶ الايدي ⤙* `'..result.sender_user_id_..'`\n*♡∶ تم ترقيته مدير*'
@@ -5386,7 +5386,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 send(msg.chat_id_,msg.id_,"*♡∶ عذراً عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه*")   
 return false 
 end      
-database:sadd(bot_id..'Manager'..msg.chat_id_, result.id_)
+database:sadd(bot_id..'Owner'..msg.chat_id_, result.id_)
 usertext = '\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 status  = '\n*♡∶ تم ترقيته مدير*'
 texts = usertext..status
@@ -5410,7 +5410,7 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-database:sadd(bot_id..'Manager'..msg.chat_id_, userid)
+database:sadd(bot_id..'Owner'..msg.chat_id_, userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -5434,7 +5434,7 @@ end
 return false
 end
 function start_function(extra, result, success)
-database:srem(bot_id..'Manager'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'Owner'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
 status  = '\n*♡∶ الايدي ⤙* `'..result.sender_user_id_..'`\n*♡∶ تم تنزيله من المدراء*'
@@ -5457,7 +5457,7 @@ return false
 end
 function start_function(extra, result, success)
 if result.id_ then
-database:srem(bot_id..'Manager'..msg.chat_id_, result.id_)
+database:srem(bot_id..'Owner'..msg.chat_id_, result.id_)
 usertext = '\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 status  = '\n*♡∶ تم تنزيله من المدراء*'
 texts = usertext..status
@@ -5480,7 +5480,7 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-database:srem(bot_id..'Manager'..msg.chat_id_, userid)
+database:srem(bot_id..'Owner'..msg.chat_id_, userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -5494,7 +5494,7 @@ end;end,nil)
 return false
 end
 ------------------------------------------------------------------------
-if text ==("رفع الادمنيه") and Manager(msg) then
+if text ==("رفع الادمنيه") and Owner(msg) then
 tdcli_function ({ID = "GetChannelMembers",channel_id_ = msg.chat_id_:gsub("-100",""),filter_ = {ID = "ChannelMembersAdministrators"},offset_ = 0,limit_ = 100},function(arg,data) 
 local num2 = 0
 local admins = data.members_
@@ -5520,11 +5520,11 @@ send(msg.chat_id_, msg.id_,"♡∶ تمت ترقية { "..num2.." } من ادم�
 end
 end,nil)   
 end
-if text == 'مسح الادمنيه' and Manager(msg) or text == 'حذف الادمنيه' and Manager(msg) then
+if text == 'مسح الادمنيه' and Owner(msg) or text == 'حذف الادمنيه' and Owner(msg) then
 database:del(bot_id..'Mod:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*♡∶ تم مسح الادمنيه*  ')
 end
-if text == ("الادمنيه") and Manager(msg) then
+if text == ("الادمنيه") and Owner(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -5574,7 +5574,7 @@ d = "*♡∶ لا يوجد ادمنيه*"
 end
 send(msg.chat_id_, msg.id_, d)
 end
-if text == ("رفع ادمن") and msg.reply_to_message_id_ and Manager(msg) then
+if text == ("رفع ادمن") and msg.reply_to_message_id_ and Owner(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -5599,7 +5599,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^رفع ادمن @(.*)$") and Manager(msg) then
+if text and text:match("^رفع ادمن @(.*)$") and Owner(msg) then
 local username = text:match("^رفع ادمن @(.*)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -5632,7 +5632,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^رفع ادمن (%d+)$") and Manager(msg) then
+if text and text:match("^رفع ادمن (%d+)$") and Owner(msg) then
 local userid = text:match("^رفع ادمن (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -5660,7 +5660,7 @@ send(msg.chat_id_, msg.id_, usertext..status)
 end;end,nil)
 return false
 end
-if text == ("تنزيل ادمن") and msg.reply_to_message_id_ and Manager(msg) then
+if text == ("تنزيل ادمن") and msg.reply_to_message_id_ and Owner(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -5681,7 +5681,7 @@ end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, start_function, nil)
 return false
 end
-if text and text:match("^تنزيل ادمن @(.*)$") and Manager(msg) then
+if text and text:match("^تنزيل ادمن @(.*)$") and Owner(msg) then
 local username = text:match("^تنزيل ادمن @(.*)$") 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -5706,7 +5706,7 @@ end
 tdcli_function ({ID = "SearchPublicChat",username_ = username}, start_function, nil)
 return false
 end
-if text and text:match("^تنزيل ادمن (%d+)$") and Manager(msg) then
+if text and text:match("^تنزيل ادمن (%d+)$") and Owner(msg) then
 local userid = text:match("^تنزيل ادمن (%d+)$")
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -5969,7 +5969,7 @@ usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.us
 statusk  = '\n*♡∶ الايدي ⤙* `'..result.sender_user_id_..'` \n*♡∶ تم طرده*'
 send(msg.chat_id_, msg.id_, usertext..statusk)
 end,nil)
-chat_kick(result.chat_id_, result.sender_user_id_)
+Kick_Group(result.chat_id_, result.sender_user_id_)
 end,nil)   
 end
 end
@@ -6016,7 +6016,7 @@ end
 usertext = '\n*♡∶ العضو ⤙* ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 statusk  = '\n*♡∶ تم طرده*'
 texts = usertext..statusk
-chat_kick(msg.chat_id_, result.id_)
+Kick_Group(msg.chat_id_, result.id_)
 send(msg.chat_id_, msg.id_, texts)
 end,nil)   
 end
@@ -6059,7 +6059,7 @@ if msg.can_be_deleted_ == false then
 send(msg.chat_id_, msg.id_,'*♡∶ البوت ليس مشرف يرجى ترقيتي !*') 
 return false  
 end
-chat_kick(msg.chat_id_, userid)
+Kick_Group(msg.chat_id_, userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
  usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -6077,11 +6077,11 @@ end
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 if text == 'مسح المميزين' and Mod(msg) or text == 'حذف المميزين' and Mod(msg) then
-database:del(bot_id..'Special:User'..msg.chat_id_)
+database:del(bot_id..'Vips:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*♡∶ تم مسح قائمة المميزين*  ')
 end
 if text == ("المميزين") and Mod(msg) then
-local list = database:smembers(bot_id..'Special:User'..msg.chat_id_)
+local list = database:smembers(bot_id..'Vips:User'..msg.chat_id_)
 e = "\n*♡∶ قائمة مميزين الكروب* \n*•━━━━━━━━━━━━━•*\n"
 for k,v in pairs(list) do
 local username = database:get(bot_id.."user:Name" .. v)
@@ -6111,7 +6111,7 @@ send(msg.chat_id_, msg.id_,'*♡∶ تم تعطيل الرفع من قبل ال�
 return false
 end
 function start_function(extra, result, success)
-database:sadd(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
+database:sadd(bot_id..'Vips:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
 local  statuss  = '\n*♡∶ الايدي ⤙* `'..result.sender_user_id_..'`\n*♡∶ تم ترقيته مميز هنا* '
@@ -6142,7 +6142,7 @@ if (result and result.type_ and result.type_.ID == "ChannelChatInfo") then
 send(msg.chat_id_,msg.id_,"*♡∶ عذراً عزيزي المستخدم هذا معرف قناة يرجى استخدام الامر بصوره صحيحه*")   
 return false 
 end      
-database:sadd(bot_id..'Special:User'..msg.chat_id_, result.id_)
+database:sadd(bot_id..'Vips:User'..msg.chat_id_, result.id_)
 usertext = '\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 local  statuss  = '\n*♡∶ تم ترقيته مميز هنا*'
 texts = usertext..statuss
@@ -6170,7 +6170,7 @@ if database:get(bot_id..'Lock:Add:Bot'..msg.chat_id_) and not Constructor(msg) t
 send(msg.chat_id_, msg.id_,'*♡∶ تم تعطيل الرفع من قبل المنشئين*') 
 return false
 end
-database:sadd(bot_id..'Special:User'..msg.chat_id_, userid)
+database:sadd(bot_id..'Vips:User'..msg.chat_id_, userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n*♡∶ العضو ⤙* ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -6195,7 +6195,7 @@ end
 return false
 end
 function start_function(extra, result, success)
-database:srem(bot_id..'Special:User'..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id..'Vips:User'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
 status  = '\n*♡∶ الايدي ⤙* `'..result.sender_user_id_..'`\n*♡∶ تم تنزيله من المميزين*'
@@ -6218,7 +6218,7 @@ return false
 end
 function start_function(extra, result, success)
 if result.id_ then
-database:srem(bot_id..'Special:User'..msg.chat_id_, result.id_)
+database:srem(bot_id..'Vips:User'..msg.chat_id_, result.id_)
 usertext = '\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 status  = '\n*♡∶ تم تنزيله من المميزين*'
 texts = usertext..status
@@ -6241,7 +6241,7 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-database:srem(bot_id..'Special:User'..msg.chat_id_, userid)
+database:srem(bot_id..'Vips:User'..msg.chat_id_, userid)
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -6670,7 +6670,7 @@ usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.us
 status  = '\n*♡∶ الايدي ⤙* `'..result.sender_user_id_..'`\n*♡∶ تم حظره*'
 send(msg.chat_id_, msg.id_, usertext..status)
 end,nil)
-chat_kick(result.chat_id_, result.sender_user_id_)
+Kick_Group(result.chat_id_, result.sender_user_id_)
 end,nil)   
 end
 end
@@ -6706,7 +6706,7 @@ database:sadd(bot_id..'Ban:User'..msg.chat_id_, result.id_)
 usertext = '\n*♡∶ المستخدم ⤙ *['..result.title_..'](t.me/'..(username or 'SoalfLove')..')'
 status  = '\n*♡∶ تم حظره*'
 texts = usertext..status
-chat_kick(msg.chat_id_, result.id_)
+Kick_Group(msg.chat_id_, result.id_)
 send(msg.chat_id_, msg.id_, texts)
 end,nil)   
 end
@@ -6750,7 +6750,7 @@ send(msg.chat_id_, msg.id_,'*♡∶ البوت ليس مشرف يرجى ترقي
 return false  
 end
 database:sadd(bot_id..'Ban:User'..msg.chat_id_, userid)
-chat_kick(msg.chat_id_, userid)  
+Kick_Group(msg.chat_id_, userid)  
 tdcli_function ({ID = "GetUser",user_id_ = userid},function(arg,data) 
 if data.first_name_ then
 usertext = '\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'
@@ -8159,7 +8159,7 @@ database:sadd(bot_id.."AEKAN:Constructor"..Groups[i], v)
 end
 local list3 = database:smembers('AEKAN:'..bot_id..'owners:'..Groups[i])
 for k,v in pairs(list3) do
-database:sadd(bot_id.."AEKAN:Manager"..Groups[i], v)
+database:sadd(bot_id.."AEKAN:Owner"..Groups[i], v)
 end
 local list4 = database:smembers('AEKAN:'..bot_id..'mods:'..Groups[i])
 for k,v in pairs(list4) do
@@ -8206,7 +8206,7 @@ database:del(bot_id..'Set:Text:Dev:Bot'..msg.chat_id_)
 send(msg.chat_id_, msg.id_,'*♡∶ تم حفظ كليشه المطور* ')
 return false
 end
-if text == 'تعين الايدي' and Manager(msg) then
+if text == 'تعين الايدي' and Owner(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -8234,7 +8234,7 @@ send(msg.chat_id_, msg.id_,Text)
 return false  
 end 
 if text == 'حذف الايدي' or text == 'مسح الايدي' then
-if Manager(msg) then
+if Owner(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -8281,7 +8281,7 @@ if aeko.members_[i].status_.ID == "ChatMemberStatusEditor" then
 x = x + 1 
 end
 if tonumber(admins[i].user_id_) ~= tonumber(bot_id) then
-chat_kick(msg.chat_id_,admins[i].user_id_)
+Kick_Group(msg.chat_id_,admins[i].user_id_)
 end
 c = c + 1
 end     
@@ -8545,7 +8545,7 @@ return false
 end
 end
 if text == 'ادمن' then
-if not Manager(msg) then 
+if not Owner(msg) then 
 send(msg.chat_id_, msg.id_,"*♡∶ تستطيع اضافه صلاحيات {مميز - عضو} \n♡∶ ارسل الصلاحيه مجددا*\n") 
 return false
 end
@@ -8582,15 +8582,15 @@ local blakrt = database:get(bot_id.."Comd:New:rt:bot:"..RTPA..msg.chat_id_)
 if blakrt == 'مميز' and Mod(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'..'\n*♡∶ تم رفعه* '..RTPA..' *هنا*\n')   
 database:set(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_,RTPA) 
-database:sadd(bot_id..'Special:User'..msg.chat_id_,result.sender_user_id_)  
-elseif blakrt == 'ادمن' and Manager(msg) then 
+database:sadd(bot_id..'Vips:User'..msg.chat_id_,result.sender_user_id_)  
+elseif blakrt == 'ادمن' and Owner(msg) then 
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'..'\n*♡∶ تم رفعه* '..RTPA..' *هنا*\n')   
 database:set(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_,RTPA)
 database:sadd(bot_id..'Mod:User'..msg.chat_id_,result.sender_user_id_)  
 elseif blakrt == 'مدير' and Constructor(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'..'\n*♡∶ تم رفعه* '..RTPA..' *هنا*\n')   
 database:set(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_,RTPA)  
-database:sadd(bot_id..'Manager'..msg.chat_id_,result.sender_user_id_)  
+database:sadd(bot_id..'Owner'..msg.chat_id_,result.sender_user_id_)  
 elseif blakrt == 'عضو' and Mod(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'..'\n*♡∶ تم رفعه* '..RTPA..' *هنا*\n')   
 end
@@ -8616,15 +8616,15 @@ tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,
 local blakrt = database:get(bot_id.."Comd:New:rt:bot:"..RTPA..msg.chat_id_)
 if blakrt == 'مميز' and Mod(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'..'\n*♡∶ تم تنريله من* '..RTPA..' *هنا*\n')   
-database:srem(bot_id..'Special:User'..msg.chat_id_,result.sender_user_id_)  
+database:srem(bot_id..'Vips:User'..msg.chat_id_,result.sender_user_id_)  
 database:del(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_)
-elseif blakrt == 'ادمن' and Manager(msg) then 
+elseif blakrt == 'ادمن' and Owner(msg) then 
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'..'\n*♡∶ تم تنريله من* '..RTPA..' *هنا*\n')   
 database:srem(bot_id..'Mod:User'..msg.chat_id_,result.sender_user_id_) 
 database:del(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_)
 elseif blakrt == 'مدير' and Constructor(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'..'\n*♡∶ تم تنريله من* '..RTPA..' *هنا*\n')   
-database:srem(bot_id..'Manager'..msg.chat_id_,result.sender_user_id_)  
+database:srem(bot_id..'Owner'..msg.chat_id_,result.sender_user_id_)  
 database:del(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.sender_user_id_)
 elseif blakrt == 'عضو' and Mod(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..data.first_name_..'](t.me/'..(data.username_ or 'SoalfLove')..')'..'\n*♡∶ تم تنريله من* '..RTPA..' *هنا*\n')   
@@ -8651,15 +8651,15 @@ if result.id_ then
 local blakrt = database:get(bot_id.."Comd:New:rt:bot:"..text1[2]..msg.chat_id_)
 if blakrt == 'مميز' and Mod(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n*♡∶ تم رفعه* '..text1[2]..' *هنا*')   
-database:sadd(bot_id..'Special:User'..msg.chat_id_,result.id_)  
+database:sadd(bot_id..'Vips:User'..msg.chat_id_,result.id_)  
 database:set(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.id_,text1[2])
-elseif blakrt == 'ادمن' and Manager(msg) then 
+elseif blakrt == 'ادمن' and Owner(msg) then 
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n*♡∶ تم رفعه* '..text1[2]..' *هنا*')   
 database:sadd(bot_id..'Mod:User'..msg.chat_id_,result.id_)  
 database:set(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.id_,text1[2])
 elseif blakrt == 'مدير' and Constructor(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n*♡∶ تم رفعه* '..text1[2]..' *هنا*')   
-database:sadd(bot_id..'Manager'..msg.chat_id_,result.id_)  
+database:sadd(bot_id..'Owner'..msg.chat_id_,result.id_)  
 database:set(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.id_,text1[2])
 elseif blakrt == 'عضو' and Mod(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n*♡∶ تم رفعه* '..text1[2]..' *هنا*')   
@@ -8689,15 +8689,15 @@ if result.id_ then
 local blakrt = database:get(bot_id.."Comd:New:rt:bot:"..text1[2]..msg.chat_id_)
 if blakrt == 'مميز' and Mod(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n*♡∶ تم تنريله من* '..text1[2]..' *هنا*')   
-database:srem(bot_id..'Special:User'..msg.chat_id_,result.id_)  
+database:srem(bot_id..'Vips:User'..msg.chat_id_,result.id_)  
 database:del(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.id_)
-elseif blakrt == 'ادمن' and Manager(msg) then 
+elseif blakrt == 'ادمن' and Owner(msg) then 
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n*♡∶ تم تنريله من* '..text1[2]..' *هنا*')   
 database:srem(bot_id..'Mod:User'..msg.chat_id_,result.id_)  
 database:del(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.id_)
 elseif blakrt == 'مدير' and Constructor(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n*♡∶ تم تنريله من* '..text1[2]..' *هنا*')   
-database:srem(bot_id..'Manager'..msg.chat_id_,result.id_)  
+database:srem(bot_id..'Owner'..msg.chat_id_,result.id_)  
 database:del(bot_id.."Comd:New:rt:user:"..msg.chat_id_..result.id_)
 elseif blakrt == 'عضو' and Mod(msg) then
 send(msg.chat_id_, msg.id_,'\n*♡∶ العضو ⤙*  ['..result.title_..'](t.me/'..(text1[3] or 'SoalfLove')..')'..'\n*♡∶ تم تنريله من* '..text1[2]..' *هنا*')   
@@ -9120,7 +9120,7 @@ database:setex(bot_id.."Send:Fwd:Pv" .. msg.chat_id_ .. ":" .. msg.sender_user_i
 send(msg.chat_id_, msg.id_,"*♡∶ ارسل لي التوجيه الان*") 
 return false
 end 
-if text and text:match('^ضع اسم (.*)') and Manager(msg) or text and text:match('^وضع اسم (.*)') and Manager(msg) then 
+if text and text:match('^ضع اسم (.*)') and Owner(msg) or text and text:match('^وضع اسم (.*)') and Owner(msg) then 
 local Name = text:match('^ضع اسم (.*)') or text:match('^وضع اسم (.*)') 
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -9143,7 +9143,7 @@ sebd(msg.chat_id_,msg.id_,'*♡∶ تم تغيير اسم الكروب الى* {
 end
 end,nil) 
 end
-if text == "تاك للمشرفين" and Special(msg) or text == "صيح المشرفين" and Special(msg) or text == "#admin" and Special(msg) or text == "@admin" and Special(msg) then
+if text == "تاك للمشرفين" and Vips(msg) or text == "صيح المشرفين" and Vips(msg) or text == "#admin" and Vips(msg) or text == "@admin" and Vips(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -9181,7 +9181,7 @@ end,nil)
 end
 end,nil)
 end
-if text == "all" and Special(msg) or text == "@all" and Special(msg) then
+if text == "all" and Vips(msg) or text == "@all" and Vips(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -9291,7 +9291,7 @@ end,nil)
 end
 end,nil)
 end
-if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and Manager(msg) then
+if text == ("تنزيل الكل") and msg.reply_to_message_id_ ~= 0 and Owner(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -9315,39 +9315,39 @@ if SudoBot(msg) == true then
 database:srem(bot_id.."Sudo:User", result.sender_user_id_)
 database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.sender_user_id_)
 database:srem(bot_id.."Constructor"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.sender_user_id_)
 elseif database:sismember(bot_id.."DEV:Sudo:T",msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id.."Constructor"..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.sender_user_id_)
 database:srem(bot_id.."Sudo:User",result.sender_user_id_)
 elseif database:sismember(bot_id.."Sudo:User",msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id.."Constructor"..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.sender_user_id_)
 elseif database:sismember(bot_id.."Basic:Constructor"..msg.chat_id_, msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.sender_user_id_)
 database:srem(bot_id.."Constructor"..msg.chat_id_, result.sender_user_id_)
 elseif database:sismember(bot_id.."Constructor"..msg.chat_id_, msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.sender_user_id_)
-elseif database:sismember(bot_id.."Manager"..msg.chat_id_, msg.sender_user_id_) then
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.sender_user_id_)
+elseif database:sismember(bot_id.."Owner"..msg.chat_id_, msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.sender_user_id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.sender_user_id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.sender_user_id_)
 end
 end
 tdcli_function ({ID = "GetMessage",chat_id_ = msg.chat_id_,message_id_ = tonumber(msg.reply_to_message_id_)}, Function_AEKAN, nil)
 end
-if text and text:match("^تنزيل الكل @(.*)$") and Manager(msg) then
+if text and text:match("^تنزيل الكل @(.*)$") and Owner(msg) then
 function FunctionStatus(extra, result, success)
 if (result.id_) then
 if tonumber(SUDO) == tonumber(result.id_) then
@@ -9363,34 +9363,34 @@ if SudoBot(msg) == true then
 database:srem(bot_id.."Sudo:User", result.id_)
 database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.id_)
 database:srem(bot_id.."Constructor"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.id_)
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.id_)
 elseif database:sismember(bot_id.."DEV:Sudo:T",msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.id_)
 database:srem(bot_id.."Constructor"..msg.chat_id_, result.id_)
 database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.id_)
 database:srem(bot_id.."Sudo:User",result.id_)
 elseif database:sismember(bot_id.."Sudo:User",msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.id_)
 database:srem(bot_id.."Constructor"..msg.chat_id_, result.id_)
 database:srem(bot_id.."Basic:Constructor"..msg.chat_id_,result.id_)
 elseif database:sismember(bot_id.."Basic:Constructor"..msg.chat_id_, msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.id_)
 database:srem(bot_id.."Constructor"..msg.chat_id_, result.id_)
 elseif database:sismember(bot_id.."Constructor"..msg.chat_id_, msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Manager"..msg.chat_id_, result.id_)
-elseif database:sismember(bot_id.."Manager"..msg.chat_id_, msg.sender_user_id_) then
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Owner"..msg.chat_id_, result.id_)
+elseif database:sismember(bot_id.."Owner"..msg.chat_id_, msg.sender_user_id_) then
 database:srem(bot_id.."Mod:User"..msg.chat_id_, result.id_)
-database:srem(bot_id.."Special:User"..msg.chat_id_, result.id_)
+database:srem(bot_id.."Vips:User"..msg.chat_id_, result.id_)
 end
 end
 end
@@ -9584,40 +9584,40 @@ end
 end
 end
 if text == ("مسح ردود المدير") and Constructor(msg) then
-local list = database:smembers(bot_id..'List:Manager'..msg.chat_id_..'')
+local list = database:smembers(bot_id..'List:Owner'..msg.chat_id_..'')
 for k,v in pairs(list) do
-database:del(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..v..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..v..msg.chat_id_)     
-database:del(bot_id.."Add:Rd:Manager:Text"..v..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..v..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Video"..v..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_)
-database:del(bot_id..'List:Manager'..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:Gif"..v..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Vico"..v..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Stekrs"..v..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Owner:Text"..v..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Photo"..v..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:Video"..v..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:File"..v..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:Audio"..v..msg.chat_id_)
+database:del(bot_id..'List:Owner'..msg.chat_id_)
 end
 send(msg.chat_id_, msg.id_,"*♡∶ تم مسح ردود المدير*")
 end
 
 if text == ("ردود المدير") and Mod(msg) then
-local list = database:smembers(bot_id..'List:Manager'..msg.chat_id_..'')
+local list = database:smembers(bot_id..'List:Owner'..msg.chat_id_..'')
 text = "*♡∶ قائمه ردود المدير* \n*•━━━━━━━━━━━━━•*\n"
 for k,v in pairs(list) do
-if database:get(bot_id.."Add:Rd:Manager:Gif"..v..msg.chat_id_) then
+if database:get(bot_id.."Add:Rd:Owner:Gif"..v..msg.chat_id_) then
 db = 'متحركه'
-elseif database:get(bot_id.."Add:Rd:Manager:Vico"..v..msg.chat_id_) then
+elseif database:get(bot_id.."Add:Rd:Owner:Vico"..v..msg.chat_id_) then
 db = 'بصمه'
-elseif database:get(bot_id.."Add:Rd:Manager:Stekrs"..v..msg.chat_id_) then
+elseif database:get(bot_id.."Add:Rd:Owner:Stekrs"..v..msg.chat_id_) then
 db = 'ملصق'
-elseif database:get(bot_id.."Add:Rd:Manager:Text"..v..msg.chat_id_) then
+elseif database:get(bot_id.."Add:Rd:Owner:Text"..v..msg.chat_id_) then
 db = 'رساله'
-elseif database:get(bot_id.."Add:Rd:Manager:Photo"..v..msg.chat_id_) then
+elseif database:get(bot_id.."Add:Rd:Owner:Photo"..v..msg.chat_id_) then
 db = 'صوره'
-elseif database:get(bot_id.."Add:Rd:Manager:Video"..v..msg.chat_id_) then
+elseif database:get(bot_id.."Add:Rd:Owner:Video"..v..msg.chat_id_) then
 db = 'فيديو'
-elseif database:get(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_) then
+elseif database:get(bot_id.."Add:Rd:Owner:File"..v..msg.chat_id_) then
 db = 'ملف'
-elseif database:get(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_) then
+elseif database:get(bot_id.."Add:Rd:Owner:Audio"..v..msg.chat_id_) then
 db = 'اغنيه'
 end
 text = text..""..k..">> ("..v..") ⤙ {"..db.."}\n"
@@ -9628,33 +9628,33 @@ end
 send(msg.chat_id_, msg.id_,'['..text..']')
 end
 if text or msg.content_.sticker_ or msg.content_.voice_ or msg.content_.animation_ or msg.content_.audio_ or msg.content_.document_ or msg.content_.photo_ or msg.content_.video_ then  
-local test = database:get(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_..'')
-if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true1' then
-database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
+local test = database:get(bot_id..'Text:Owner'..msg.sender_user_id_..':'..msg.chat_id_..'')
+if database:get(bot_id..'Set:Owner:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true1' then
+database:del(bot_id..'Set:Owner:rd'..msg.sender_user_id_..':'..msg.chat_id_)
 if msg.content_.sticker_ then   
-database:set(bot_id.."Add:Rd:Manager:Stekrs"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Owner:Stekrs"..test..msg.chat_id_, msg.content_.sticker_.sticker_.persistent_id_)  
 end   
 if msg.content_.voice_ then  
-database:set(bot_id.."Add:Rd:Manager:Vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Owner:Vico"..test..msg.chat_id_, msg.content_.voice_.voice_.persistent_id_)  
 end   
 if msg.content_.animation_ then   
-database:set(bot_id.."Add:Rd:Manager:Gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Owner:Gif"..test..msg.chat_id_, msg.content_.animation_.animation_.persistent_id_)  
 end  
 if text then   
 text = text:gsub('"','') 
 text = text:gsub("'",'') 
 text = text:gsub('`','') 
 text = text:gsub('*','') 
-database:set(bot_id.."Add:Rd:Manager:Text"..test..msg.chat_id_, text)  
+database:set(bot_id.."Add:Rd:Owner:Text"..test..msg.chat_id_, text)  
 end  
 if msg.content_.audio_ then
-database:set(bot_id.."Add:Rd:Manager:Audio"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Owner:Audio"..test..msg.chat_id_, msg.content_.audio_.audio_.persistent_id_)  
 end
 if msg.content_.document_ then
-database:set(bot_id.."Add:Rd:Manager:File"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Owner:File"..test..msg.chat_id_, msg.content_.document_.document_.persistent_id_)  
 end
 if msg.content_.video_ then
-database:set(bot_id.."Add:Rd:Manager:Video"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
+database:set(bot_id.."Add:Rd:Owner:Video"..test..msg.chat_id_, msg.content_.video_.video_.persistent_id_)  
 end
 if msg.content_.photo_ then
 if msg.content_.photo_.sizes_[0] then
@@ -9669,41 +9669,41 @@ end
 if msg.content_.photo_.sizes_[3] then
 photo_in_group = msg.content_.photo_.sizes_[3].photo_.persistent_id_
 end
-database:set(bot_id.."Add:Rd:Manager:Photo"..test..msg.chat_id_, photo_in_group)  
+database:set(bot_id.."Add:Rd:Owner:Photo"..test..msg.chat_id_, photo_in_group)  
 end
 send(msg.chat_id_, msg.id_,'*♡∶ تم حفظ الرد بنجاح*')
 return false  
 end  
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
+if database:get(bot_id..'Set:Owner:rd'..msg.sender_user_id_..':'..msg.chat_id_) == 'true' then
 send(msg.chat_id_, msg.id_,'*♡∶ ارسل الرد الذي تريده سواء كان {صوره,فيديو,متحركه,ملصق,بصمه,صوت}*')
-database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
-database:set(bot_id..'Text:Manager'..msg.sender_user_id_..':'..msg.chat_id_, text)
-database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
-database:sadd(bot_id..'List:Manager'..msg.chat_id_..'', text)
+database:set(bot_id..'Set:Owner:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true1')
+database:set(bot_id..'Text:Owner'..msg.sender_user_id_..':'..msg.chat_id_, text)
+database:del(bot_id.."Add:Rd:Owner:Gif"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Vico"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Stekrs"..text..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Owner:Text"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Photo"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:Video"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:File"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:Audio"..text..msg.chat_id_)
+database:sadd(bot_id..'List:Owner'..msg.chat_id_..'', text)
 return false end
 end
 if text and text:match("^(.*)$") then
-if database:get(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_..'') == 'true2' then
+if database:get(bot_id..'Set:Owner:rd'..msg.sender_user_id_..':'..msg.chat_id_..'') == 'true2' then
 send(msg.chat_id_, msg.id_,'*♡∶ تم ازالة الرد* ')
-database:del(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-database:del(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-database:del(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-database:del(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
-database:del(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_)
-database:srem(bot_id..'List:Manager'..msg.chat_id_..'', text)
+database:del(bot_id.."Add:Rd:Owner:Gif"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Vico"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Stekrs"..text..msg.chat_id_)     
+database:del(bot_id.."Add:Rd:Owner:Text"..text..msg.chat_id_)   
+database:del(bot_id.."Add:Rd:Owner:Photo"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:Video"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:File"..text..msg.chat_id_)
+database:del(bot_id.."Add:Rd:Owner:Audio"..text..msg.chat_id_)
+database:del(bot_id..'Set:Owner:rd'..msg.sender_user_id_..':'..msg.chat_id_)
+database:srem(bot_id..'List:Owner'..msg.chat_id_..'', text)
 return false
 end
 end
@@ -9718,7 +9718,7 @@ end
 return false
 end
 send(msg.chat_id_, msg.id_,'*♡∶ ارسل الكلمه التي تريد اضافتها*')
-database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
+database:set(bot_id..'Set:Owner:rd'..msg.sender_user_id_..':'..msg.chat_id_,true)
 return false 
 end
 if text == 'حذف رد' and Mod(msg) then
@@ -9732,19 +9732,19 @@ end
 return false
 end
 send(msg.chat_id_, msg.id_,'*♡∶ ارسل الكلمه التي تريد حذفها*')
-database:set(bot_id..'Set:Manager:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true2')
+database:set(bot_id..'Set:Owner:rd'..msg.sender_user_id_..':'..msg.chat_id_,'true2')
 return false 
 end
-if text and not database:get(bot_id..'Reply:Manager'..msg.chat_id_) then
+if text and not database:get(bot_id..'Reply:Owner'..msg.chat_id_) then
 if not database:sismember(bot_id..'Spam:Texting'..msg.sender_user_id_,text) then
-local anemi = database:get(bot_id.."Add:Rd:Manager:Gif"..text..msg.chat_id_)   
-local veico = database:get(bot_id.."Add:Rd:Manager:Vico"..text..msg.chat_id_)   
-local stekr = database:get(bot_id.."Add:Rd:Manager:Stekrs"..text..msg.chat_id_)     
-local text1 = database:get(bot_id.."Add:Rd:Manager:Text"..text..msg.chat_id_)   
-local photo = database:get(bot_id.."Add:Rd:Manager:Photo"..text..msg.chat_id_)
-local video = database:get(bot_id.."Add:Rd:Manager:Video"..text..msg.chat_id_)
-local document = database:get(bot_id.."Add:Rd:Manager:File"..text..msg.chat_id_)
-local audio = database:get(bot_id.."Add:Rd:Manager:Audio"..text..msg.chat_id_)
+local anemi = database:get(bot_id.."Add:Rd:Owner:Gif"..text..msg.chat_id_)   
+local veico = database:get(bot_id.."Add:Rd:Owner:Vico"..text..msg.chat_id_)   
+local stekr = database:get(bot_id.."Add:Rd:Owner:Stekrs"..text..msg.chat_id_)     
+local text1 = database:get(bot_id.."Add:Rd:Owner:Text"..text..msg.chat_id_)   
+local photo = database:get(bot_id.."Add:Rd:Owner:Photo"..text..msg.chat_id_)
+local video = database:get(bot_id.."Add:Rd:Owner:Video"..text..msg.chat_id_)
+local document = database:get(bot_id.."Add:Rd:Owner:File"..text..msg.chat_id_)
+local audio = database:get(bot_id.."Add:Rd:Owner:Audio"..text..msg.chat_id_)
 ------------------------------------------------------------------------
 ------------------------------------------------------------------------
 if text1 then 
@@ -9869,9 +9869,9 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-if database:get(bot_id..'Reply:Manager'..msg.chat_id_) then
+if database:get(bot_id..'Reply:Owner'..msg.chat_id_) then
 Text = '*♡∶ تم تفعيل ردود المدير*'
-database:del(bot_id..'Reply:Manager'..msg.chat_id_)  
+database:del(bot_id..'Reply:Owner'..msg.chat_id_)  
 else
 Text = '*♡∶ تم تفعيل ردود المدير مسبقاً*'
 end
@@ -9887,8 +9887,8 @@ send(msg.chat_id_, msg.id_,'♡∶ يروح '..Namebot..' يرجى الاشتر�
 end
 return false
 end
-if not database:get(bot_id..'Reply:Manager'..msg.chat_id_) then
-database:set(bot_id..'Reply:Manager'..msg.chat_id_,true)  
+if not database:get(bot_id..'Reply:Owner'..msg.chat_id_) then
+database:set(bot_id..'Reply:Owner'..msg.chat_id_,true)  
 Text = '\n*♡∶ تم تعطيل ردود المدير*' 
 else
 Text = '\n*♡∶ تم تعطيل ردود المدير مسبقاً*'
@@ -10405,12 +10405,12 @@ Text = '*♡∶ تم تفعيل امر صيح مسبقاً*'
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تنزيل جميع الرتب' and CoSu(msg) or text == 'تنزيل الرتب' and CoSu(msg) then
+if text == 'تنزيل جميع الرتب' and creatorA(msg) or text == 'تنزيل الرتب' and creatorA(msg) then
 database:del(bot_id..'Basic:Constructor'..msg.chat_id_)
 database:del(bot_id..'Constructor'..msg.chat_id_)
-database:del(bot_id..'Manager'..msg.chat_id_)
+database:del(bot_id..'Owner'..msg.chat_id_)
 database:del(bot_id..'Mod:User'..msg.chat_id_)
-database:del(bot_id..'Special:User'..msg.chat_id_)
+database:del(bot_id..'Vips:User'..msg.chat_id_)
 database:del(bot_id..'Bnt:User'..msg.chat_id_)
 database:del(bot_id..'Mempaam:User'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '\n*♡∶ تم تنزيل الكل من الرتب الاتيه* \n*♡∶ المميزين ، الادمنيه ، المدراء ، المنشئين* \n')
@@ -10465,7 +10465,7 @@ send(msg.chat_id_, msg.id_,'*لا تمتلك صوره في حسابك*', 1, 'md'
   end end
 tdcli_function ({ ID = "GetUserProfilePhotos", user_id_ = msg.sender_user_id_, offset_ = 0, limit_ = 1 }, getpro, nil)
 end
-if text == 'تغير الايدي' and Manager(msg) then 
+if text == 'تغير الايدي' and Owner(msg) then 
 local List = {
 [[
 ゠𝚄𝚂𝙴𝚁 𖨈 #username 𖥲 .
@@ -10984,7 +10984,7 @@ end
 end
 end
 
-if text and text:match("^كول (.*)$") and Special(msg) then
+if text and text:match("^كول (.*)$") and Vips(msg) then
 local txt = {string.match(text, "^(كول) (.*)$")}
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -11009,9 +11009,9 @@ local Teext = text:match("^تغير رد المطور (.*)$")
 database:set(bot_id.."Sudo:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"*♡∶ تم تغير رد المطور الى ⤙* "..Teext)
 end
-if text and text:match("^تغير رد المالك (.*)$") and CoSu(msg) then
+if text and text:match("^تغير رد المالك (.*)$") and creatorA(msg) then
 local Teext = text:match("^تغير رد المالك (.*)$") 
-database:set(bot_id.."CoSu:Rd"..msg.chat_id_,Teext)
+database:set(bot_id.."creatorA:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"*♡∶ تم تغير رد المالك الى ⤙* "..Teext)
 end
 if text and text:match("^تغير رد منشئ الاساسي (.*)$") and BasicConstructor(msg) then
@@ -11024,9 +11024,9 @@ local Teext = text:match("^تغير رد المنشئ (.*)$")
 database:set(bot_id.."Constructor:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"*♡∶ تم تغير رد المنشئ الى ⤙* "..Teext)
 end
-if text and text:match("^تغير رد المدير (.*)$") and Manager(msg) then
+if text and text:match("^تغير رد المدير (.*)$") and Owner(msg) then
 local Teext = text:match("^تغير رد المدير (.*)$") 
-database:set(bot_id.."Manager:Rd"..msg.chat_id_,Teext) 
+database:set(bot_id.."Owner:Rd"..msg.chat_id_,Teext) 
 send(msg.chat_id_, msg.id_,"*♡∶ تم تغير رد المدير الى ⤙* "..Teext)
 end
 if text and text:match("^تغير رد الادمن (.*)$") and Mod(msg) then
@@ -11036,7 +11036,7 @@ send(msg.chat_id_, msg.id_,"*♡∶ تم تغير رد الادمن الى ⤙* 
 end
 if text and text:match("^تغير رد المميز (.*)$") and Mod(msg) then
 local Teext = text:match("^تغير رد المميز (.*)$") 
-database:set(bot_id.."Special:Rd"..msg.chat_id_,Teext)
+database:set(bot_id.."Vips:Rd"..msg.chat_id_,Teext)
 send(msg.chat_id_, msg.id_,"*♡∶ تم تغير رد المميز الى ⤙* "..Teext)
 end
 if text and text:match("^تغير رد بنت الكروب (.*)$") and Mod(msg) then
@@ -11059,8 +11059,8 @@ if text == 'مسح رد المطور' and Sudo(msg) or text == 'حذف رد ال
 database:del(bot_id..'Sudo:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*♡∶ تم مسح رد المطور*')
 end
-if text == 'مسح رد المالك' and CoSu(msg) or text == 'حذف رد المالك' and CoSu(msg) then
-database:del(bot_id..'CoSu:Rd'..msg.chat_id_)
+if text == 'مسح رد المالك' and creatorA(msg) or text == 'حذف رد المالك' and creatorA(msg) then
+database:del(bot_id..'creatorA:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*♡∶ تم مسح رد المالك*')
 end
 if text == 'مسح رد منشئ الاساسي' and BasicConstructor(msg) or text == 'حذف رد المنشئ الاساسي' and BasicConstructor(msg) then
@@ -11071,8 +11071,8 @@ if text == 'مسح رد المنشئ' and Constructor(msg) or text == 'حذف ر
 database:del(bot_id..'Constructor:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*♡∶ تم مسح رد المنشئ*')
 end
-if text == 'مسح رد المدير' and Manager(msg) or text == 'حذف رد المدير' and Manager(msg) then
-database:del(bot_id..'Manager:Rd'..msg.chat_id_)
+if text == 'مسح رد المدير' and Owner(msg) or text == 'حذف رد المدير' and Owner(msg) then
+database:del(bot_id..'Owner:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*♡∶ تم مسح رد المدير*')
 end
 if text == 'مسح رد الادمن' and Mod(msg) or text == 'حذف رد الادمن' and Mod(msg) then
@@ -11080,7 +11080,7 @@ database:del(bot_id..'Mod:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*♡∶ تم مسح رد الادمن*')
 end
 if text == 'مسح رد المميز' and Mod(msg) or text == 'حذف رد المميز' and Mod(msg) then
-database:del(bot_id..'Special:Rd'..msg.chat_id_)
+database:del(bot_id..'Vips:Rd'..msg.chat_id_)
 send(msg.chat_id_, msg.id_, '*♡∶ تم مسح رد المميز*')
 end
 if text == 'مسح رد بنت الكروب' and Mod(msg) or text == 'حذف رد بنت الكروب' and Mod(msg) then
@@ -12569,36 +12569,36 @@ send(msg.chat_id_, msg.id_,xl)
 database:del(bot_id..":"..msg.sender_user_id_..":ano_Bots"..msg.chat_id_)
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.sender_user_id_ and Muted_User(msg.chat_id_,msg.sender_user_id_) then 
+if msg.sender_user_id_ and Muted_Groups(msg.chat_id_,msg.sender_user_id_) then 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_})  
 return false  
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.sender_user_id_ and Ban_User(msg.chat_id_,msg.sender_user_id_) then 
-chat_kick(msg.chat_id_,msg.sender_user_id_) 
+if msg.sender_user_id_ and Ban_Groups(msg.chat_id_,msg.sender_user_id_) then 
+Kick_Group(msg.chat_id_,msg.sender_user_id_) 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
 return false  
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and Ban_User(msg.chat_id_,msg.content_.members_[0].id_) then 
-chat_kick(msg.chat_id_,msg.content_.members_[0].id_) 
+if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and Ban_Groups(msg.chat_id_,msg.content_.members_[0].id_) then 
+Kick_Group(msg.chat_id_,msg.content_.members_[0].id_) 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
 return false
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.sender_user_id_ and GBan_User(msg.sender_user_id_) then 
-chat_kick(msg.chat_id_,msg.sender_user_id_) 
+if msg.sender_user_id_ and Ban_All_Groups(msg.sender_user_id_) then 
+Kick_Group(msg.chat_id_,msg.sender_user_id_) 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
 return false 
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.sender_user_id_ and Gmute_User(msg.sender_user_id_) then 
+if msg.sender_user_id_ and Muted_All_Groups(msg.sender_user_id_) then 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_}) 
 return false 
 end
 --------------------------------------------------------------------------------------------------------------
-if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and GBan_User(msg.content_.members_[0].id_) then 
-chat_kick(msg.chat_id_,msg.content_.members_[0].id_) 
+if msg.content_ and msg.content_.members_ and msg.content_.members_[0] and msg.content_.members_[0].id_ and Ban_All_Groups(msg.content_.members_[0].id_) then 
+Kick_Group(msg.chat_id_,msg.content_.members_[0].id_) 
 DeleteMessage(msg.chat_id_, {[0] = msg.id_})  
 end 
 --------------------------------------------------------------------------------------------------------------
