@@ -3007,7 +3007,44 @@ end
 end
 end
 --------------------------------------------------------------------------------------------------------------
-if text == "فتح الاضافه" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
+if text == "قفل الدردشه" and msg.reply_to_message_id_ == 0 and Manager(msg) then 
+database:set(bot_id.."Lock:text"..msg.chat_id_,true) 
+Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل الدردشه")  
+return false
+end 
+if text == "قفل الاضافه" and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:set(bot_id.."Lock:AddMempar"..msg.chat_id_,"kick")  
+Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل اضافة الاعضاء")  
+return false
+end 
+if text == "قفل الدخول" and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:set(bot_id.."Lock:Join"..msg.chat_id_,"kick")  
+Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل دخول الاعضاء")  
+return false
+end 
+if text == "قفل البوتات" and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:set(bot_id.."Lock:Bot:kick"..msg.chat_id_,"del")  
+Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل البوتات")  
+return false
+end 
+if text == "قفل البوتات بالطرد" and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:set(bot_id.."Lock:Bot:kick"..msg.chat_id_,"kick")  
+Reply_Status(msg,msg.sender_user_id_,"lockkick","♡️ : تم قفـل البوتات")  
+return false
+end 
+if text == "قفل الاشعارات" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
+database:set(bot_id.."Lock:tagservr"..msg.chat_id_,true)  
+Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل الاشعارات")  
+return false
+end 
+if text == "قفل التثبيت" and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
+database:set(bot_id.."lockpin"..msg.chat_id_, true) 
+database:sadd(bot_id.."Lock:pin",msg.chat_id_) 
+tdcli_function ({ ID = "GetChannelFull",  channel_id_ = msg.chat_id_:gsub("-100","") }, function(arg,data)  database:set(bot_id.."Pin:Id:Msg"..msg.chat_id_,data.pinned_message_id_)  end,nil)
+Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل التثبيت هنا")  
+return false
+end 
+if text == "قفل التعديل" and msg.reply_to_message_id_ == 0 and Constructor(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3017,67 +3054,16 @@ send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـا�
 end
 return false
 end 
-database:del(bot_id.."Lock:AddMempar"..msg.chat_id_)  
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فتح اضافة الاعضاء")  
+database:set(bot_id.."Lock:edit"..msg.chat_id_,true) 
+Reply_Status(msg,msg.sender_user_id_,"lock","♡∶ تم قفـل تعديل")  
 return false
 end 
-if text == "فتح الدردشه" and msg.reply_to_message_id_ == 0 and Owner(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
-end
+if text == "قفل تعديل الميديا" and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
+database:set(bot_id.."Lock:edit"..msg.chat_id_,true) 
+Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل تعديل")  
 return false
 end 
-database:del(bot_id.."Lock:text"..msg.chat_id_)  
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فتح الدردشه")  
-return false
-end 
-if text == "فتح الدخول" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end 
-database:del(bot_id.."Lock:Join"..msg.chat_id_)  
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فتح دخول الاعضاء")  
-return false
-end 
-if text == "فتح البوتات" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end 
-database:del(bot_id.."Lock:Bot:kick"..msg.chat_id_)  
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح البوتات")  
-return false
-end 
-if text == "فتح البوتات " and msg.reply_to_message_id_ == 0 and Mod(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end 
-database:del(bot_id.."Lock:Bot:kick"..msg.chat_id_)  
-Reply_Status(msg,msg.sender_user_id_,"unlock","🍃\n♡️ : تم فـتح البوتات")  
-return false
-end 
-if text == "فتح الاشعارات" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
+if text == "قفل الكل" and msg.reply_to_message_id_ == 0 and Constructor(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3087,60 +3073,12 @@ send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـا�
 end
 return false
 end  
-database:del(bot_id.."Lock:tagservr"..msg.chat_id_)  
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح الاشعارات")  
-return false
-end 
-if text == "فتح التثبيت" and msg.reply_to_message_id_ == 0 and Constructor(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end 
-database:del(bot_id.."lockpin"..msg.chat_id_)  
-database:srem(bot_id.."Lock:pin",msg.chat_id_)
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح التثبيت هنا")  
-return false
-end 
-if text == "فتح التعديل" and msg.reply_to_message_id_ == 0 and Constructor(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end 
-database:del(bot_id.."Lock:edit"..msg.chat_id_) 
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح تعديل")  
-return false
-end 
-if text == "فتح التعديل الميديا" and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
-database:del(bot_id.."Lock:edit"..msg.chat_id_) 
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح تعديل")  
-return false
-end 
-if text == "فتح الكل" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end 
-database:del(bot_id.."Lock:tagservrbot"..msg.chat_id_)   
+database:set(bot_id.."Lock:tagservrbot"..msg.chat_id_,true)   
 list ={"Lock:Bot:kick","Lock:User:Name","Lock:hashtak","Lock:Cmd","Lock:Link","Lock:forward","Lock:Keyboard","Lock:geam","Lock:Photo","Lock:Animation","Lock:Video","Lock:Audio","Lock:vico","Lock:Sticker","Lock:Document","Lock:Unsupported","Lock:Markdaun","Lock:Contact","Lock:Spam"}
 for i,lock in pairs(list) do 
-database:del(bot_id..''..lock..msg.chat_id_)    
+database:set(bot_id..''..lock..msg.chat_id_,"del")    
 end
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح جميع الاوامر")  
+Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل جميع الاوامر")  
 return false
 end 
 --------------------------------------------------------------------------------------------------------------
@@ -3158,7 +3096,7 @@ database:del(bot_id.."Lock:AddMempar"..msg.chat_id_)
 Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فتح اضافة الاعضاء")  
 return false
 end 
-if text == "فتح الدردشه" and msg.reply_to_message_id_ == 0 and Owner(msg) then  
+if text == "فتح الدردشه" and msg.reply_to_message_id_ == 0 and Manager(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3184,20 +3122,6 @@ return false
 end 
 database:del(bot_id.."Lock:Join"..msg.chat_id_)  
 Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فتح دخول الاعضاء")  
-return false
-end 
-if text == "فتح البوتات" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
-end 
-database:del(bot_id.."Lock:Bot:kick"..msg.chat_id_)  
-Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح البوتات")  
 return false
 end 
 if text == "فتح البوتات " and msg.reply_to_message_id_ == 0 and Mod(msg) then  
@@ -3279,7 +3203,7 @@ database:del(bot_id..''..lock..msg.chat_id_)
 end
 Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح جميع الاوامر")  
 return false
-end
+end 
 --------------------------------------------------------------------------------------------------------------
 if text == "قفل الروابط" and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
