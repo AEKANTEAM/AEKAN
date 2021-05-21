@@ -806,57 +806,6 @@ database:sadd(bot_id.."Muted:User"..msg.chat_id_,msg.sender_user_id_)
 return false  
 end
 end  
-if type == 'del' then 
-DeleteMessage(msg.chat_id_,{[0] = msg.id_})    
-my_ide = msg.sender_user_id_
-msgm = msg.id_
-local num = 100
-for i=1,tonumber(num) do
-tdcli_function ({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = {[0] = msgm}},function(arg,data) 
-if data.messages_[0] ~= false then
-if tonumber(my_ide) == (data.messages_[0].sender_user_id_) then
-DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
-end;end;end, nil)
-msgm = msgm - 1048576
-end
-end 
-if type == 'keed' then
-https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..msg.sender_user_id_.."") 
-database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_) 
-msgm = msg.id_
-my_ide = msg.sender_user_id_
-local num = 100
-for i=1,tonumber(num) do
-tdcli_function ({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = {[0] = msgm}},function(arg,data) 
-if data.messages_[0] ~= false then
-if tonumber(my_ide) == (data.messages_[0].sender_user_id_) then
-DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
-end;end;end, nil)
-msgm = msgm - 1048576
-end
-Text = '\n♡∶ العضــو ⤙ '..Name..'\n♡∶ قام بالتكرار هنا وتم تقييده '  
-sendText(msg.chat_id_,Text,0,'md')
-return false  
-end  
-if type == 'mute' then
-Text = '\n♡∶ العضــو ⤙ '..Name..'\n♡∶ قام بالتكرار هنا وتم طرده '  
-sendText(msg.chat_id_,Text,0,'md')
-database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_) 
-msgm = msg.id_
-my_ide = msg.sender_user_id_
-local num = 100
-for i=1,tonumber(num) do
-tdcli_function ({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = {[0] = msgm}},function(arg,data) 
-if data.messages_[0] ~= false then
-if tonumber(my_ide) == (data.messages_[0].sender_user_id_) then
-DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
-end;end;end, nil)
-msgm = msgm - 1048576
-end
-return false  
-end
-end,nil)   
-end  
 function plugin_mjnonh(msg)
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
