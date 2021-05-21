@@ -8007,138 +8007,149 @@ database:del(bot_id..'Get:Welcome:Group'..msg.chat_id_)
 send(msg.chat_id_, msg.id_,'*♡∶ تم ازالة ترحيب الكروب* ') 
 end
 end
-if text and text == "منع" and msg.reply_to_message_id_ == 0 and Mod(msg)  then       
-send(msg.chat_id_, msg.id_,"*♡∶ ارسل الكلمه لمنعها* ")  
-database:set(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"rep")  
+
+if text == "قائمه المنع" and Mod(msg) then  
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+database:set(bot_id.."Filter:msg",msg.chat_id_)
+tdcli_function ({ID = "GetUser",user_id_ = bot_id},function(arg,data) 
+local Text ='♡∶ قائمه الممنوعات'
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'صور', url="https://t.me/"..data.username_.."?start=ph"..msg.chat_id_},{text = 'كلمات', url="https://t.me/"..data.username_.."?start=msg"..msg.chat_id_}},
+{{text = 'متحركات', url="https://t.me/"..data.username_.."?start=gif"..msg.chat_id_},{text = 'ملصقات', url="https://t.me/"..data.username_.."?start=Sti"..msg.chat_id_}},
+}
+local msg_id = msg.id_/2097152/0.5
+https.request("https://api.telegram.org/bot"..token..'/sendMessage?chat_id=' .. msg.chat_id_ .. '&text=' .. URL.escape(Text).."&reply_to_message_id="..msg_id.."&parse_mode=markdown&disable_web_page_preview=true&reply_markup="..JSON.encode(keyboard))
+end,nil)
+end
+if text == "مسح قائمه المنع" and Mod(msg) then   
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+local listtext = database:smembers(bot_id.."List:Filter:text"..msg.chat_id_)  
+for k,v in pairs(listtext) do  
+database:srem(bot_id.."List:Filter:text"..msg.chat_id_,v)  
+end  
+local listAnimation = database:smembers(bot_id.."List:Filter:Animation"..msg.chat_id_)  
+for k,v in pairs(listAnimation) do  
+database:srem(bot_id.."List:Filter:Animation"..msg.chat_id_,v)  
+end  
+local listSticker = database:smembers(bot_id.."List:Filter:Sticker"..msg.chat_id_)  
+for k,v in pairs(listSticker) do  
+database:srem(bot_id.."List:Filter:Sticker"..msg.chat_id_,v)  
+end  
+local listPhoto = database:smembers(bot_id.."List:Filter:Photo"..msg.chat_id_)  
+for k,v in pairs(listPhoto) do  
+database:srem(bot_id.."List:Filter:Photo"..msg.chat_id_,v)  
+end  
+send(msg.chat_id_, msg.id_,"♡∶ تم مسح قائمه المنع")  
+end
+if text and text == "منع" and msg.reply_to_message_id_ == 0 and Mod(msg) then       
+send(msg.chat_id_, msg.id_,"♡∶ الان ارسل { كلمه،صوره،ملصق،متحركه } لمنعه من المجموعه")  
+database:set(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"rep")  
 return false  
 end    
 if text then   
-local tsssst = database:get(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+local tsssst = database:get(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
 if tsssst == "rep" then   
-send(msg.chat_id_, msg.id_,"*♡∶ ارسل التحذير بعد ارسال الكلمه* ")  
-database:set(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"repp")  
-database:set(bot_id.."AEKAN1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_, text)  
-database:sadd(bot_id.."AEKAN1:List:Filter"..msg.chat_id_,text)  
-return false  end  
-end
-if text then  
-local test = database:get(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
-if test == "repp" then  
-send(msg.chat_id_, msg.id_,"*♡∶ تم منع الكلمه مع التحذير* ")  
-database:del(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
-local test = database:get(bot_id.."AEKAN1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_)  
-if text then   
-database:set(bot_id.."AEKAN1:Add:Filter:Rp2"..test..msg.chat_id_, text)  
+send(msg.chat_id_, msg.id_,"♡∶ تم منع الكلمه بنجاح")  
+database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:sadd(bot_id.."List:Filter:text"..msg.chat_id_,text)  
+return false 
 end  
-database:del(bot_id.."AEKAN1:filtr1:add:reply2"..msg.sender_user_id_..msg.chat_id_)  
-return false  end  
 end
-
+if msg.content_.ID == 'MessageAnimation' then    
+local tsssst = database:get(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+if tsssst == "rep" then   
+send(msg.chat_id_, msg.id_,"♡∶ تم منع المتحركه بنجاح")  
+database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:sadd(bot_id.."List:Filter:Animation"..msg.chat_id_,msg.content_.animation_.animation_.persistent_id_)  
+return false 
+end  
+end
+if msg.content_.ID == 'MessageSticker' then    
+local tsssst = database:get(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+if tsssst == "rep" then   
+send(msg.chat_id_, msg.id_,"♡∶ تم منع الملصق بنجاح")  
+database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:sadd(bot_id.."List:Filter:Sticker"..msg.chat_id_,msg.content_.sticker_.sticker_.persistent_id_)  
+return false 
+end  
+end
+if msg.content_.ID == 'MessagePhoto' then    
+local tsssst = database:get(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+if tsssst == "rep" then   
+send(msg.chat_id_, msg.id_,"♡∶ تم منع الصوره بنجاح")  
+database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:sadd(bot_id.."List:Filter:Photo"..msg.chat_id_,msg.content_.photo_.sizes_[1].photo_.persistent_id_)  
+return false 
+end  
+end
 if text == "الغاء منع" and msg.reply_to_message_id_ == 0 and Mod(msg) then    
-send(msg.chat_id_, msg.id_,"*♡∶ ارسل الكلمه الان* ")  
-database:set(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"reppp")  
-return false  end
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'♡∶ عـليك الاشـتࢪاك في قنـاة البـوت اولآ . \n ♡∶ قنـاة البـوت ←  ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+send(msg.chat_id_, msg.id_,"♡∶ الان ارسل { كلمه،صوره،ملصق،متحركه } ممنوع لالغاء منعه")  
+database:set(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_,"reppp")  
+return false 
+end
 if text then 
-local test = database:get(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+local test = database:get(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
 if test and test == "reppp" then   
-send(msg.chat_id_, msg.id_,"*♡∶ تم الغاء منعها*  ")  
-database:del(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
-database:del(bot_id.."AEKAN1:Add:Filter:Rp2"..text..msg.chat_id_)  
-database:srem(bot_id.."AEKAN1:List:Filter"..msg.chat_id_,text)  
-return false  end  
-end
-
-
-if text == 'منع' and tonumber(msg.reply_to_message_id_) > 0 and Mod(msg) then     
-function cb(a,b,c) 
-textt = '*♡∶ تم منع*  '
-if b.content_.sticker_ then
-local idsticker = b.content_.sticker_.set_id_
-database:sadd(bot_id.."filtersteckr"..msg.chat_id_,idsticker)
-text = '*الملصق* '
-send(msg.chat_id_, msg.id_,textt..'( '..text..' ) *بنجاح لن يتم ارسالها مجددا* ')  
+send(msg.chat_id_, msg.id_,"♡∶ تم الغاء منعها ")  
+database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:srem(bot_id.."List:Filter:text"..msg.chat_id_,text)  
 return false
-end
-if b.content_.ID == "MessagePhoto" then
-local photo = b.content_.photo_.id_
-database:sadd(bot_id.."filterphoto"..msg.chat_id_,photo)
-text = '*الصوره* '
-send(msg.chat_id_, msg.id_,textt..'( '..text..' ) *بنجاح لن يتم ارسالها مجددا* ')  
-return false
-end
-if b.content_.animation_.animation_ then
-local idanimation = b.content_.animation_.animation_.persistent_id_
-database:sadd(bot_id.."filteranimation"..msg.chat_id_,idanimation)
-text = '*المتحركه* '
-send(msg.chat_id_, msg.id_,textt..'( '..text..' ) *بنجاح لن يتم ارسالها مجددا* ')  
-return false
-end
-end
-tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, cb, nil)
-end
-if text == 'الغاء منع' and tonumber(msg.reply_to_message_id_) > 0 and Mod(msg) then     
-function cb(a,b,c) 
-textt = '*♡∶ تم الغاء منع*  '
-if b.content_.sticker_ then
-local idsticker = b.content_.sticker_.set_id_
-database:srem(bot_id.."filtersteckr"..msg.chat_id_,idsticker)
-text = '*الملصق* '
-send(msg.chat_id_, msg.id_,textt..'( '..text..' ) *بنجاح يمكنهم الارسال الان* ')  
-return false
-end
-if b.content_.ID == "MessagePhoto" then
-local photo = b.content_.photo_.id_
-database:srem(bot_id.."filterphoto"..msg.chat_id_,photo)
-text = '*الصوره* '
-send(msg.chat_id_, msg.id_,textt..'( '..text..' ) *بنجاح يمكنهم الارسال الان* ')  
-return false
-end
-if b.content_.animation_.animation_ then
-local idanimation = b.content_.animation_.animation_.persistent_id_
-database:srem(bot_id.."filteranimation"..msg.chat_id_,idanimation)
-text = '*المتحركه* '
-send(msg.chat_id_, msg.id_,textt..'( '..text..' ) *بنجاح يمكنهم الارسال الان* ')  
-return false
-end
-end
-tdcli_function ({ ID = "GetMessage", chat_id_ = msg.chat_id_, message_id_ = tonumber(msg.reply_to_message_id_) }, cb, nil)
-end
-
-if text == "مسح قائمه المنع"and Mod(msg) then   
-local list = database:smembers(bot_id.."AEKAN1:List:Filter"..msg.chat_id_)  
-for k,v in pairs(list) do  
-database:del(bot_id.."AEKAN1:Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
-database:del(bot_id.."AEKAN1:Add:Filter:Rp2"..v..msg.chat_id_)  
-database:srem(bot_id.."AEKAN1:List:Filter"..msg.chat_id_,v)  
 end  
-send(msg.chat_id_, msg.id_,"*تم مسح قائمه المنع* ")  
+end
+if msg.content_.ID == 'MessageAnimation' then    
+local onte = database:get(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+if onte and onte == "reppp" then   
+send(msg.chat_id_, msg.id_,"♡∶ تم الغاء منع المتحركه بنجاح ")  
+database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:srem(bot_id.."List:Filter:Animation"..msg.chat_id_,msg.content_.animation_.animation_.persistent_id_)  
+return false
+end  
+end
+if msg.content_.ID == 'MessageSticker' then    
+local Stic = database:get(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+if Stic and Stic == "reppp" then   
+send(msg.chat_id_, msg.id_,"♡∶ تم الغاء منع الملصق بنجاح ")  
+database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:srem(bot_id.."List:Filter:Sticker"..msg.chat_id_,msg.content_.sticker_.sticker_.persistent_id_)  
+return false
+end  
+end
+if msg.content_.ID == 'MessagePhoto' then    
+local hoto = database:get(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+if hoto and hoto == "reppp" then   
+send(msg.chat_id_, msg.id_,"♡∶ تم الغاء منع الصوره بنجاح ")  
+database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
+database:srem(bot_id.."List:Filter:Photo"..msg.content_.photo_.sizes_[1].photo_.persistent_id_)  
+return false
+end  
 end
 
-if text == "قائمه المنع" and Mod(msg) then   
-local list = database:smembers(bot_id.."AEKAN1:List:Filter"..msg.chat_id_)  
-t = "\n*♡∶ قائمة المنع*  \n*•━━━━━━━━━━━━━•* \n"
-for k,v in pairs(list) do  
-local AEKAN_Msg = database:get(bot_id.."AEKAN1:Add:Filter:Rp2"..v..msg.chat_id_)   
-t = t..""..k.."- "..v.." ⤙ {"..AEKAN_Msg.."}\n"    
-end  
-if #list == 0 then  
-t = "*♡∶ لا يوجد كلمات ممنوعه* "  
-end  
-send(msg.chat_id_, msg.id_,t)  
-end  
-
-if text == 'مسح قائمه منع المتحركات' and Mod(msg) then     
-database:del(bot_id.."filteranimation"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,'*♡∶ تم مسح قائمه منع المتحركات* ')  
-end
-if text == 'مسح قائمه منع الصور' and Mod(msg) then     
-database:del(bot_id.."filterphoto"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,'*♡∶ تم مسح قائمه منع الصور* ')  
-end
-if text == 'مسح قائمه منع الملصقات' and Mod(msg) then     
-database:del(bot_id.."filtersteckr"..msg.chat_id_)
-send(msg.chat_id_, msg.id_,'*♡∶ تم مسح قائمه منع الملصقات* ')  
-end
 if text == 'المطور' or text == 'مطور' or text == 'المطوره' then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -8191,6 +8202,82 @@ for i = 1, #Users do
 database:sadd(bot_id..'AEKAN:User_Bot',Users[i])  
 end
 send(msg.chat_id_, msg.id_,'♡∶ تم نقل : '..#Groups..' كروب\n♡∶ تم نقل : '..#Users..' مشترك \n♡∶ من التحديث القديم الى التحديث الجديد')
+end
+
+if text and text:match("^/start ph(.*)$") then
+Sf = database:get(bot_id.."Filter:msg")
+local list = database:smembers(bot_id.."List:Filter:Photo"..Sf)  
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="pito"..v}},
+}
+send_inline_Media(msg.chat_id_,"sendPhoto","photo",v,inline) 
+end
+end
+if #list == 0 then
+send(msg.chat_id_, msg.id_,"♡∶ لا يوجد صور ممنوعه"  )  
+end
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallph"..Sf}},
+}
+send_inlin_key(msg.chat_id_,"♡∶ هل تريد الغاء منع كل الصور؟",Zs,msg.id_)
+end  
+if text and text:match("^/start msg(.*)$") then
+sl = text:match("^/start msg(.*)$")
+local list = database:smembers(bot_id.."List:Filter:text"..sl)
+t = "\n♡∶ قائمة الكلمات الممنوعه \n ﹊﹊﹊﹊﹊﹊﹊﹊﹊\n"
+for k,v in pairs(list) do
+if v then
+t = t..""..k.."- ["..v.."]\n"
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد كلمات ممنوعه"  
+end
+send(msg.chat_id_, msg.id_,t)  
+end  
+if text and text:match("^/start gif(.*)$") then
+Sf = text:match("^/start gif(.*)$")
+local list = database:smembers(bot_id.."List:Filter:Animation"..Sf)
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="animation"..v.."chatid"..Sf}},
+}
+send_inline_Media(msg.chat_id_,"sendanimation","animation",v,inline) 
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد متحركات ممنوعه"  
+send(msg.chat_id_, msg.id_,t)  
+end
+ZsText = "♡∶ هل تريد الغاء منع كل المتحركات؟"
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallanimation"..Sf}},
+}
+send_inlin_key(msg.chat_id_,ZsText,Zs,msg.id_)
+end  
+if text and text:match("^/start Sti(.*)$") then
+Sf = text:match("^/start Sti(.*)$")
+local list = database:smembers(bot_id.."List:Filter:Sticker"..Sf)
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="Sticker"..v.."chatid"..Sf}},
+}
+send_inline_Media(msg.chat_id_,"sendSticker","sticker",v,inline) 
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد ملصقات ممنوعه"  
+send(msg.chat_id_, msg.id_,t)  
+end
+ZsText = "♡∶ هل تريد الغاء منع كل  الملصقات؟"
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallSticker"..Sf}},
+}
+send_inlin_key(msg.chat_id_,ZsText,Zs,msg.id_)
 end
 
 if text == 'حذف كليشه المطور' and SudoBot(msg) then
@@ -12418,6 +12505,79 @@ keyboard.inline_keyboard = {
 }
 return https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(Teext)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
 end
+if DAata and DAata:match("^animation(.*)$") and Mod(data) then  
+idch = DAata:match("-100(%d+)")
+local idchci = "-100"..idch
+local animation = DAata:match("^animation(.*)$"):gsub('chatid',''):gsub('chatid',''):gsub(idch,''):gsub('-100','')
+local Text ="♡∶ تم الغاء منعها بنجاح"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+database:srem(bot_id.."List:Filter:Animation"..idchci,animation)  
+end
+if DAata and DAata:match("^pito(.*)$") and Mod(data) then  
+local idchci = database:get(bot_id.."Filter:msg")
+local photo = DAata:match("^pito(.*)$")
+local Text ="♡∶ تم الغاء منعها بنجاح"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+database:srem(bot_id.."List:Filter:Photo"..idchci,photo)  
+end
+if DAata and DAata:match("^Sticker(.*)$") and Mod(data) then  
+idch = DAata:match("-100(%d+)")
+local idchci = "-100"..idch
+local Sticker = DAata:match("^Sticker(.*)$"):gsub('chatid',''):gsub('chatid',''):gsub(idch,''):gsub('-100','')
+local Text ="♡∶ تم الغاء منعه بنجاح"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+database:srem(bot_id.."List:Filter:Sticker"..idchci,Sticker)  
+end
+if DAata and DAata:match("^delallSticker(.*)$") and Mod(data) then  
+local delallSticker = DAata:match("^delallSticker(.*)$")
+local Text ="♡∶ تم الغاء منع كل المتحركات"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+local listSticker = database:smembers(bot_id.."List:Filter:Sticker"..delallSticker)  
+for k,v in pairs(listSticker) do  
+database:srem(bot_id.."List:Filter:Sticker"..delallSticker,v)  
+end  
+end
+if DAata and DAata:match("^delallanimation(.*)$") and Mod(data) then  
+local delallmation = DAata:match("^delallanimation(.*)$")
+local Text ="♡∶ تم الغاء منع كل المتحركات"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+local listAnimation = database:smembers(bot_id.."List:Filter:Animation"..delallmation)  
+for k,v in pairs(listAnimation) do  
+database:srem(bot_id.."List:Filter:Animation"..delallmation,v)  
+end  
+end
+if DAata and DAata:match("^delallph(.*)$") and Mod(data) then  
+local delallph = DAata:match("^delallph(.*)$")
+local Text ="♡∶ تم الغاء منع كل الصور"
+inline = {
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ  .',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+send_inlin_key(Chat_id,Text,inline)
+local listPhoto = database:smembers(bot_id.."List:Filter:Photo"..delallph)  
+for k,v in pairs(listPhoto) do  
+database:srem(bot_id.."List:Filter:Photo"..delallph,v)  
+end  
 end
 
 if data.ID == "UpdateNewMessage" then  -- new msg
