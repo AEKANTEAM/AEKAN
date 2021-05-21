@@ -12429,7 +12429,157 @@ send(msg.chat_id_, msg.id_,"♡∶ تم الغاء منع الصوره بنجا�
 database:del(bot_id.."Add:Filter:Rp1"..msg.sender_user_id_..msg.chat_id_)  
 database:srem(bot_id.."List:Filter:Photo"..msg.content_.photo_.sizes_[1].photo_.persistent_id_)  
 return false
+end 
+if text and text:match("^/start ph(.*)$") then
+Sf = database:get(bot_id.."Filter:msg")
+local list = database:smembers(bot_id.."List:Filter:Photo"..Sf)  
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="pito"..v}},
+}
+send_inline_Media(msg.chat_id_,"sendPhoto","photo",v,inline) 
+end
+end
+if #list == 0 then
+send(msg.chat_id_, msg.id_,"♡∶ لا يوجد صور ممنوعه"  )  
+end
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallph"..Sf}},
+}
+send_inlin_key(msg.chat_id_,"♡∶ هل تريد الغاء منع كل الصور؟",Zs,msg.id_)
 end  
+if text and text:match("^/start msg(.*)$") then
+sl = text:match("^/start msg(.*)$")
+local list = database:smembers(bot_id.."List:Filter:text"..sl)
+t = "\n♡∶ قائمة الكلمات الممنوعه \n ﹊﹊﹊﹊﹊﹊﹊﹊﹊\n"
+for k,v in pairs(list) do
+if v then
+t = t..""..k.."- ["..v.."]\n"
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد كلمات ممنوعه"  
+end
+send(msg.chat_id_, msg.id_,t)  
+end  
+if text and text:match("^/start gif(.*)$") then
+Sf = text:match("^/start gif(.*)$")
+local list = database:smembers(bot_id.."List:Filter:Animation"..Sf)
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="animation"..v.."chatid"..Sf}},
+}
+send_inline_Media(msg.chat_id_,"sendanimation","animation",v,inline) 
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد متحركات ممنوعه"  
+send(msg.chat_id_, msg.id_,t)  
+end
+ZsText = "♡∶ هل تريد الغاء منع كل المتحركات؟"
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallanimation"..Sf}},
+}
+send_inlin_key(msg.chat_id_,ZsText,Zs,msg.id_)
+end  
+if text and text:match("^/start Sti(.*)$") then
+Sf = text:match("^/start Sti(.*)$")
+local list = database:smembers(bot_id.."List:Filter:Sticker"..Sf)
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="Sticker"..v.."chatid"..Sf}},
+}
+send_inline_Media(msg.chat_id_,"sendSticker","sticker",v,inline) 
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد ملصقات ممنوعه"  
+send(msg.chat_id_, msg.id_,t)  
+end
+ZsText = "♡∶ هل تريد الغاء منع كل  الملصقات؟"
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallSticker"..Sf}},
+}
+send_inlin_key(msg.chat_id_,ZsText,Zs,msg.id_)
+end
+if text and text:match("^/start ph(.*)$") then
+Sf = database:get(bot_id.."Filter:msg")
+local list = database:smembers(bot_id.."List:Filter:Photo"..Sf)  
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="pito"..v}},
+}
+send_inline_Media(msg.chat_id_,"sendPhoto","photo",v,inline) 
+end
+end
+if #list == 0 then
+send(msg.chat_id_, msg.id_,"♡∶ لا يوجد صور ممنوعه"  )  
+end
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallph"..Sf}},
+}
+send_inlin_key(msg.chat_id_,"♡∶ هل تريد الغاء منع كل الصور؟",Zs,msg.id_)
+end  
+if text and text:match("^/start msg(.*)$") then
+sl = text:match("^/start msg(.*)$")
+local list = database:smembers(bot_id.."List:Filter:text"..sl)
+t = "\n♡∶ قائمة الكلمات الممنوعه \n ﹊﹊﹊﹊﹊﹊﹊﹊﹊\n"
+for k,v in pairs(list) do
+if v then
+t = t..""..k.."- ["..v.."]\n"
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد كلمات ممنوعه"  
+end
+send(msg.chat_id_, msg.id_,t)  
+end  
+if text and text:match("^/start gif(.*)$") then
+Sf = text:match("^/start gif(.*)$")
+local list = database:smembers(bot_id.."List:Filter:Animation"..Sf)
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="animation"..v.."chatid"..Sf}},
+}
+send_inline_Media(msg.chat_id_,"sendanimation","animation",v,inline) 
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد متحركات ممنوعه"  
+send(msg.chat_id_, msg.id_,t)  
+end
+ZsText = "♡∶ هل تريد الغاء منع كل المتحركات؟"
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallanimation"..Sf}},
+}
+send_inlin_key(msg.chat_id_,ZsText,Zs,msg.id_)
+end  
+if text and text:match("^/start Sti(.*)$") then
+Sf = text:match("^/start Sti(.*)$")
+local list = database:smembers(bot_id.."List:Filter:Sticker"..Sf)
+for k,v in pairs(list) do
+if v then
+inline = {
+{{text = '- الغاء المنع .',callback_data="Sticker"..v.."chatid"..Sf}},
+}
+send_inline_Media(msg.chat_id_,"sendSticker","sticker",v,inline) 
+end
+end
+if #list == 0 then
+t = "♡∶ لا يوجد ملصقات ممنوعه"  
+send(msg.chat_id_, msg.id_,t)  
+end
+ZsText = "♡∶ هل تريد الغاء منع كل  الملصقات؟"
+Zs = {
+{{text = '- اضغط هنا .',callback_data="delallSticker"..Sf}},
+}
+send_inlin_key(msg.chat_id_,ZsText,Zs,msg.id_)
+end
 end
 
 
