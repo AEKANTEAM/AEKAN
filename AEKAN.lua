@@ -3138,7 +3138,7 @@ database:del(bot_id.."Lock:Bot:kick"..msg.chat_id_)
 Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح البوتات")  
 return false
 end 
-if text == "فتح البوتات " and msg.reply_to_message_id_ == 0 and Mod(msg) then  
+if text == "فتح البوتات " and msg.reply_to_message_id_ == 0 and Addictive(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
 if textchuser then
@@ -3149,7 +3149,7 @@ end
 return false
 end 
 database:del(bot_id.."Lock:Bot:kick"..msg.chat_id_)  
-Reply_Status(msg,msg.sender_user_id_,"unlock","\n♡️ : تم فـتح البوتات")  
+Reply_Status(msg,msg.sender_user_id_,"unlock","🍃\n♡️ : تم فـتح البوتات")  
 return false
 end 
 if text == "فتح الاشعارات" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
