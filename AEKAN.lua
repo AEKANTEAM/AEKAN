@@ -785,76 +785,26 @@ end
 send(chat,msg.id_,"\n♡∶تم رفع الملف بنجاح وتفعيل المجموعات\n♡∶ ورفع {الامنشئين الاساسين ; والمنشئين ; والمدراء; والادمنيه} بنجاح")   
 end
 local function Is_Not_Spam(msg,type)
-tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data)
-local Name = '['..utf8.sub(data.first_name_,0,40)..'](tg://user?id='..data.id_..')'
 if type == 'kick' then 
-Text = '\n♡∶ العضــو ⤙ '..Name..'\n♡∶ قام بالتكرار هنا وتم طرده '  
-sendText(msg.chat_id_,Text,0,'md')
-chat_kick(msg.chat_id_,msg.sender_user_id_) 
-my_ide = msg.sender_user_id_
-msgm = msg.id_
-local num = 100
-for i=1,tonumber(num) do
-tdcli_function ({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = {[0] = msgm}},function(arg,data) 
-if data.messages_[0] ~= false then
-if tonumber(my_ide) == (data.messages_[0].sender_user_id_) then
-DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
-end;end;end, nil)
-msgm = msgm - 1048576
-end
+Reply_Status(msg,msg.sender_user_id_,"reply","♡∶ قام بالتكرار هنا وتم طرده")  
+Kick_Group(msg.chat_id_,msg.sender_user_id_) 
 return false  
 end 
 if type == 'del' then 
 DeleteMessage(msg.chat_id_,{[0] = msg.id_})    
-my_ide = msg.sender_user_id_
-msgm = msg.id_
-local num = 100
-for i=1,tonumber(num) do
-tdcli_function ({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = {[0] = msgm}},function(arg,data) 
-if data.messages_[0] ~= false then
-if tonumber(my_ide) == (data.messages_[0].sender_user_id_) then
-DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
-end;end;end, nil)
-msgm = msgm - 1048576
-end
+return false
 end 
 if type == 'keed' then
 https.request("https://api.telegram.org/bot" .. token .. "/restrictChatMember?chat_id=" ..msg.chat_id_.. "&user_id=" ..msg.sender_user_id_.."") 
 database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_) 
-msgm = msg.id_
-my_ide = msg.sender_user_id_
-local num = 100
-for i=1,tonumber(num) do
-tdcli_function ({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = {[0] = msgm}},function(arg,data) 
-if data.messages_[0] ~= false then
-if tonumber(my_ide) == (data.messages_[0].sender_user_id_) then
-DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
-end;end;end, nil)
-msgm = msgm - 1048576
-end
-Text = '\n♡∶ العضــو ⤙ '..Name..'\n♡∶ قام بالتكرار هنا وتم تقييده '  
-sendText(msg.chat_id_,Text,0,'md')
+Reply_Status(msg,msg.sender_user_id_,"reply","♡∶ قام بالتكرار هنا وتم تقييده")  
 return false  
 end  
 if type == 'mute' then
-Text = '\n♡∶ العضــو ⤙ '..Name..'\n♡∶ قام بالتكرار هنا وتم طرده '  
-sendText(msg.chat_id_,Text,0,'md')
-database:sadd(bot_id..'Muted:User'..msg.chat_id_,msg.sender_user_id_) 
-msgm = msg.id_
-my_ide = msg.sender_user_id_
-local num = 100
-for i=1,tonumber(num) do
-tdcli_function ({ID = "GetMessages",chat_id_ = msg.chat_id_,message_ids_ = {[0] = msgm}},function(arg,data) 
-if data.messages_[0] ~= false then
-if tonumber(my_ide) == (data.messages_[0].sender_user_id_) then
-DeleteMessage(msg.chat_id_, {[0] = data.messages_[0].id_})
-end;end;end, nil)
-msgm = msgm - 1048576
-end
+Reply_Status(msg,msg.sender_user_id_,"reply","♡∶ قام بالتكرار هنا وتم كتمه")  
+database:sadd(bot_id.."Muted:User"..msg.chat_id_,msg.sender_user_id_) 
 return false  
 end
-end,nil)   
-end  
 function plugin_mjnonh(msg)
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
