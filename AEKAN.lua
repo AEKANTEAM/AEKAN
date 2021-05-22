@@ -1737,7 +1737,7 @@ Time_Spam = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodtime"
 end 
 end 
 --------------------------------------------------------------------------------------------------------------
-if text == 'قفل الفشار' and msg.reply_to_message_id_ == 0 and Addictive(msg) then 
+if text == 'قفل الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id..'lock:Fshar'..msg.chat_id_,true) 
 Reply_Status(msg,msg.sender_user_id_,"lock","♡∶ تم قفـل الفشار")  
 end
@@ -1761,11 +1761,11 @@ return false
 end
 end
 end
-if text == 'قفل الفارسيه' and msg.reply_to_message_id_ == 0 and Addictive(msg) then 
+if text == 'قفل الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:set(bot_id..'lock:Iran'..msg.chat_id_,true) 
 Reply_Status(msg,msg.sender_user_id_,"lock","♡∶ تم قفـل الفارسيه")  
 end
-if text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Addictive(msg) then 
+if text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
 Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفشار\n")  
 end
@@ -1788,7 +1788,7 @@ return false
 end
 end
 end
-if text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Addictive(msg) then 
+if text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id..'lock:Iran'..msg.chat_id_) 
 Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفارسيه\n")  
 end
