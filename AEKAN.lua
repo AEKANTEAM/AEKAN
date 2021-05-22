@@ -805,6 +805,7 @@ Reply_Status(msg,msg.sender_user_id_,"reply","♡∶ قام بالتكرار ه�
 database:sadd(bot_id.."Muted:User"..msg.chat_id_,msg.sender_user_id_) 
 return false  
 end
+end
 function plugin_mjnonh(msg)
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
