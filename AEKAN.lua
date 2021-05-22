@@ -3197,10 +3197,6 @@ if text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) 
 database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
 Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفشار\n")  
 end
-if text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
-database:del(bot_id..'lock:Iran'..msg.chat_id_) 
-Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفارسيه\n")  
-end
 --------------------------------------------------------------------------------------------------------------
 if text == "قفل الروابط" and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
@@ -3316,7 +3312,11 @@ if text == "قفل التاك بالطرد" and Mod(msg) then
 database:set(bot_id.."Lock:hashtak"..msg.chat_id_,"kick")  
 Reply_Status(msg,msg.sender_user_id_,"lockkick","♡️ : تم قفـل التاك")  
 return false
-end 
+end
+if text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:del(bot_id..'lock:Iran'..msg.chat_id_) 
+Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفارسيه\n")  
+end
 if text == "فتح التاك" and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
