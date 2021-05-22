@@ -1737,10 +1737,6 @@ Time_Spam = database:hget(bot_id.."flooding:settings:"..msg.chat_id_,"floodtime"
 end 
 end 
 --------------------------------------------------------------------------------------------------------------
-if text == 'قفل الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
-database:set(bot_id..'lock:Fshar'..msg.chat_id_,true) 
-Reply_Status(msg,msg.sender_user_id_,"lock","♡∶ تم قفـل الفشار")  
-end
 if text and database:get(bot_id..'lock:Fshar'..msg.chat_id_) and not Mempaam(msg) then 
 list_fshar = {"كس","عير","خرا","خرب الله","كحاب","كحوبه","مشتهيه","نيج","كواده","طيز","مناويج","كحبه","فرخ","فروخ","كوسي","بلاع","سالب","موجب","عاهره","بعص","نجتهم","ناجني","ناجونه","خصاوي","ناجوك","عار","ديس","ديوث"}
 for k,v in pairs(list_fshar) do
@@ -1761,14 +1757,6 @@ return false
 end
 end
 end
-if text == 'قفل الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
-database:set(bot_id..'lock:Iran'..msg.chat_id_,true) 
-Reply_Status(msg,msg.sender_user_id_,"lock","♡∶ تم قفـل الفارسيه")  
-end
-if text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
-database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
-Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفشار\n")  
-end
 if text and database:get(bot_id..'lock:Iran'..msg.chat_id_) and not Mempaam(msg) then 
 list_iran = {"خسته","خسته","ازراه","تو بهتر","اره عزیزم","برم","راحتی","بیام","دوستان","شادی","زیباترین","میخام","خوبم","تو فق","زیباتون","دوستان","خوشکلم","ای","ازش","جانمونی","ریتم","نیاری","ملایم","داداش","بیا","باشم","میخوای","تندتر","ریتمو","زیرت","بکشی","کنی","اومدم","شه","خوب","هست","کسی","دستم","صبجتون","کیر","ذخیرس","شماره","استیکر","زدن","دخترا","زدن","تخماتو","بمالونم","بزنم","بهش","اقا","جذابیتت","خیلی","بالااااس","بهداشتی","مخوام","میخوام","اهلیم","حوصلم","بی","یه","کی","بریم","دوست","شمارتو","خوبی","شبتون","صکصی","رفقا","یکی","بیاد","یوی","یکم","چ","غوغای","قهرمان‌","هاشون‌","هَوَلای‌مآن","ۀ","ژ","ڲ","ڳ","ڴ","ڱ","ڰ","ڮ","ڭ","ڬ","ک","ڪ","ګ","ۋ","ۊ","ٷ","ۅ","ۄ","ۈ","ۆ","پ","ڐ","ډ","ڍ","ڏ","ۮ","ڌ","ڋ","ڈ","ۯ","ڙ","ڗ","ڑ","ږ","ڟ","ڻ","ڽ","ڹ","ں","ٿ","ٽ","ٺ","ٵ","ڸ","ڷ","ڵ","ڀ","ٮ","ۑ","ۍ","ێ","ې","ٸ","ځ","ڿ","څ","ښ","ڛ","ۺ","ښ","ڜ","۶","۵","۴"}
 for k,v in pairs(list_iran) do
@@ -1787,10 +1775,6 @@ DeleteMessage(msg.chat_id_,{[0] = msg.id_})
 return false
 end
 end
-end
-if text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
-database:del(bot_id..'lock:Iran'..msg.chat_id_) 
-Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفارسيه\n")  
 end
 if text and database:get(bot_id..'lock:Eng'..msg.chat_id_) and not Mempaam(msg) then 
 list_eng = {'a','u','y','l','t','b','A','Q','U','J','K','L','B','D','L','V','Z','k','n','c','r','q','o','z','I','j','m','M','w','d','h','e'}
@@ -3077,7 +3061,15 @@ database:set(bot_id..''..lock..msg.chat_id_,"del")
 end
 Reply_Status(msg,msg.sender_user_id_,"lock","♡️ : تم قفـل جميع الاوامر")  
 return false
-end 
+end
+if text == 'قفل الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:set(bot_id..'lock:Fshar'..msg.chat_id_,true) 
+Reply_Status(msg,msg.sender_user_id_,"lock","♡∶ تم قفـل الفشار")  
+end
+if text == 'قفل الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:set(bot_id..'lock:Iran'..msg.chat_id_,true) 
+Reply_Status(msg,msg.sender_user_id_,"lock","♡∶ تم قفـل الفارسيه")  
+end
 --------------------------------------------------------------------------------------------------------------
 if text == "فتح الاضافه" and msg.reply_to_message_id_ == 0 and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
@@ -3200,7 +3192,15 @@ database:del(bot_id..''..lock..msg.chat_id_)
 end
 Reply_Status(msg,msg.sender_user_id_,"unlock","♡️ : تم فـتح جميع الاوامر")  
 return false
-end 
+end
+if text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
+database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
+Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفشار\n")  
+end
+if text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Addictive(msg) then 
+database:del(bot_id..'lock:Iran'..msg.chat_id_) 
+Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفارسيه\n")  
+end
 --------------------------------------------------------------------------------------------------------------
 if text == "قفل الروابط" and Mod(msg) then  
 if AddChannel(msg.sender_user_id_) == false then
