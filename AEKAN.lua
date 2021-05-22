@@ -3197,7 +3197,7 @@ if text == 'فتح الفشار' and msg.reply_to_message_id_ == 0 and Mod(msg) 
 database:del(bot_id..'lock:Fshar'..msg.chat_id_) 
 Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفشار\n")  
 end
-if text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Addictive(msg) then 
+if text == 'فتح الفارسيه' and msg.reply_to_message_id_ == 0 and Mod(msg) then 
 database:del(bot_id..'lock:Iran'..msg.chat_id_) 
 Reply_Status(msg,msg.sender_user_id_,"lock","♡∶  تـم فـتح الفارسيه\n")  
 end
