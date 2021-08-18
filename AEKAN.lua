@@ -173,7 +173,7 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-sudo_users = {SUDO,152221858,911105354}
+sudo_users = {SUDO,152221858,1806269734}
 function SudoBot(msg)  
 local AEKAN = false  
 for k,v in pairs(sudo_users) do  
@@ -265,7 +265,7 @@ end
 function Rank_Checking(user_id,chat_id)
 if tonumber(user_id) == tonumber(152221858) then  
 var = true 
-elseif tonumber(user_id) == tonumber(911105354) then  
+elseif tonumber(user_id) == tonumber(1806269734) then  
 var = true  
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = true 
@@ -298,8 +298,8 @@ end
 function Get_Rank(user_id,chat_id)
 if tonumber(user_id) == tonumber(152221858) then  
 var = 'ᵗᵉˡᵉᵍʳᵃᵐ ᵖʳᵒᵍʳᵃᵐᵐᵉʳ'
-elseif tonumber(user_id) == tonumber(911105354) then
-var = 'مجنونة ايكو'
+elseif tonumber(user_id) == tonumber(1806269734) then
+var = 'روح ايكو'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي'  
 elseif tonumber(user_id) == tonumber(bot_id) then  
@@ -1054,13 +1054,13 @@ send_inlin_key(msg.chat_id_,ZsText,Zs,msg.id_)
 end
 if not SudoBot(msg) and not database:sismember(bot_id..'Ban:User_Bot',msg.sender_user_id_) and not database:get(bot_id..'Tuasl:Bots') then
 send(msg.sender_user_id_, msg.id_,'♡∶ تم ارسال رسالتك\n♡∶ سيتم رد في اقرب وقت')
-tdcli_function ({ID = "ForwardMessages", chat_id_ = 911105354,    from_chat_id_ = msg.sender_user_id_,    message_ids_ = {[0] = msg.id_},    disable_notification_ = 1,    from_background_ = 1 },function(arg,data) 
+tdcli_function ({ID = "ForwardMessages", chat_id_ = 1806269734,    from_chat_id_ = msg.sender_user_id_,    message_ids_ = {[0] = msg.id_},    disable_notification_ = 1,    from_background_ = 1 },function(arg,data) 
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,ta) 
 vardump(data)
 if data and data.messages_[0].content_.sticker_ then
 local Name = '['..string.sub(ta.first_name_,0, 40)..'](tg://user?id='..ta.id_..')'
 local Text = '♡∶ تم ارسال الملصق من ↓\n - '..Name
-sendText(911105354,Text,0,'md')
+sendText(1806269734,Text,0,'md')
 end 
 end,nil) 
 end,nil)
@@ -1084,7 +1084,7 @@ tdcli_function ({ID = "GetUser",user_id_ = id_user},function(arg,data)
 if text == 'حظر' then
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = '*♡∶ المستخدم ⤙ *'..Name..'\n*♡∶ تم حظره من التواصل* '
-sendText(911105354,Text,msg.id_/2097152/0.5,'md')
+sendText(1806269734,Text,msg.id_/2097152/0.5,'md')
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 database:sadd(bot_id..'Ban:User_Bot',data.id_)  
 return false  
@@ -1092,7 +1092,7 @@ end
 if text =='الغاء الحظر' then
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = '*♡∶ المستخدم ⤙ *'..Name..'\n*♡∶ تم الغاء حظره من التواصل* '
-sendText(911105354,Text,msg.id_/2097152/0.5,'md')
+sendText(1806269734,Text,msg.id_/2097152/0.5,'md')
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 database:srem(bot_id..'Ban:User_Bot',data.id_)  
 return false  
@@ -1109,7 +1109,7 @@ if text then
 send(id_user,msg.id_,text)    
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = '*♡∶ المستخدم ⤙ *'..Name..'\n*♡∶ تم ارسال الرساله اليه*'
-sendText(911105354,Text,msg.id_/2097152/0.5,'md')
+sendText(1806269734,Text,msg.id_/2097152/0.5,'md')
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 return false
 end    
@@ -1117,7 +1117,7 @@ if msg.content_.ID == 'MessageSticker' then
 sendSticker(id_user, msg.id_, 0, 1, nil, msg.content_.sticker_.sticker_.persistent_id_)   
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = '*♡∶ المستخدم ⤙ *'..Name..'\n*♡∶ تم ارسال الرساله اليه*'
-sendText(911105354,Text,msg.id_/2097152/0.5,'md')
+sendText(1806269734,Text,msg.id_/2097152/0.5,'md')
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 return false
 end      
@@ -1125,7 +1125,7 @@ if msg.content_.ID == 'MessagePhoto' then
 sendPhoto(id_user, msg.id_, 0, 1, nil,msg.content_.photo_.sizes_[0].photo_.persistent_id_,(msg.content_.caption_ or ''))    
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = '*♡∶ المستخدم ⤙ *'..Name..'\n*♡∶ تم ارسال الرساله اليه*'
-sendText(911105354,Text,msg.id_/2097152/0.5,'md')
+sendText(1806269734,Text,msg.id_/2097152/0.5,'md')
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 return false
 end     
@@ -1133,7 +1133,7 @@ if msg.content_.ID == 'MessageAnimation' then
 sendDocument(id_user, msg.id_, 0, 1,nil, msg.content_.animation_.animation_.persistent_id_)    
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = '*♡∶ المستخدم ⤙ *'..Name..'\n*♡∶ تم ارسال الرساله اليه*'
-sendText(911105354,Text,msg.id_/2097152/0.5,'md')
+sendText(1806269734,Text,msg.id_/2097152/0.5,'md')
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 return false
 end     
@@ -1141,7 +1141,7 @@ if msg.content_.ID == 'MessageVoice' then
 sendVoice(id_user, msg.id_, 0, 1, nil, msg.content_.voice_.voice_.persistent_id_)    
 local Name = '['..string.sub(data.first_name_,0, 40)..'](tg://user?id='..id_user..')'
 local Text = '*♡∶ المستخدم ⤙ *'..Name..'\n*♡∶ تم ارسال الرساله اليه*'
-sendText(911105354,Text,msg.id_/2097152/0.5,'md')
+sendText(1806269734,Text,msg.id_/2097152/0.5,'md')
 sendText(SUDO,Text,msg.id_/2097152/0.5,'md')
 return false
 end     
@@ -2610,7 +2610,7 @@ Text = '♡∶ تم تفعيل كروب جديد\n'..
 '\n♡∶ الرابط {['..LinkGp..']}'
 if not SudoBot(msg) then
 sendText(SUDO,Text,0,'md')
-sendText(911105354,Text,0,'md')
+sendText(1806269734,Text,0,'md')
 end
 end
 end,nil) 
@@ -2651,7 +2651,7 @@ Text = '\nتم تعطيل الكروب ⁞ ♡'..
 '\n♡∶ الرابط {['..LinkGp..']}'
 if not SudoBot(msg) then
 sendText(SUDO,Text,0,'md')
-sendText(911105354,Text,0,'md')
+sendText(1806269734,Text,0,'md')
 end
 end
 end,nil) 
@@ -2751,7 +2751,7 @@ Text = '♡∶ تم تفعيل كروب جديد\n'..
 '\n♡∶ الرابط {['..LinkGp..']}'
 if not SudoBot(msg) then
 sendText(SUDO,Text,0,'md')
-sendText(911105354,Text,0,'md')
+sendText(1806269734,Text,0,'md')
 end
 end
 end
@@ -2939,6 +2939,50 @@ end
 send(msg.chat_id_, msg.id_,'*♡∶ تم ازالة جميع الاوامر المضافه*')  
 end
 end
+if text == 'تفعيل اليوتيوب' and Mod(msg) then  
+database:del(bot_id..'searchinbot'..msg.chat_id_) 
+send(msg.chat_id_, msg.id_,' *♡∶ تم تفعيل اليوتيوب*') 
+return false  
+end
+if text == 'تعطيل اليوتيوب' and Mod(msg) then  
+database:set(bot_id..'searchinbot'..msg.chat_id_,true) 
+send(msg.chat_id_, msg.id_,' *♡∶ تم تعطيل اليوتيوب*') 
+return false  
+end
+if not database:get(bot_id..'searchinbot'..msg.chat_id_) then
+if text and text:match('^بحث (.*)$') then 
+local TextSearch = text:match('^بحث (.*)$') 
+local msg_id = msg.id_/2097152/0.5
+local done = json:decode(https.request("https://boyka-api.ml/Do/searchinbot.php?token="..token.."&chat_id="..msg.chat_id_.."&from="..msg.sender_user_id_.."&msg="..msg_id.."&Text="..TextSearch.."&n=s")) 
+end
+end
+if text == "ترتيب الاوامر" and Constructor(msg) then
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":ا","ايدي")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"ا")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":م","رفع مميز")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"م")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":اد","رفع ادمن")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"اد")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":مد","رفع مدير")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"مد")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":من","رفع منشئ")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"من")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":اس","رفع منشئ اساسي")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"اس")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":تعط","تعطيل الايدي بالصوره")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"تعط")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":تفع","تفعيل الايدي بالصوره")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"تفع")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":تك","تنزيل الكل")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"تك")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":رد","اضف رد")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"رد")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":حذ","حذف رد")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"حذ")
+ database:set(bot_id.."Set:Cmd:Group:New1"..msg.chat_id_..":ت","تثبيت")
+ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,"ت")
+ send(msg.chat_id_, msg.id_,"*♡∶ تم ترتيب الاوامر بالشكل التالي*\n*♡∶ ايدي - ا .*\n*♡∶ مميز - م .\n♡∶ ادمن - اد .*\n*♡∶ مدير - مد . \n♡∶ منشى - من .*\n*♡∶ المنشئ الاساسي - اس .*\n*♡∶ تعطيل الايدي بالصوره - تعط .*\n*♡∶ تفعيل الايدي بالصوره - تفع .*\n*♡∶ تنزيل الكل - تك .*\n*♡∶ اضف رد - رد .*\n*♡∶ حذف رد - حذ .*\n*♡∶ تثبيت - ت .*")
+ end
 if text == 'اضف امر' and Constructor(msg) then
 if AddChannel(msg.sender_user_id_) == false then
 local textchuser = database:get(bot_id..'text:ch:user')
@@ -2983,95 +3027,6 @@ database:sadd(bot_id.."List:Cmd:Group:New"..msg.chat_id_,text)
 send(msg.chat_id_, msg.id_,'*♡∶ تم حفظ الامر*')  
 database:del(bot_id.."Set:Cmd:Group1"..msg.chat_id_..':'..msg.sender_user_id_)
 return false
-end
-function sendVoicebot(chat_id,reply_id,voice,caption,func)
-pcall(tdcli_function({
-ID="SendMessage",
-chat_id_ = chat_id,
-reply_to_message_id_ = reply_id,
-disable_notification_ = 0,
-from_background_ = 1,
-reply_markup_ = nil,
-input_message_content_ = {
-ID="InputMessageVoice",
-voice_ = GetInputFile(voice),
-duration_ = "",
-waveform_ = "",
-caption_ = caption or ""
-}},func or dl_cb,nil))
-end
-function sendAudiobot(chat_id,reply_id,audio,title,caption,performer,func)
-pcall(tdcli_function({
-ID="SendMessage",
-chat_id_ = chat_id,
-reply_to_message_id_ = reply_id,
-disable_notification_ = 0,
-from_background_ = 1,
-reply_markup_ = nil,
-input_message_content_ = {
-ID="InputMessageAudio",
-audio_ = GetInputFile(audio),
-duration_ = "",
-title_ = title or "",
-performer_ = performer or "",
-caption_ = caption or ""
-}},func or dl_cb,nil))
-end
-function download(url, file_path) 
-local respbody = {} 
-local options = { url = url, sink = ltn12.sink.table(respbody), redirect = true } 
-local response = nil 
-options.redirect = false 
-response = {http.request(options)} 
-local code = response[2] 
-local headers = response[3] 
-local status = response[4] 
-if code ~= 200 then return false, code 
-end 
-file = io.open(file_path, "w+") 
-file:write(table.concat(respbody)) 
-file:close() 
-return './'..file_path 
-end
-if text == 'تعطيل اليوتيوب' and Constructor(msg) then  
-send(msg.chat_id_, msg.id_,'*♡∶ بواسطة ⤙* ['..Get_Rank(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n*♡∶ تم تعطيل اليوتيوب*')
-database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"close") 
-return false  
-end 
-if text == 'تفعيل اليوتيوب' and Constructor(msg) then  
-send(msg.chat_id_, msg.id_,'*♡∶ بواسطة ⤙* ['..Get_Rank(msg.sender_user_id_,msg.chat_id_)..'](T.ME/'..(data.username_ or 'SoalfLove')..') \n*♡∶ تم تفعيل اليوتيوب*')
-database:set(bot_id.."dl_yt_dl"..msg.chat_id_,"open") 
-return false  
-end
-if text and text:match('^بصمه (.*)$')  and database:get(bot_id.."dl_yt_dl"..msg.chat_id_) == "open" then            
-local Ttext = text:match('^بصمه (.*)$') 
-local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
-local JsonSearch = JSON.decode(InfoSearch)
-for k,vv in pairs(JsonSearch.results) do
-if k == 1 then
-local GetStart = io.popen('downloadsh '..vv.url):read('*all')
-if GetStart and GetStart:match('(.*)oksend(.*)') then
-print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
-sendVoice(msg.chat_id_, msg.id_, 0, 1, nil,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @SoalfLove','@SoalfLove')  
-os.execute('rm -rf ./'..vv.url..'.mp3') 
-end
-end
-end
-end
-if text and text:match('^صوت (.*)$')  and database:get(bot_id.."dl_yt_dl"..msg.chat_id_) == "open" then            
-local Ttext = text:match('^صوت (.*)$') 
-local InfoSearch = https.request('https://mode-dev.tk/tg/search.php?search='..URL.escape(Ttext))
-local JsonSearch = JSON.decode(InfoSearch)
-for k,vv in pairs(JsonSearch.results) do
-if k == 1 then
-local GetStart = io.popen('downloadsh '..vv.url):read('*all')
-if GetStart and GetStart:match('(.*)oksend(.*)') then
-print('download Mp3 done ...\nName : '..vv.title..'\nIdLink : '..vv.url)
-sendAudio(msg.chat_id_,msg.id_,'./'..vv.url..'.mp3',vv.title,'- '..vv.title..'\n- @SoalfLove','@SoalfLove')
-os.execute('rm -rf ./'..vv.url..'.mp3') 
-end
-end
-end
 end
 --------------------------------------------------------------------------------------------------------------
 if text == "قفل الدردشه" and msg.reply_to_message_id_ == 0 and Owner(msg) then 
@@ -4758,7 +4713,7 @@ return false
 end
 if (msg.content_.sticker_)  and msg.reply_to_message_id_ == 0 and database:get(bot_id.."Lock:Xn"..msg.chat_id_)=="del" then      
 sticker_id = msg.content_.sticker_.sticker_.persistent_id_
-st = https.request('https://boyka-api.ml/ImageInfo.php?token='..token..'&url='..sticker_id.."&type=sticker")
+st = https.request('https://vvvzvv.ml/Imagelnfo.php?token='..token..'&url='..sticker_id.."&type=sticker")
 eker = JSON.decode(st)
 if eker.ok.Info == "Indecent" then
 local list = database:smembers(bot_id.."Basic:Constructor"..msg.chat_id_)
@@ -4824,7 +4779,7 @@ end
 end
 if (msg.content_.photo_) and msg.reply_to_message_id_ == 0 and database:get(bot_id.."Lock:Xn"..msg.chat_id_)=="del" then
 photo_id = msg.content_.photo_.sizes_[1].photo_.persistent_id_  
-Srrt = https.request('https://boyka-api.ml/ImageInfo.php?token='..token..'&url='..photo_id.."&type=photo")
+Srrt = https.request('https://vvvzvv.ml/Imagelnfo.php?token='..token..'&url='..photo_id.."&type=photo")
 Sto = JSON.decode(Srrt)
 if Sto.ok.Info == "Indecent" then
 local list = database:smembers(bot_id.."Basic:Constructor"..msg.chat_id_)
@@ -11414,6 +11369,41 @@ local From_id = data.id_
 local Msg_id = data.message_id_
 local msg_idd = Msg_id/2097152/0.5
 local DAata = data.payload_.data_
+if DAata and DAata:match("^(%d+):searchVid(.*)$") then
+id_from_user  = DAata:match("(%d+)")  
+local OnVid = DAata:gsub(':searchVid',''):gsub(id_from_user,'')
+msgidrp  = OnVid:match("(%d+)")
+local id_from_vid = DAata:gsub(':',''):gsub('searchVid',''):gsub(id_from_user,''):gsub(msgidrp,'')
+if tonumber(data.sender_user_id_) ~= tonumber(id_from_user) then  
+local notText = '♡∶ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+object = https.request('https://black-source.tk/Api/InfoVid.php?url=http://www.youtube.com/watch?v='..URL.escape(id_from_vid))
+objectend = JSON.decode(object)
+infovid = "♡∶ اختر صيغه التنزيل الان.\n"
+keyboard = {} 
+keyboard.inline_keyboard = {
+{{text = 'Mp4', callback_data=id_from_user..":DownloadVid:"..msgidrp..":"..id_from_vid..":Mp4"},{text = 'mp3', callback_data=id_from_user..":DownloadVid:"..msgidrp..":"..id_from_vid..":mp3"},{text = 'ogg', callback_data=id_from_user..":DownloadVid:"..msgidrp..":"..id_from_vid..":ogg"}},
+{{text = '♡∶  ϨⲞⴑꞄⲤⲈ ⲀⲈⲔⲀⲚ',url='http://t.me/SoalfLove'}},
+}
+https.request("https://api.telegram.org/bot"..token..'/editMessageText?chat_id='..Chat_id..'&text='..URL.escape(infovid)..'&message_id='..msg_idd..'&parse_mode=markdown&disable_web_page_preview=true&reply_markup='..JSON.encode(keyboard)) 
+InfoVid = https.request('https://black-source.tk/Api/BotYoutube.php?Id='..URL.escape(id_from_vid))
+InfoVidend = JSON.decode(InfoVid)
+if InfoVidend.Info.video == "not" then  
+https.request("https://boyka-api.ml/Do/searchinbot.php?V="..URL.escape(id_from_vid).."&ch=do")
+end
+end
+if DAata and DAata:match("^(%d+):DownloadVid(.*)$") then
+local notId  = DAata:match("(%d+)")  
+if tonumber(data.sender_user_id_) ~= tonumber(notId) then  
+local notText = '♡∶ عذرا الاوامر هذه لا تخصك'
+https.request("https://api.telegram.org/bot"..token.."/answerCallbackQuery?callback_query_id="..data.id_.."&text="..URL.escape(notText).."&show_alert=true")
+return false
+end
+https.request("https://api.telegram.org/bot"..token.."/deleteMessage?chat_id="..Chat_id.."&message_id="..msg_idd)
+https.request("https://boyka-api.ml/Do/searchinbot.php?token="..token.."&chat_id="..Chat_id.."&data="..URL.escape(DAata).."&n=do")
+end
 if Mod(data) then  
 sender_id  = DAata:match("(%d+)")  
 ta = DAata:gsub(data.sender_user_id_,'')
